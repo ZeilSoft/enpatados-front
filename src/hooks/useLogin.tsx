@@ -19,7 +19,6 @@ const useLogin = () => {
       const response = await axiosInstance.post("user/login", {email, password});
 
       const data = response.data.token;
-      console.log(data)
       let storage
       if(data){
         const user = decodeJwt(data)
@@ -31,7 +30,7 @@ const useLogin = () => {
       localStorage.setItem("user-token", JSON.stringify(storage));
       setAuthUser(data);
 
-      return null;
+      window.location.href = "/";
     } catch (error: any) {
       if (error.response && error.response.status === 401) {
         throw new Error("Incorrect credentials. Please try again.");
