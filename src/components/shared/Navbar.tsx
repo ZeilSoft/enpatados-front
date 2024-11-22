@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router-dom"
 
 import { useAuthContext } from "@/contexts/auth-context"
 import ItemsNavbar from "./ItemsNavbar"
-import { ModeToggle } from "./ModeToggle"
 
 const Navbar = () => {
   /* const { logOut } = useLogout() */
@@ -16,7 +15,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between w-full">
             <Link
               className="flex flex-shrink-0 items-center justify-center gap-3"
-              to="/home?currentPage=1&search=&tags="
+              to="/"
               aria-label="Home"
             >
               <img
@@ -25,7 +24,7 @@ const Navbar = () => {
                 alt="Techlibrary logo"
               />
 
-             {/*  <h1
+              {/*  <h1
                 className="text-2xl font-bold hidden leading-none md:block mt-5"
                 translate="no"
               >
@@ -49,7 +48,6 @@ const Navbar = () => {
                         height="48"
                       />
                     </NavLink>
-
                   </div>
                 ) : (
                   <div className="flex items-center justify-center gap-1.5">
@@ -66,7 +64,6 @@ const Navbar = () => {
                         key={crypto.randomUUID()}
                       />
                     </div>
-
                   </div>
                 )}
               </div>

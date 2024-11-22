@@ -12,7 +12,7 @@ interface RegisterParams {
 
 export const useRegister = () => {
   const [loading, setLoading] = useState(false);
-  const { setAuthUser } = useAuthContext() || {};
+/*   const { setAuthUser } = useAuthContext() || {}; */
 
   const register = async ({ name, surname, email, dob , password }: RegisterParams) => {
     setLoading(true);
@@ -22,8 +22,6 @@ export const useRegister = () => {
       const data = res.data;
       
       if (data.error) throw new Error(data.error)
-      localStorage.setItem("user-token", data.accesToken);
-      setAuthUser(data)
     } catch (error) {
       
     } finally {

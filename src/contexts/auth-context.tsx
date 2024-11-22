@@ -28,7 +28,7 @@ export const useAuthContext = (): AuthContextType => {
 }
 
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const storedUser = localStorage.getItem("library-user");
+  const storedUser = localStorage.getItem("user-token");
   const [authUser, setAuthUser] = useState<AuthUser | null>(storedUser ? JSON.parse(storedUser) : null);
 
   return (

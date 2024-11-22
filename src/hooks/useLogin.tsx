@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axiosInstance from "@/api/axiosInstance";
 import { useAuthContext } from "@/contexts/auth-context";
+import { decodeJwt } from "@/utils/decode-jwt";
 
 interface LoginParams {
   email : string;
@@ -17,9 +18,17 @@ const useLogin = () => {
     try {
       const response = await axiosInstance.post("user/login", {email, password});
 
-      const data = response.data;
-      
-      localStorage.setItem("user-token", JSON.stringify(data));
+      const data = response.data.token;
+      console.log(data)
+      let storage
+      if(data){
+        const user = decodeJwt(data)
+        storage = {
+          user,
+          token: data
+        }
+      }
+      localStorage.setItem("user-token", JSON.stringify(storage));
       setAuthUser(data);
 
       return null;
