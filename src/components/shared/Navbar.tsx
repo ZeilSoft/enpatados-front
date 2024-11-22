@@ -10,7 +10,7 @@ const Navbar = () => {
   const { authUser } = useAuthContext()
 
   return (
-    <nav className="sticky w-full top-0 z-50 border-b-[1px] border-b-dark bg-light dark:bg-dark dark:border-b-light">
+    <nav className="sticky w-full top-0 z-50 border-b-[1px] border-b-black bg-white">
       <div className="mx-auto max-w-7xl p-4 2xl:pl-0">
         <div className="relative flex h-16 items-center gap-10">
           <div className="flex items-center justify-between w-full">
@@ -50,7 +50,6 @@ const Navbar = () => {
                       />
                     </NavLink>
 
-                    <ModeToggle />
                   </div>
                 ) : (
                   <div className="flex items-center justify-center gap-1.5">
@@ -68,7 +67,6 @@ const Navbar = () => {
                       />
                     </div>
 
-                    <ModeToggle />
                   </div>
                 )}
               </div>

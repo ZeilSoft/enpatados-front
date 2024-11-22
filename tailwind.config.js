@@ -78,8 +78,6 @@ module.exports = {
         rubik: ["Rubik", "sans-serif"]
       },
       colors: {
-        "light": "#F9F7EE",
-        "dark": "#0E100F",
         "blue-main": "#1D247E",
         "green-main": "#507C65",
         "orange-main": "#CD4A38",

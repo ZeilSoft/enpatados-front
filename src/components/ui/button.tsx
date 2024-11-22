@@ -14,16 +14,15 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-dark text-secondary-foreground hover:bg-secondary/80",
+        secondary: "bg-black text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         popular: "",
         link: "text-primary underline-offset-4 hover:underline",
-        marketing: "bg-main hover:bg-blue-main hover:dark:bg-blue-main text-dark font-bold text-lg",
-        darkSwich: "bg-dark hover:bg-dark/80 dark:bg-light dark:hover:bg-light/90 text-light dark:text-dark",
-        authButton: "bg-main hover:bg-blue-main hover:dark:bg-blue-main hover:text-light text-dark dark:text-light text-base font-bold",
-        sidebarToggle: "bg-dark hover:bg-[#3D3839] dark:bg-light dark:hover:bg-[#E6E1DA]",
-        like: ""
+        marketing: "bg-main hover:bg-blue-main  font-bold text-lg",
+        authButton:
+          "bg-main hover:bg-blue-main hover:text-light text-base font-bold hover:text-white",
+        sidebarToggle: "bg-black hover:bg-[#3D3839] ",
+        like: "",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -32,7 +31,7 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
         rounded: "rounded-full",
-        like: "p-0"
+        like: "p-0",
       },
     },
     defaultVariants: {
