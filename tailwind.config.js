@@ -75,7 +75,7 @@ module.exports = {
         '8xl': '1360px',
       },
       fontFamily: {
-        sigmar: ["Sigmar", "sans-serif"]
+        rubik: ["Rubik", "sans-serif"]
       },
       colors: {
         "light": "#F9F7EE",
