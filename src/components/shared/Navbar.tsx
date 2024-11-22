@@ -19,11 +19,11 @@ const Navbar = () => {
               to="/home?currentPage=1&search=&tags="
               aria-label="Home"
             >
-              {/* <img
-                className="w-16 h-16"
-                src={cofeeLogo}
+              <img
+                className="size-14"
+                src="/logo.webp"
                 alt="Techlibrary logo"
-              /> */}
+              />
 
              {/*  <h1
                 className="text-2xl font-bold hidden leading-none md:block mt-5"
