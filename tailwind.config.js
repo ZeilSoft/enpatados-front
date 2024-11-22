@@ -71,6 +71,20 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      maxWidth:{
+        '8xl': '1360px',
+      },
+      fontFamily: {
+        sigmar: ["Sigmar", "sans-serif"]
+      },
+      colors: {
+        "light": "#F9F7EE",
+        "dark": "#0E100F",
+        "blue-main": "#1D247E",
+        "green-main": "#507C65",
+        "orange-main": "#CD4A38",
+        "lilac-main": "#A8C2F5",
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
