@@ -75,7 +75,8 @@ module.exports = {
         '8xl': '1360px',
       },
       fontFamily: {
-        rubik: ["Rubik", "sans-serif"]
+        rubik: ["Rubik", "sans-serif"],
+        lilitaOne: ["Lilita One", "cursive"]
       },
       colors: {
         "blue-main": "#1D247E",
