@@ -14,7 +14,7 @@ function App() {
   const { authUser } = useAuthContext()
 
   return (
-    <main className="bg-white text-black">
+    <main className="bg-lilac-main text-black">
       <section className="w-full font-rubik flex flex-col justify-center items-center min-h-screen">
         <Navbar />
 

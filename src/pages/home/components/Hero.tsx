@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
-    <div className="w-full bg-lilac-main">
-      <div className="flex flex-col lg:flex-row px-16 pb-20 lg:pb-28 gap-4 lg:gap-0 ">
+    <div className="w-full bg-white">
+      <div className="flex flex-col lg:flex-row px-16 pb-20 lg:pb-28 gap-4 lg:gap-0 h-[500px]">
         <div className="flex flex-col w-full justify-center text-center lg:text-left">
           <h1 className="my-4 text-5xl font-bold leading-tight text-darken">
             Somos <span className="text-blue-main">Dona y Anu</span>
@@ -33,16 +33,17 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col w-full justify-center items-center">
-          <img
+          {/* <img
             data-aos="fade-up"
             data-aos-once="true"
             className="size-72 mx-auto 2xl:-mb-20"
             src="hero.webp"
             alt="hero image"
-          />
+          /> */}
+          <video src="/hero-video.mp4" autoPlay loop muted></video>
         </div>
       </div>
-      <div className="text-white -mt-14 sm:-mt-24 lg:-mt-36 z-40 relative">
+      <div className="-mt-14 sm:-mt-24 lg:-mt-36 z-40 relative text-lilac-main">
         <svg
           className="xl:h-40 xl:w-full"
           data-name="Layer 1"

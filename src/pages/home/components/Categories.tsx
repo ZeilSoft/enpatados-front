@@ -50,7 +50,7 @@ const Categories = () => {
             <Icon icon="icon-park-outline:socks" width="24" height="24" />
           </div>
           <div className="-mt-8">
-            <h1 className="font-medium text-xl">Anteojos</h1>
+            <h1 className="font-medium text-xl">Medias</h1>
 
             <p className="font-normal text-lg">
               Medias con diseño minimalista y moderno
