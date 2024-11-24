@@ -7,6 +7,7 @@ import NotFoundPage from "./pages/notFound/NotFoundPage"
 import Footer from "./components/shared/Footer"
 import Navbar from "./components/shared/Navbar"
 function App() {
+  
   const location = useLocation()
   const noPadding = ["/", "/login", "/signup", "/home"].includes(
     location.pathname
