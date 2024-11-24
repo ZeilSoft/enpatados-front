@@ -19,7 +19,7 @@ function App() {
         <Navbar />
 
         <div
-          className={`flex flex-1 max-w-8xl ${!noPadding ? "py-7 px-4" : ""}`}
+          className={`flex flex-1 max-w-8xl w-full ${!noPadding ? "py-7 px-4" : ""}`}
         >
           <Routes location={location} key={location.pathname}>
             {/* RUTAS NO PROTEGIDAS */}
