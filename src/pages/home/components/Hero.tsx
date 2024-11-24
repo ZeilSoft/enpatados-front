@@ -10,7 +10,7 @@ const Hero = () => {
             La vida es muy corta para usar medias aburridas {":)"}
           </p>
           <div className="w-full md:flex items-center justify-center lg:justify-start md:space-x-5">
-            <button className="lg:mx-0 bg-blue-main text-white text-xl font-bold rounded-full py-4 px-9 focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out">
+            <button className="lg:mx-0 bg-blue-main text-white text-xl font-bold rounded-full py-4 px-9 focus:outline-none transform transition hover:scale-105 hover:bg-blue-main/90 duration-300 ease-in-out">
               Registrate
             </button>
             {/*  <div className="flex items-center justify-center space-x-3 mt-5 md:mt-0 focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out">
