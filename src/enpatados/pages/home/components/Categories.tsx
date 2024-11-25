@@ -35,7 +35,7 @@ const Categories = () => {
         </p>
       </motion.div>
 
-      <div className="flex flex-col items-center justify-center md:flex-row gap-14">
+      <div className="flex flex-col items-center justify-center md:flex-row gap-14 px-4">
         <motion.div
           className="bg-white shadow-2xl p-4 text-center rounded-xl max-w-96 min-h-40"
           initial={{ y: 100, opacity: 0 }}
