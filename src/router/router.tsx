@@ -11,8 +11,7 @@ import { ContactPage } from '@/enpatados/pages/ContactPage';
 // Auth
 import { AuthLayout } from '@/auth/layout/AuthLayout';
 import { AuthProtectedRoute } from '@/components/AuthProtectedRoute';
-import LoginPage from '@/auth/pages/LoginPage';
-import RegisterPage from '@/auth/pages/RegisterPage';
+import LoginPage from '@/auth/pages/login/LoginPage';
 
 // DashboardAdmin
 import { DashboardAdminLayout } from '@/dashboardAdmin/layout/DashboardAdminLayout';
@@ -21,6 +20,8 @@ import { DashboardAdminProductsPage } from '@/dashboardAdmin/pages/DashboardAdmi
 import { DashboardAdminCategoriesPage } from '@/dashboardAdmin/pages/DashboardAdminCategoriesPage';
 import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminOrdersPage';
 import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUsersPage';
+import RegisterPage from '@/auth/pages/register/RegisterPage';
+import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
 
 export const router = createBrowserRouter( [
   {
@@ -69,6 +70,14 @@ export const router = createBrowserRouter( [
             element: (
               <AuthProtectedRoute>
                 <RegisterPage />
+              </AuthProtectedRoute>
+            )
+          },
+          {
+            path: 'password-recovery',
+            element: (
+              <AuthProtectedRoute>
+                <PasswordRecovery /> 
               </AuthProtectedRoute>
             )
           }
