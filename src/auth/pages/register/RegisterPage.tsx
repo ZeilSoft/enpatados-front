@@ -10,9 +10,9 @@ import { useFormik } from "formik"
 
 import { useMemo, useState } from "react"
 
-import { signupSchema } from "../utils/schemas/Signup"
-import { Register } from "../services/AuthService"
-import { useRegister } from "../hooks/useRegister"
+import { signupSchema } from "../../utils/schemas/Signup"
+import { Register } from "../../services/AuthService"
+import { useRegister } from "../../hooks/useRegister"
 
 const RegisterPage = () => {
   const { loading, register } = useRegister()

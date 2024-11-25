@@ -59,3 +59,14 @@ export function recoveryPasswordFunction(email: string) {
     throw error
   }
 }
+
+export function putPassword(password: string, token: string) {
+  try {
+    const response = axiosInstance.put(`user/reset/${token}`, {
+      newPassword: password
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
+}
