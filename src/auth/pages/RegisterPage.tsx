@@ -69,10 +69,10 @@ const RegisterPage = () => {
   )
 
   return (
-    <div className="flex my-auto">
+    <div className="flex items-center justify-center w-full min-h-screen">
       <form onSubmit={handleSubmit} noValidate>
-        <div className="flex flex-col gap-5 items-center justify-center px-4 py-7 mx-auto">
-          <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3">
+        <div className="flex flex-col gap-5 px-4 py-7 mx-auto ">
+          <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
             <div className="flex flex-col gap-4 md:gap-6">
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Crear una cuenta
@@ -250,7 +250,7 @@ const RegisterPage = () => {
                 <p className="text-sm font-light text-center">
                   ¿Ya tienes una cuenta?{" "}
                   <Link
-                    to="/iniciar-sesion"
+                    to="/auth/iniciar-sesion"
                     className="font-semibold text-main hover:underline"
                   >
                     Iniciar sesión

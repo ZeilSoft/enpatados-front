@@ -11,7 +11,7 @@ import { ContactPage } from '@/enpatados/pages/ContactPage';
 // Auth
 import { AuthLayout } from '@/auth/layout/AuthLayout';
 import { AuthProtectedRoute } from '@/components/AuthProtectedRoute';
-import LoginPage from '@/auth/pages/LoginPage';
+import LoginPage from '@/auth/pages/login/LoginPage';
 import RegisterPage from '@/auth/pages/RegisterPage';
 
 // DashboardAdmin

@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         marketing: "bg-main hover:bg-blue-main  font-bold text-lg",
         authButton:
-          "bg-main hover:bg-blue-main hover:text-light text-base font-bold hover:text-white",
+          "bg-blue-main hover:bg-blue-main/90 text-white font-bold text-base",
         sidebarToggle: "bg-black hover:bg-[#3D3839] ",
         like: "",
       },

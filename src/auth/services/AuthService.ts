@@ -1,15 +1,15 @@
 import axiosInstance from "@/api/axiosInstance"
 
 export interface Login {
-  email : string
-  password : string
+  email: string
+  password: string
 }
 
 export interface Register {
-  name : string
+  name: string
   surname: string
-  email    : string
-  password : string
+  email: string
+  password: string
   dob: string
 }
 
@@ -43,6 +43,17 @@ export function loginGithub() {
 export function register(user: Register) {
   try {
     const response = axiosInstance.post("user/register", user)
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
+export function recoveryPasswordFunction(email: string) {
+  try {
+    const response = axiosInstance.post("user/PassRecovery", {
+      email: email
+    })
     return response
   } catch (error) {
     throw error
