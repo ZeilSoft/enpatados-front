@@ -1,8 +1,8 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import { Link, NavLink } from "react-router-dom"
 
-import { useAuthContext } from "@/contexts/auth-context"
 import ItemsNavbar from "./ItemsNavbar"
+import { useAuthContext } from "@/auth/context/auth-context"
 
 const Navbar = () => {
   /* const { logOut } = useLogout() */
@@ -53,14 +53,14 @@ const Navbar = () => {
                   <div className="flex items-center justify-center gap-1.5">
                     <div className="hidden md:flex md:gap-3">
                       <ItemsNavbar
-                        name="INICIAR SESION"
-                        path="/login"
+                        name="INICIAR SESIÓN"
+                        path="/auth/iniciar-sesion"
                         key={crypto.randomUUID()}
                       />
 
                       <ItemsNavbar
                         name="REGISTRARSE"
-                        path="/signup"
+                        path="/auth/registrarse"
                         key={crypto.randomUUID()}
                       />
                     </div>

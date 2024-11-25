@@ -1,20 +1,26 @@
-import { createBrowserRouter } from 'react-router-dom';
-
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Root } from '../Root';
-import LoginPage from '@/pages/login/LoginPage';
-import RegisterPage from '@/pages/register/RegisterPage';
-import { AuthLayout } from '@/components/AuthLayout';
-import { AdminDashboardLayout } from '@/components/AdminDashboardLayout';
-import HomePage from '@/pages/home/HomePage';
-import { MainLayout } from '@/components/MainLayout';
-import { ProductsPage } from '@/pages/products/ProductsPage';
-import { PromotionsPage } from '@/pages/promotions/PromotionsPage';
-import { ContactPage } from '@/pages/contact/ContactPage';
-import { DashboardMainPage } from '@/pages/DashboardMainPage';
-import { DashboardProductsPage } from '@/pages/DashboardProductsPage';
-import { DashboardCategoriesPage } from '@/pages/DashboardCategoriesPage';
-import { DashboardOrdersPage } from '@/pages/DashboardOrdersPage';
-import { DashboardUsersPage } from '@/pages/DashboardUsersPage';
+
+// Enpatados
+import { MainLayout } from '@/enpatados/layout/MainLayout';
+import HomePage from '@/enpatados/pages/home/HomePage';
+import { ProductsPage } from '@/enpatados/pages/ProductsPage';
+import { PromotionsPage } from '@/enpatados/pages/PromotionsPage';
+import { ContactPage } from '@/enpatados/pages/ContactPage';
+
+// Auth
+import { AuthLayout } from '@/auth/layout/AuthLayout';
+import { AuthProtectedRoute } from '@/components/AuthProtectedRoute';
+import LoginPage from '@/auth/pages/LoginPage';
+import RegisterPage from '@/auth/pages/RegisterPage';
+
+// DashboardAdmin
+import { DashboardAdminLayout } from '@/dashboardAdmin/layout/DashboardAdminLayout';
+import { DashboardAdminMainPage } from '@/dashboardAdmin/pages/DashboardAdminMainPage';
+import { DashboardAdminProductsPage } from '@/dashboardAdmin/pages/DashboardAdminProductsPage';
+import { DashboardAdminCategoriesPage } from '@/dashboardAdmin/pages/DashboardAdminCategoriesPage';
+import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminOrdersPage';
+import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUsersPage';
 
 export const router = createBrowserRouter( [
   {
@@ -52,40 +58,47 @@ export const router = createBrowserRouter( [
         children: [
           {
             path: 'iniciar-sesion',
-            element: <LoginPage />
+            element: (
+              <AuthProtectedRoute>
+                <LoginPage /> 
+              </AuthProtectedRoute>
+            )
           },
           {
             path: 'registrarse',
-            element: <RegisterPage />
+            element: (
+              <AuthProtectedRoute>
+                <RegisterPage />
+              </AuthProtectedRoute>
+            )
           }
         ]
       },
 
-
       /// Dashboard Routes
       {
         path: 'admin',
-        element: <AdminDashboardLayout />,
+        element: <DashboardAdminLayout />,
         children: [
           {
             path: '',
-            element: <DashboardMainPage />
+            element: <DashboardAdminMainPage />
           },
           {
             path: 'productos',
-            element: <DashboardProductsPage />
+            element: <DashboardAdminProductsPage />
           },
           {
             path: 'categorias',
-            element: <DashboardCategoriesPage />
+            element: <DashboardAdminCategoriesPage />
           },
           {
             path: 'ordenes-de-compra',
-            element: <DashboardOrdersPage />
+            element: <DashboardAdminOrdersPage />
           },
           {
             path: 'usuarios',
-            element: <DashboardUsersPage />
+            element: <DashboardAdminUsersPage />
           },
         ]
       },
