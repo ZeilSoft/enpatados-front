@@ -19,8 +19,8 @@ const Navbar = () => {
               aria-label="Home"
             >
               <img
-                className="w-16 h-14"
-                src="/navbar.jpg"
+                className="size-16"
+                src="/logo.webp"
                 alt="Techlibrary logo"
               />
 
