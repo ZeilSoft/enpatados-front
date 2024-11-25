@@ -16,7 +16,7 @@ import RegisterPage from '@/auth/pages/RegisterPage';
 
 // DashboardAdmin
 import { DashboardAdminLayout } from '@/dashboardAdmin/layout/DashboardAdminLayout';
-import { DashboardAdminMainPage } from '@/dashboardAdmin/pages/DashboardAdminMainPage';
+// import { DashboardAdminMainPage } from '@/dashboardAdmin/pages/DashboardAdminMainPage';
 import { DashboardAdminProductsPage } from '@/dashboardAdmin/pages/DashboardAdminProductsPage';
 import { DashboardAdminCategoriesPage } from '@/dashboardAdmin/pages/DashboardAdminCategoriesPage';
 import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminOrdersPage';
@@ -80,10 +80,10 @@ export const router = createBrowserRouter( [
         path: 'admin',
         element: <DashboardAdminLayout />,
         children: [
-          {
-            path: '',
-            element: <DashboardAdminMainPage />
-          },
+          // {
+          //   path: '',
+          //   element: <DashboardAdminMainPage />
+          // },
           {
             path: 'productos',
             element: <DashboardAdminProductsPage />
