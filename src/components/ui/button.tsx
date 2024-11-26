@@ -21,6 +21,8 @@ const buttonVariants = cva(
         marketing: "bg-main hover:bg-blue-main  font-bold text-lg",
         authButton:
           "bg-blue-main hover:bg-blue-main/90 text-white font-bold text-base",
+        green:
+          "bg-green-main hover:bg-green-main/90 text-white font-bold text-base",
         sidebarToggle: "bg-black hover:bg-[#3D3839] ",
         like: "",
       },
