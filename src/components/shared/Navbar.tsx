@@ -3,9 +3,11 @@ import { Link, NavLink } from "react-router-dom"
 
 import ItemsNavbar from "./ItemsNavbar"
 import { useAuthContext } from "@/auth/context/auth-context"
+import { Button } from "../ui/button"
+import { useLogout } from "@/auth/hooks/useLogout"
 
 const Navbar = () => {
-  /* const { logOut } = useLogout() */
+  const { logOut } = useLogout()
   const { authUser } = useAuthContext()
 
   return (
@@ -36,18 +38,13 @@ const Navbar = () => {
               <div className="flex items-center justify-center gap-3">
                 {authUser ? (
                   <div className="flex items-center justify-center gap-3">
-                    <NavLink
-                      to="/favorites"
-                      className={({ isActive }) =>
-                        `${isActive ? "active-link" : ""}`
-                      }
-                    >
+                    <Button onClick={logOut}>
                       <Icon
                         icon="tdesign:heart-filled"
                         width="48"
                         height="48"
                       />
-                    </NavLink>
+                    </Button>
                   </div>
                 ) : (
                   <div className="flex items-center justify-center gap-1.5">
