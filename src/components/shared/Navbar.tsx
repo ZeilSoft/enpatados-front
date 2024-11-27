@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
-import { Link, NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import ItemsNavbar from "./ItemsNavbar"
 import { useAuthContext } from "@/auth/context/auth-context"
