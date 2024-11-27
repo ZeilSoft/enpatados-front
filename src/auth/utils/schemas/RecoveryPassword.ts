@@ -5,4 +5,5 @@ export const recoveryPasswordSchemaEmail = yup.object({
 })
 export const recoveryPasswordSchemaPassword = yup.object({
   password : yup.string().required("La contraseña es requerida"),
+  confirmPassword: yup.string().required("La contraseña es requerida"),
 })
