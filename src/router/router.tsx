@@ -22,6 +22,7 @@ import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminO
 import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUsersPage';
 import RegisterPage from '@/auth/pages/register/RegisterPage';
 import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
+import ProfilePage from '@/enpatados/pages/profile/ProfilePage';
 
 export const router = createBrowserRouter( [
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter( [
           {
             path: '/',
             element: <HomePage />
+          },
+          {
+            path: '/perfil',
+            element: <ProfilePage />
           },
           {
             path: '/productos',
