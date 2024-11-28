@@ -5,8 +5,7 @@ import { Root } from '../Root';
 import { MainLayout } from '@/enpatados/layout/MainLayout';
 import HomePage from '@/enpatados/pages/home/HomePage';
 import { ProductsPage } from '@/enpatados/pages/ProductsPage';
-import { PromotionsPage } from '@/enpatados/pages/PromotionsPage';
-import { ContactPage } from '@/enpatados/pages/ContactPage';
+import { ContactPage } from '@/enpatados/pages/contact/ContactPage';
 
 // Auth
 import { AuthLayout } from '@/auth/layout/AuthLayout';
@@ -40,10 +39,6 @@ export const router = createBrowserRouter( [
           {
             path: '/productos',
             element: <ProductsPage />
-          },
-          {
-            path: '/promociones',
-            element: <PromotionsPage />
           },
           {
             path: '/contacto',

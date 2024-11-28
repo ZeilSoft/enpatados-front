@@ -42,8 +42,7 @@ export const useRegister = () => {
         }
       }
       localStorage.setItem("user-token", JSON.stringify(storage))
-      setAuthUser(data)
-      window.location.href = "/"
+      setAuthUser(storage as any)
     } catch (error) {
     } finally {
       setLoading(false)

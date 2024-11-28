@@ -28,9 +28,7 @@ export const useLogin = () => {
         }
       }
       localStorage.setItem("user-token", JSON.stringify(storage));
-      setAuthUser(data);
-
-      window.location.href = "/";
+      setAuthUser(storage as any);
     } catch (error: any) {
       if (error.response && error.response.status === 401) {
         throw new Error("Incorrect credentials. Please try again.");
