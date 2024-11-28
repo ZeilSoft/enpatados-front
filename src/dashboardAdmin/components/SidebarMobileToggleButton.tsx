@@ -6,8 +6,8 @@ export const SidebarMobileToggleButton = () => {
 
   return (
     <button
-      className={`lg:hidden absolute bg-gray-800 p-2 rounded-full shadow-lg focus:outline-none ${
-        isMobileSidebarOpen ? 'rotate-0' : 'rotate-180'
+      className={`lg:hidden absolute p-2 rounded-full z-[9999] top-4 left-4 shadow-lg focus:outline-none ${
+        isMobileSidebarOpen ? 'rotate-0 bg-[#252D3B]' : 'rotate-180 bg-[#111827]'
       } transition-transform`}
       onClick={toggleSidebar}
     >

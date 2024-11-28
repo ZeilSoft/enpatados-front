@@ -16,10 +16,10 @@ import LoginPage from '@/auth/pages/login/LoginPage';
 // DashboardAdmin
 import { DashboardAdminLayout } from '@/dashboardAdmin/layout/DashboardAdminLayout';
 // import { DashboardAdminMainPage } from '@/dashboardAdmin/pages/DashboardAdminMainPage';
-import { DashboardAdminProductsPage } from '@/dashboardAdmin/pages/DashboardAdminProductsPage';
-import { DashboardAdminCategoriesPage } from '@/dashboardAdmin/pages/DashboardAdminCategoriesPage';
-import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminOrdersPage';
-import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUsersPage';
+import { DashboardAdminProductsPage } from '@/dashboardAdmin/pages/DashboardAdminProducts/DashboardAdminProductsPage';
+import { DashboardAdminCategoriesPage } from '@/dashboardAdmin/pages/DashboardAdminCategories/DashboardAdminCategoriesPage';
+import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminOrders/DashboardAdminOrdersPage';
+import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUsers/DashboardAdminUsersPage';
 import RegisterPage from '@/auth/pages/register/RegisterPage';
 import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
 

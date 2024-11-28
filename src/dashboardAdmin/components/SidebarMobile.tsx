@@ -9,19 +9,20 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { title: 'Productos', href: '/admin/productos', Icon: Box },
-  { title: 'Categorías', href: '/admin/categorias', Icon: Tag },
+  { title: 'Clasificación', href: '/admin/categorias', Icon: Tag },
   { title: 'Órdenes', href: '/admin/ordenes-de-compra', Icon: ShoppingCart },
   { title: 'Usuarios', href: '/admin/usuarios', Icon: Users },
 ];
 
 import { useSidebarStore } from "@/store/ui.store";
+import { Button } from '@/components/ui/button';
 
 export const SidebarMobile = () => {
   const { isMobileSidebarOpen, toggleSidebar } = useSidebarStore();
 
   return (
     <div
-      className={`lg:hidden absolute bg-gray-900 h-screen flex flex-col justify-between text-white transition-all duration-300 ease-in-out overflow-hidden ${isMobileSidebarOpen ? 'w-64 p-4' : 'w-0 py-4'}`}
+      className={`lg:hidden z-[8888] absolute bg-[#111827] h-screen flex flex-col justify-between text-white transition-all duration-300 ease-in-out overflow-hidden ${isMobileSidebarOpen ? 'w-64 p-4' : 'w-0 py-4'}`}
     >
 
       {/* Navbar Items y Profile */}
@@ -58,7 +59,7 @@ export const SidebarMobile = () => {
               key={item.title}
               className={({ isActive }) => 
                 `${"w-full flex flex-row gap-3 items-center p-2 lg:border-b rounded transition-colors ease-linear duration-700"} 
-                ${isActive ? "bg-blue-800" : "hover:bg-white/5"}`
+                ${isActive ? "bg-[#252D3B]" : "hover:bg-white/5"}`
               }
               onClick={toggleSidebar}
             >
@@ -72,16 +73,16 @@ export const SidebarMobile = () => {
       {/* Go Home and Log out */}
       <div className={`flex flex-col justify-center gap-4 transition-opacity duration-300 ease-in-out ${isMobileSidebarOpen ? 'opacity-100' : 'opacity-0'}`}>
         {/* Go Home */}
-        <Link to="/" className='flex gap-1 justify-center items-center text-nowrap' onClick={toggleSidebar}>
+        <Link className='flex gap-1 items-center justify-center whitespace-nowrap text-sm font-medium rounded-md transition-colors hover:bg-[#111827] h-10 px-4 py-2 border border-[#334155] focus-visible:outline-none focus-visible:ring-2 focus:ring-white' to="/">
           <ChevronLeft />
-          <span className="text-lg font-bold">Volver al Inicio</span>
+          <span className="">Volver al Inicio</span>
         </Link>
 
         {/* Logout */}
-        <button className='flex gap-1 mx-auto items-center text-nowrap' onClick={toggleSidebar}>
+        <Button variant="logOut" className='flex flex-row gap-2 items-center'>
           <LogOut />
           Cerrar sesion
-        </button>
+        </Button>
       </div>
     </div>
   );

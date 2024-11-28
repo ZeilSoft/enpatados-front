@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { SidebarItem } from './SidebarItem';
 import { ShoppingCart, Tag, Users, LucideIcon, Box, LogOut, ChevronLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface MenuItem {
   title    : string;
@@ -11,7 +12,7 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { title: 'Productos', subTitle: 'Gestión de inventario', href: '/admin/productos', Icon: Box },
-  { title: 'Categorias', subTitle: 'Clasificación de productos', href: '/admin/categorias', Icon: Tag },
+  { title: 'Clasificación', subTitle: 'Administrar categorias', href: '/admin/categorias', Icon: Tag },
   { title: 'Ordenes de compra', subTitle: 'Estados de pago', href: '/admin/ordenes-de-compra', Icon: ShoppingCart },
   { title: 'Usuarios', subTitle: 'Lista de usuarios', href: '/admin/usuarios', Icon: Users },
 ];
@@ -19,10 +20,10 @@ const menuItems: MenuItem[] = [
 export const Sidebar = () => {
 
   return (
-    <div className="hidden bg-gray-900 p-6 h-screen relative lg:flex flex-col justify-between z-10 text-slate-300 w-80 left-0">
+    <div className="hidden lg:border-r lg:border-[#334155] bg-[#252D3B] h-screen relative lg:flex flex-col justify-between z-[8888] text-slate-300 w-80 left-0">
 
       {/* Intro & Profile */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 pt-4 px-4">
 
         {/* Intro */}
         <div>
@@ -54,19 +55,20 @@ export const Sidebar = () => {
           ) )
         }
       </nav>
-
-      <div className='flex flex-col justify-center gap-4'>
+      
+      {/* Go back & Logout */}
+      <div className='flex flex-col justify-center gap-2 px-4 pb-4'>
         {/* Go Home */}
-        <Link className='flex gap-1 justify-center items-center' to="/">
+        <Link className='flex gap-1 items-center justify-center whitespace-nowrap text-sm font-medium rounded-md transition-colors hover:bg-[#111827] h-10 px-4 py-2 border border-[#334155] focus-visible:outline-none focus-visible:ring-2 focus:ring-white' to="/">
           <ChevronLeft />
-          <span className="text-lg font-bold">Volver al Inicio</span>
+          <span className="">Volver al Inicio</span>
         </Link>
 
         {/* Logout */}
-        <button className='flex gap-1 mx-auto items-center'>
+        <Button variant="logOut" className='flex flex-row gap-2 items-center'>
           <LogOut />
           Cerrar sesion
-        </button>
+        </Button>
       </div>
     </div>
   );

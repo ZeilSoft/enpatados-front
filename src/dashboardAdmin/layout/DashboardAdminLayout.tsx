@@ -6,13 +6,12 @@ import { SidebarMobileToggleButton } from "../components/SidebarMobileToggleButt
 export const DashboardAdminLayout = () => {
 
   return (
-    <div className="bg-slate-200 overflow-y-visible overflow-x-hidden w-screen h-screen antialiased text-slate-900 selection:bg-blue-900 selection:text-white">
-      <div className="flex flex-row relative w-screen">
+    <div className="bg-[#111827] w-screen h-screen antialiased overflow-hidden text-black font-rubik">
+      <div className="flex flex-row relative w-full h-full">
         <Sidebar />
-
         <SidebarMobile />
 
-        <div className="w-full p-4">
+        <div className="w-full overflow-y-auto">
           <SidebarMobileToggleButton />
 
           <Outlet />

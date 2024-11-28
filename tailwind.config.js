@@ -12,9 +12,6 @@ module.exports = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
       colors: {
@@ -83,6 +80,9 @@ module.exports = {
         "green-main": "#507C65",
         "orange-main": "#CD4A38",
         "lilac-main": "#A8C2F5",
+      },
+      screens: {
+        '4xl': "2226px",
       }
     },
   },

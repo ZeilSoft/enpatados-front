@@ -10,18 +10,18 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        delete:
+          "bg-red-500 focus-visible:ring-offset-0 focus:ring-white hover:bg-[#F15656] text-white",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-black text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        popular: "",
         link: "text-primary underline-offset-4 hover:underline",
         marketing: "bg-main hover:bg-blue-main  font-bold text-lg",
-        authButton:
-          "bg-blue-main hover:bg-blue-main/90 text-white font-bold text-base",
-        sidebarToggle: "bg-black hover:bg-[#3D3839] ",
+        authButton: "bg-blue-main hover:bg-blue-main/90 text-white font-bold text-base",
+        productActions: "bg-[#111827] hover:bg-[#151C2B] border border-[#334155] focus-visible:ring-offset-0 focus:ring-white text-white",
+        logOut: "border text-[#F15656] border-[#F15656] hover:bg-[#F15656] hover:text-white focus-visible:ring-offset-0 focus:ring-[#F15656]",
+        goBack: "hover:bg-[#151C2B] border border-[#334155] focus-visible:ring-offset-0 focus:ring-white text-white",
         like: "",
       },
       size: {
