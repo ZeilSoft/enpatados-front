@@ -81,22 +81,6 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink
-                    to="/promociones"
-                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
-                      pathname === "/promociones" ? "text-main" : "text-light"
-                    }`}
-                  >
-                    Promociones
-                    <span
-                      className={`h-[2.5px] inline-block bg-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
-                        pathname === "/promociones" ? "w-[80%]" : "w-0"
-                      }`}
-                    >
-                      &nbsp;
-                    </span>
-                  </NavLink>
-
-                  <NavLink
                     to="/contacto"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
                       pathname === "/contact" ? "text-main" : "text-light"
@@ -206,20 +190,6 @@ const Navbar = () => {
                 onClick={() => setOpen(false)}
               >
                 Productos
-              </NavLink>
-
-              <NavLink
-                to="promociones"
-                className={({ isActive }) =>
-                  `block rounded-md px-3 py-2 text-base font-medium ${
-                    isActive
-                      ? "bg-main text-light"
-                      : "text-light hover:bg-main/80 hover:text-light"
-                  } transition-colors duration-300`
-                }
-                onClick={() => setOpen(false)}
-              >
-                Promociones
               </NavLink>
 
               <NavLink

@@ -34,12 +34,6 @@ const Footer = () => {
               >
                 Product
               </Link>
-              <Link
-                className="hover:underline hover:text-main transition-colors duration-150"
-                to="/promociones"
-              >
-                Promociones
-              </Link>
 
               <Link
                 className="hover:underline hover:text-main transition-colors duration-150"
