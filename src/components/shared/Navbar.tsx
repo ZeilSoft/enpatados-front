@@ -11,7 +11,6 @@ const Navbar = () => {
   const { authUser } = useAuthContext()
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
-  console.log(authUser)
 
   return (
     <nav className="sticky w-full top-0 z-50 bg-yellow-50">
