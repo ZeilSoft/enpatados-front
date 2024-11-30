@@ -33,7 +33,7 @@ export const ContactPage = () => {
   })
   return (
     <main className="flex items-center justify-center w-full">
-      <section className="flex flex-col w-full max-w-[800px] rounded-lg shadow p-6 sm:p-8 bg-yellow-50 gap-4">
+      <section className="flex flex-col w-full max-w-[800px] rounded-none md:rounded-lg shadow p-6 sm:p-8 bg-yellow-50 gap-4">
         <div>
           <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-green-main md:text-2xl">
             Contactanos
