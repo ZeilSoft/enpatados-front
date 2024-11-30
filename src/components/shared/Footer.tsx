@@ -32,7 +32,7 @@ const Footer = () => {
                 className="hover:underline hover:text-main transition-colors duration-150"
                 to="/productos"
               >
-                Product
+                Productos
               </Link>
 
               <Link
