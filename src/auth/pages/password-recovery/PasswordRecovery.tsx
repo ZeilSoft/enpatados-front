@@ -31,7 +31,7 @@ const PasswordRecovery = () => {
       confirmPassword: "",
     },
     validationSchema: recoveryPasswordSchemaPassword,
-    onSubmit: async (values: { password: string, confirmPassword: string }) => {
+    onSubmit: async (values: { password: string; confirmPassword: string }) => {
       if (values.password !== values.confirmPassword) {
         setPasswordMatchMessage("Las contraseñas no coinciden")
         return
@@ -61,20 +61,22 @@ const PasswordRecovery = () => {
 
   return (
     <section className="flex items-center justify-center w-full min-h-screen">
-      {token == undefined || error ? (
-        <div className="flex flex-col items-center gap-4">
-          <h4>
-            Algo a salido mal pruebe volver a recuperar la contraseña aqui
-          </h4>
-          <div>
-            <Button variant="authButton">
-              <Link to="/auth/iniciar-sesion">Volver a recuperar contraseña</Link>
-            </Button>
+      <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+        {token == undefined || error ? (
+          <div className="flex flex-col items-center gap-4">
+            <h4>
+              Algo a salido mal pruebe volver a recuperar la contraseña aqui
+            </h4>
+            <div>
+              <Button variant="authButton">
+                <Link to="/auth/iniciar-sesion">
+                  Volver a recuperar contraseña
+                </Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      ) : (
-        <form onSubmit={formik.handleSubmit}>
-          <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+        ) : (
+          <form onSubmit={formik.handleSubmit}>
             <div className="flex flex-col gap-4 md:gap-6">
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                 Recuperar contraseña
@@ -84,16 +86,15 @@ const PasswordRecovery = () => {
                 <div className="flex flex-col gap-2">
                   <Label>Nueva contraseña</Label>
                   <div className="relative">
+                    <Input
+                      className="bg-light"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Nueva contraseña"
+                      {...formik.getFieldProps("password")}
+                      disabled={loading}
+                    />
 
-                  <Input
-                    className="bg-light"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Nueva contraseña"
-                    {...formik.getFieldProps("password")}
-                    disabled={loading}
-                  />
-
-                  <button
+                    <button
                       type="button"
                       className="absolute inset-y-0 right-0 pr-3 flex items-center"
                       onClick={togglePasswordVisibility}
@@ -151,11 +152,12 @@ const PasswordRecovery = () => {
                     </button>
                   </div>
 
-                  {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                    <small className="font-bold text-[#ff4444]">
-                      {formik.errors.confirmPassword}
-                    </small>
-                  )}
+                  {formik.touched.confirmPassword &&
+                    formik.errors.confirmPassword && (
+                      <small className="font-bold text-[#ff4444]">
+                        {formik.errors.confirmPassword}
+                      </small>
+                    )}
 
                   {passwordMatchMessage && (
                     <small className={`font-bold ${passwordMatchClass}`}>
@@ -163,7 +165,6 @@ const PasswordRecovery = () => {
                     </small>
                   )}
                 </div>
-
               </div>
               <div className="flex flex-col gap-5">
                 <Button
@@ -179,9 +180,9 @@ const PasswordRecovery = () => {
                 </Button>
               </div>
             </div>
-          </div>
-        </form>
-      )}
+          </form>
+        )}
+      </div>
     </section>
   )
 }

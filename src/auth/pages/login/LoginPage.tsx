@@ -64,17 +64,17 @@ const LoginPage = () => {
 
   return (
     <section className="flex items-center justify-center w-full min-h-screen">
-      {success ? (
-        <h1>
-          Se le envio un correo de recuperacion a su correo, por favor revise su
-          bandeja de entrada o spam
-        </h1>
-      ) : (
-        <div>
-          {!recoveryPassword ? (
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="flex flex-col gap-5 px-4 py-7 mx-auto">
-                <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+      <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+        {success ? (
+          <h1>
+            Se le envio un correo de recuperacion a su correo, por favor revise
+            su bandeja de entrada o spam
+          </h1>
+        ) : (
+          <div>
+            {!recoveryPassword ? (
+              <form onSubmit={handleSubmit} noValidate>
+                <div className="flex flex-col gap-5 mx-auto">
                   <div className="flex flex-col gap-4 md:gap-6">
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                       Ingrese su email
@@ -180,11 +180,9 @@ const LoginPage = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
-          ) : (
-            <form onSubmit={formik.handleSubmit}>
-              <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+              </form>
+            ) : (
+              <form onSubmit={formik.handleSubmit}>
                 <div className="flex flex-col gap-4 md:gap-6">
                   <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                     Recuperar contraseña
@@ -229,11 +227,11 @@ const LoginPage = () => {
                     Volver
                   </button>
                 </div>
-              </div>
-            </form>
-          )}
-        </div>
-      )}
+              </form>
+            )}
+          </div>
+        )}
+      </div>
     </section>
   )
 }
