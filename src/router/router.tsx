@@ -4,7 +4,7 @@ import { Root } from '../Root';
 // Enpatados
 import { MainLayout } from '@/enpatados/layout/MainLayout';
 import HomePage from '@/enpatados/pages/home/HomePage';
-import { ProductsPage } from '@/enpatados/pages/ProductsPage';
+import { ProductsPage } from '@/enpatados/pages/productos/ProductsPage';
 import { ContactPage } from '@/enpatados/pages/contact/ContactPage';
 
 // Auth
