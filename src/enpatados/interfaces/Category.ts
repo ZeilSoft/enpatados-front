@@ -1,7 +1,10 @@
+import { SubCategory } from "./SubCategory"
+
 export interface Category {
-  categoryId?: number
+  id: number
   name: string
   description: string
   icon: Text
   productId?: number
+  subcategories?: SubCategory[]
 }

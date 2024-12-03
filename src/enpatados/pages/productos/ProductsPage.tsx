@@ -1,23 +1,20 @@
 import usePagination from "@/enpatados/hooks/usePagination"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Pagination } from "./components/Pagination"
 import SearchBar from "./components/SearchBar"
 import { useQuery } from "@tanstack/react-query"
 import Categories from "./components/Categories"
-import SubCategories from "./components/SubCategories"
 import { getCategories } from "@/enpatados/services/categoryService"
-import { getSubCategories } from "@/enpatados/services/subCategoryService"
 import { getProducts } from "@/enpatados/services/productService"
 import CardsContainer from "./components/CardsContainer"
 
 export const ProductsPage = () => {
-  /*   const [product, setProduct] = useState([]) */
   const { searchParams, handlePageChange, setTotalPages, totalPages } =
     usePagination()
   const currentPage = Number(searchParams.get("currentPage"))
   const search = searchParams.get("search")
-  const categoryId = searchParams.get("categoryId")
-  const subCategoryId = searchParams.get("subcategoryId")
+  const categoryId = searchParams.get("category")
+  const subCategoryId = searchParams.get("subcategory")
 
   const { data: categories } = useQuery({
     queryKey: ["categories"],
@@ -26,33 +23,31 @@ export const ProductsPage = () => {
     staleTime: 1000 * 60 * 60 * 24,
   })
 
-  const { data: subCategories } = useQuery({
-    queryKey: ["sub-categories"],
-    queryFn: getSubCategories,
-    refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
-  })
-
-  const { data: products, refetch: refetchProducts } = useQuery({
+  const {
+    data: products,
+    refetch: refetchProducts,
+    error: errorProducts,
+    isLoading: isLoadingProducts,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: getProductsFunction,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   })
+
   async function getProductsFunction() {
     const response = await getProducts({
       page: currentPage ? currentPage : 1,
-      pageSize: 1,
-      categoryId: categoryId ? categoryId : undefined,
-      subCategoryId: subCategoryId ? subCategoryId : undefined,
-      search: search ? search : undefined,
+      pageSize: 8,
+      categoryId: categoryId ? categoryId : "",
+      subCategoryId: subCategoryId ? subCategoryId : "",
+      search: search ? search : "",
     })
     setTotalPages(response.data.pagination.totalPages)
     return response.data.data
   }
 
   useEffect(() => {
-    console.log(searchParams.get("currentPage"))
     refetchProducts()
   }, [currentPage, search, categoryId, subCategoryId, totalPages])
 
@@ -61,16 +56,19 @@ export const ProductsPage = () => {
       <section>
         <SearchBar />
       </section>
-      <section className="flex">
-        <div className="flex flex-col">
-          <Categories />
-        </div>
-        <div className="flex flex-col">
+      <section className="flex flex-col">
+        <Categories categories={categories} />
+        {isLoadingProducts ? (
+          <p>cargando</p>
+        ) : (
           <div>
-            <SubCategories subCategories={subCategories} />
+            {errorProducts ? (
+              <p>Algo ha salido mal, pruebe de nuevo</p>
+            ) : (
+              <CardsContainer products={products} />
+            )}
           </div>
-          <CardsContainer products={products} />
-        </div>
+        )}
       </section>
       <Pagination
         currentPage={currentPage!}

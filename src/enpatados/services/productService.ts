@@ -14,9 +14,18 @@ export async function getProducts({
   search?: string
 }) {
   try {
-    const response = await axiosInstance.get("product", {
-      params: { page, pageSize, categoryId, subCategoryId, search },
-    })    
+    const response = await axiosInstance.get(
+      "product?page=" +
+        page +
+        "&pageSize=" +
+        pageSize +
+        "&categoryId=" +
+        categoryId +
+        "&subcategoryId=" +
+        subCategoryId +
+        "&search=" +
+        search
+    )
     return response
   } catch (error) {
     throw error

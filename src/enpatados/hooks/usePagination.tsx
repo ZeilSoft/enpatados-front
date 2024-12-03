@@ -5,78 +5,58 @@ const usePagination = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState<number | undefined>(undefined)
   const [totalPages, setTotalPages] = useState(1)
-  const urlParams = new URLSearchParams(window.location.search)
 
   const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page)
-    updateUrl(page)
+    generalUpdateUrl(
+      Number(searchParams.get("category")),
+      page,
+      searchParams.get("search") || "",
+      Number(searchParams.get("subcategory"))
+    )
   }, [])
 
   const handleSearch = useCallback((search: string, page?: number) => {
-    updateSearchUrl(search, page ? page : 1)
+    generalUpdateUrl(
+      Number(searchParams.get("category")),
+      page ? page : 1,
+      search || "",
+      Number(searchParams.get("subcategory"))
+    )
   }, [])
 
-  const handleCategory = useCallback((category: string) => {
-    generalUpdateUrl(category, 1)
+  const handleCategory = useCallback((category: number) => {
+    generalUpdateUrl(category, 1, searchParams.get("search") || "", undefined)
   }, [])
 
-  const handleSubCategory = useCallback((subCategory: string) => {
-    generalUpdateUrl(undefined, 1, undefined, subCategory)
-  }, [])
-
-  const generalUpdateUrl = useCallback(
-    (
-      category?: string,
-      page?: number,
-      search?: string,
-      subCategory?: string
-    ) => {
-      setSearchParams({
-        currentPage: page ? page.toString() : "1",
-        search: search ? search : "",
-        category: category ? category : "",
-        subcategory: subCategory ? subCategory : "",
-      })
+  const handleSubCategory = useCallback(
+    (subCategory: number, category?: number) => {
+      generalUpdateUrl(
+        category ? category : undefined,
+        1,
+        searchParams.get("search") || "",
+        subCategory
+      )
     },
     []
   )
 
-  const updateSearchUrl = useCallback(
-    (search: string, page: number) => {
-      /*       const categoryId = urlParams.get("categories") */
+  const generalUpdateUrl = useCallback(
+    (
+      category?: number,
+      page?: number,
+      search?: string,
+      subCategory?: number
+    ) => {
       setSearchParams({
-        currentPage: page.toString(),
-        search: search,
-        /*         category: categoryId || "", */
-      })
-    },
-    [setSearchParams]
-  )
-
-  const updateUrl = useCallback(
-    (page: number) => {
-      const search = urlParams.get("search")
-      /*       const categoriesParams = urlParams.get("categories") */
-      setSearchParams({
-        currentPage: page.toString(),
+        currentPage: page ? page.toString() : "1",
         search: search ? search : "",
-        /*         category: categoriesParams ? categoriesParams : "", */
+        category: category ? category.toString() : "",
+        subcategory: subCategory ? subCategory.toString() : "",
       })
     },
-    [setSearchParams]
+    []
   )
-
-  const sincronizeParams = useCallback(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const search = urlParams.get("search") || ""
-    const current = urlParams.get("currentPage") || ""
-    /*     const categoryId = urlParams.get("category") */
-    setSearchParams({
-      currentPage: current,
-      search: search,
-      /*       category: categoryId || "", */
-    })
-  }, [])
 
   const getInitialPage = useCallback(() => {
     const pageFromUrl = Number(searchParams.get("currentPage")) || 1
@@ -92,7 +72,6 @@ const usePagination = () => {
     getInitialPage,
     handleSearch,
     searchParams,
-    sincronizeParams,
     setCurrentPage,
     setSearchParams,
     handleCategory,
