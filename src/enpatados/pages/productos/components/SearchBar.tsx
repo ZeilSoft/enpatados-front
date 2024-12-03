@@ -5,7 +5,7 @@ import { useDebounce } from "use-debounce"
 import { motion } from "framer-motion"
 import usePagination from "@/enpatados/hooks/usePagination"
 
-const SearchBar = () => { 
+const SearchBar = () => {
   const urlParams = new URLSearchParams(window.location.search)
   const search = urlParams.get("search")
   const { handleSearch, searchParams } = usePagination()
@@ -31,25 +31,21 @@ const SearchBar = () => {
       className="sticky z-30 top-[125px] flex flex-1 h-10 justify-end md:justify-center "
     >
       <div
-        className={`w-[80%] flex rounded-md outline outline-1 outline-dark dark:outline-light ${
-          isFocused ? "outline-[2px] outline-main dark:outline-main" : ""
+        className={`w-[80%] flex rounded-md outline outline-1 outline-black ${
+          isFocused ? "outline-[2px] outline-black" : ""
         }`}
       >
         <div
-          className={`bg-light dark:bg-dark rounded-l-md pl-1 pr-0.5 w-10 grid place-content-center border-r border-dark dark:border-light  ${
-            isFocused ? "border-r-[2px] border-main dark:border-main" : ""
+          className={`bg-yellow-50 rounded-l-md pl-1 pr-0.5 w-10 grid place-content-center border-r border-black ${
+            isFocused ? "border-r-[2px] border-black" : ""
           } `}
         >
-          <Icon
-            icon="material-symbols:search-rounded"
-            width="24"
-            height="24"
-          />
+          <Icon icon="material-symbols:search-rounded" width="24" height="24" />
         </div>
 
         <div className="w-full relative">
           <Input
-            className={`w-full h-full border-none rounded-l-none bg-light dark:bg-dark text-dark dark:text-light ${
+            className={`w-full h-full border-none rounded-l-none bg-yellow-50 text-black ${
               isFocused ? "focus-visible:ring-0" : ""
             }`}
             placeholder="Buscar una libreria"
@@ -66,11 +62,7 @@ const SearchBar = () => {
               className="absolute right-2 top-1/2 -translate-y-1/2 z-0"
               onClick={() => setText("")}
             >
-              <Icon
-                icon="material-symbols:close"
-                width="24"
-                height="24"
-              />
+              <Icon icon="material-symbols:close" width="24" height="24" />
             </button>
           )}
         </div>

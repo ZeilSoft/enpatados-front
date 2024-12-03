@@ -38,7 +38,7 @@ export const ProductsPage = () => {
   async function getProductsFunction() {
     const response = await getProducts({
       page: currentPage ? currentPage : 1,
-      pageSize: 8,
+      pageSize: 1,
       categoryId: categoryId ? categoryId : "",
       subCategoryId: subCategoryId ? subCategoryId : "",
       search: search ? search : "",
@@ -53,10 +53,10 @@ export const ProductsPage = () => {
 
   return (
     <main className="flex flex-col items-center p-2 w-full min-h-screen gap-12">
-      <section>
+      <section className="w-full">
         <SearchBar />
       </section>
-      <section className="flex flex-col">
+      <section className="flex flex-col gap-4 w-[80%]">
         <Categories categories={categories} />
         {isLoadingProducts ? (
           <p>cargando</p>
