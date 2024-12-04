@@ -84,7 +84,7 @@ function Modal({ product, openModal, setOpenModal }: ModalProps) {
       ) || []
   )
   let isProductInCart
-  if (authUser) {
+  if (authUser != null) {
     isProductInCart = (
       productStore as { userId: string; products: CartProducts[] }
     ).products.some(

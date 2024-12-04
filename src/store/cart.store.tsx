@@ -18,6 +18,8 @@ interface CartState {
   }) => void
   deleteProductFromCart: (userId: string, productId: number) => void
   findCartByUserId: (userId: string) => CartProducts[]
+  decreaseAmountProduct: (userId: string, productId: number) => void
+  increaseAmountProduct: (userId: string, productId: number) => void
 }
 
 const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
@@ -83,6 +85,39 @@ const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
     return (
       this.cart.find((product) => product.userId === userId)?.products || []
     )
+  },
+
+  decreaseAmountProduct(userId, productId) {
+    set((state) => {
+      const existingIndex = state.cart[0].products.findIndex(
+        (product: CartProducts) => product.product.id === productId
+      ) // Busca el índice de los productos del usuario
+
+      if (existingIndex !== -1) {
+        state.cart[0].products[existingIndex].amount -= 1
+        localStorage.setItem(
+          `cart-${userId}`,
+          JSON.stringify(state.cart[0].products)
+        )
+      }
+    })
+  },
+
+  increaseAmountProduct(userId, productId) {
+    set((state) => {
+      const existingIndex = state.cart[0].products.findIndex(
+        (product: CartProducts) => product.product.id === productId
+      ) // Busca el índice de los productos del usuario
+      console.log(existingIndex)
+
+      if (existingIndex !== -1) {
+        state.cart[0].products[existingIndex].amount += 1
+        localStorage.setItem(
+          `cart-${userId}`,
+          JSON.stringify(state.cart[0].products)
+        )
+      }
+    })
   },
 })
 
