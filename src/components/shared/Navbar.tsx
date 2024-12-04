@@ -5,11 +5,15 @@ import { useAuthContext } from "@/auth/context/auth-context"
 import { Button } from "../ui/button"
 import { useLogout } from "@/auth/hooks/useLogout"
 import { useState } from "react"
+import { CartProducts, useCartStore } from "@/store/cart.store"
+import { Product } from "@/enpatados/interfaces/Product"
 
 const Navbar = () => {
   const { logOut } = useLogout()
   const { authUser } = useAuthContext()
   const [open, setOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(true)
+
   const { pathname } = useLocation()
 
   return (
@@ -37,8 +41,9 @@ const Navbar = () => {
                 />
               </button>
             </div>
+
             <Link
-              className="flex flex-shrink-0 items-center justify-center gap-3"
+              className="flex flex-shrink-0 items-end justify-end gap-3"
               to="/"
               aria-label="Home"
             >
@@ -46,6 +51,7 @@ const Navbar = () => {
             </Link>
 
             <div className={`items-center flex justify-end gap-6`}>
+              {/* Navlinks */}
               <div className="hidden md:ml-6 md:flex md:flex-1">
                 <div className="flex w-full items-center justify-end text-center flex-row gap-2 ">
                   <NavLink
@@ -95,6 +101,20 @@ const Navbar = () => {
                       &nbsp;
                     </span>
                   </NavLink>
+                  <div>
+                    <button
+                      type="button"
+                      className="px-3 py-2 inline-flex items-center justify-center rounded-md text-light hover:bg-main/80 hover:text-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                      aria-controls="mobile-menu"
+                      aria-expanded={cartOpen}
+                      onClick={() => setCartOpen(!cartOpen)}
+                    >
+                      <span className="sr-only">Open main menu</span>
+
+                      {/* Open */}
+                      <Icon icon="mdi:cart" width="24" height="24" />
+                    </button>
+                  </div>
 
                   {authUser?.user.role == "admin" && (
                     <NavLink
@@ -133,27 +153,48 @@ const Navbar = () => {
                   )}
                 </div>
               </div>
+
+              {/* Cart button */}
+              <div className="flex items-center md:hidden w-full">
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center rounded-md text-light hover:bg-main/80 hover:text-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                  aria-controls="mobile-menu"
+                  aria-expanded={cartOpen}
+                  onClick={() => setCartOpen(!cartOpen)}
+                >
+                  <span className="sr-only">Open main menu</span>
+
+                  {/* Open */}
+                  <Icon
+                    className={`${open ? "block" : "block ml-[-63px]"}`}
+                    icon="mdi:cart"
+                    width="24"
+                    height="24"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
+
+        <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} />
 
         {/* Mobile menu, show/hide based on menu state. */}
         <div
           className={`fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-start z-50 md:hidden transition-all duration-300 ${
             open ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
+          onClick={() => setOpen(!open)}
         >
           <div
             className={`bg-yellow-50 w-[280px] h-full p-6 flex flex-col gap-6 transition-all duration-300 ${
               open ? "translate-x-0" : "-translate-x-full"
             }`}
+            onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-row items-center justify-between">
-              <button
-                type="button"
-                className="self-start"
-                onClick={() => setOpen(false)}
-              >
+            <div className="flex flex-row items-center justify-end">
+              <button type="button" onClick={() => setOpen(false)}>
                 <Icon
                   className="text-light"
                   icon="material-symbols:close"
@@ -246,3 +287,53 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+interface CartProps {
+  cartOpen: boolean
+  setCartOpen: Function
+}
+function Cart({ cartOpen, setCartOpen }: CartProps) {
+  const { authUser } = useAuthContext()
+  const products = useCartStore(
+    (state) =>
+      state.cart.find((product) => product.userId === authUser?.user.id)
+        ?.products || []
+  )
+  return (
+    <div
+      className={`fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-start z-50 transition-all duration-300 ${
+        cartOpen ? "opacity-100 visible" : "opacity-0 invisible"
+      }`}
+      onClick={() => setCartOpen(false)}
+    >
+      <div
+        className={`bg-yellow-50 w-[320px] h-full p-6 flex flex-col gap-6 transition-all duration-300 absolute ${
+          cartOpen ? "-right-0" : "-right-full"
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex flex-row items-center justify-between">
+          <button
+            type="button"
+            className="self-start"
+            onClick={() => setCartOpen(false)}
+          >
+            <Icon
+              className="text-light"
+              icon="material-symbols:close"
+              width="24"
+              height="24"
+            />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          {products &&
+            products.map((product: CartProducts) => (
+              <li key={crypto.randomUUID()}>{product.product.name}</li>
+            ))}
+        </div>
+      </div>
+    </div>
+  )
+}
