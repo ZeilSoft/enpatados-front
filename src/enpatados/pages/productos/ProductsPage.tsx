@@ -34,11 +34,12 @@ export const ProductsPage = () => {
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   })
+  console.log(products)
 
   async function getProductsFunction() {
     const response = await getProducts({
       page: currentPage ? currentPage : 1,
-      pageSize: 1,
+      pageSize: undefined,
       categoryId: categoryId ? categoryId : "",
       subCategoryId: subCategoryId ? subCategoryId : "",
       search: search ? search : "",
@@ -56,7 +57,7 @@ export const ProductsPage = () => {
       <section className="w-full">
         <SearchBar />
       </section>
-      <section className="flex flex-col gap-4 w-[80%]">
+      <section className="flex flex-col gap-4 w-full md:w-[80%]">
         <Categories categories={categories} />
         {isLoadingProducts ? (
           <p>cargando</p>

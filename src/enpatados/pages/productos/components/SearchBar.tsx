@@ -31,7 +31,7 @@ const SearchBar = () => {
       className="sticky z-30 top-[125px] flex flex-1 h-10 justify-end md:justify-center "
     >
       <div
-        className={`w-[80%] flex rounded-md outline outline-1 outline-black ${
+        className={`w-full md:w-[80%] flex rounded-md outline outline-1 outline-black ${
           isFocused ? "outline-[2px] outline-black" : ""
         }`}
       >
