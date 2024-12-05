@@ -22,7 +22,7 @@ import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUs
 import RegisterPage from '@/auth/pages/register/RegisterPage';
 import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
 import TicketPage from '@/enpatados/pages/ticket/TicketPage';
-/* import GooglePage from '@/auth/pages/google/GooglePage'; */
+import GooglePage from '@/auth/pages/google/GooglePage';
 
 export const router = createBrowserRouter( [
   {
@@ -65,7 +65,7 @@ export const router = createBrowserRouter( [
                 <LoginPage /> 
               </AuthProtectedRoute>
             )
-          },/* 
+          },
           {
             path: 'google',
             element: (
@@ -73,7 +73,7 @@ export const router = createBrowserRouter( [
                 <GooglePage /> 
               </AuthProtectedRoute>
             )
-          }, */
+          },
           {
             path: 'registrarse',
             element: (
