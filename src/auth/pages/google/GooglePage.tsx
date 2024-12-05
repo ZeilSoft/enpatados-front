@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+/* import { useEffect } from "react"
 import { LoaderIcon } from "lucide-react"
 import { useAuthContext } from "@/auth/context/auth-context"
 import { decodeJwt } from "@/auth/utils/decode-jwt"
@@ -32,3 +32,4 @@ const GooglePage = () => {
   )
 }
 export default GooglePage
+ */
