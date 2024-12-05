@@ -3,6 +3,7 @@ import { Button } from "../ui/button"
 import { Icon } from "@iconify/react/dist/iconify.js"
 import { useAuthContext } from "@/auth/context/auth-context"
 import { CartProducts, useCartStore } from "@/store/cart.store"
+import { Link } from "react-router-dom"
 
 interface CartProps {
   cartOpen: boolean
@@ -76,14 +77,16 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
             <span className="w-full">Subtotal: </span>
             <span className="w-full text-end">$ {subtotal}</span>
           </div>
-          <Button variant="green" className="flex gap-2">
-            <Icon
-              icon="material-symbols:shopping-cart"
-              width="24"
-              height="24"
-            />
-            Comprar
-          </Button>
+          <Link to="/ticket" className="w-full">
+            <Button variant="green" className="flex gap-2 w-full">
+              <Icon
+                icon="material-symbols:shopping-cart"
+                width="24"
+                height="24"
+              />
+              Comprar
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

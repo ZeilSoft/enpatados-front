@@ -108,8 +108,6 @@ const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
       const existingIndex = state.cart[0].products.findIndex(
         (product: CartProducts) => product.product.id === productId
       ) // Busca el índice de los productos del usuario
-      console.log(existingIndex)
-
       if (existingIndex !== -1) {
         state.cart[0].products[existingIndex].amount += 1
         localStorage.setItem(
