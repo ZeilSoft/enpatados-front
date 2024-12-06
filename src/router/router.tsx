@@ -23,6 +23,7 @@ import RegisterPage from '@/auth/pages/register/RegisterPage';
 import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
 import GooglePage from '@/auth/pages/google/GooglePage';
 import AboutPage from '@/enpatados/pages/about/AboutPage';
+import PromotionsPage from '@/enpatados/pages/promotions/PromotionsPage';
 
 export const router = createBrowserRouter( [
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter( [
           {
             path: '/sobre-nosotros',
             element: <AboutPage />
+          },
+          {
+            path: '/promociones',
+            element: <PromotionsPage />
           }
         ]
       },

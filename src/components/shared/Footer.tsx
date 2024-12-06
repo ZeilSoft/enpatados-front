@@ -53,6 +53,13 @@ const Footer = () => {
 
             <Link
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
+              to="/promociones"
+            >
+              Promociones
+            </Link>
+
+            <Link
+              className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
               to="/contacto"
             >
               Contactanos
