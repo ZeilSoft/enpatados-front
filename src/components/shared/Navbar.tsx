@@ -36,7 +36,7 @@ const Navbar = () => {
             <div className="items-center md:hidden">
               <button
                 type="button"
-                className="relative inline-flex items-center justify-center rounded-md text-light hover:bg-main/80 hover:text-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                className="relative inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
                 aria-controls="mobile-menu"
                 aria-expanded={open}
                 onClick={() => setOpen(!open)}
@@ -67,16 +67,16 @@ const Navbar = () => {
                 <div className="flex w-full items-center justify-end text-center flex-row gap-2 ">
                   <NavLink
                     to="/sobre-nosotros"
-                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
+                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
                       pathname === "/sobre-nosotros"
-                        ? "text-main"
-                        : "text-light"
+                        ? "text-yellow-main"
+                        : "text-black-main"
                     }`}
                   >
                     Sobre nosotros
                     <span
-                      className={`h-[2.5px] inline-block bg-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
-                        pathname === "/" ? "w-[80%]" : "w-0"
+                      className={`h-[2.5px] inline-block bg-yellow-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
+                        pathname === "/sobre-nosotros" ? "w-[80%]" : "w-0"
                       }`}
                     >
                       &nbsp;
@@ -85,13 +85,13 @@ const Navbar = () => {
 
                   <NavLink
                     to="/productos"
-                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
-                      pathname === "/productos" ? "text-main" : "text-light"
+                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
+                      pathname === "/productos" ? "text-yellow-main" : "text-black-main"
                     }`}
                   >
                     Productos
                     <span
-                      className={`h-[2.5px] inline-block bg-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
+                      className={`h-[2.5px] inline-block bg-yellow-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
                         pathname === "/productos" ? "w-[80%]" : "w-0"
                       }`}
                     >
@@ -101,13 +101,13 @@ const Navbar = () => {
 
                   <NavLink
                     to="/promociones"
-                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
-                      pathname === "/promociones" ? "text-main" : "text-light"
+                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
+                      pathname === "/promociones" ? "text-yellow-main" : "text-black-main"
                     }`}
                   >
                     Promociones
                     <span
-                      className={`h-[2.5px] inline-block bg-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
+                      className={`h-[2.5px] inline-block bg-yellow-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
                         pathname === "/promociones" ? "w-[80%]" : "w-0"
                       }`}
                     >
@@ -117,14 +117,14 @@ const Navbar = () => {
 
                   <NavLink
                     to="/contacto"
-                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
-                      pathname === "/contact" ? "text-main" : "text-light"
+                    className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
+                      pathname === "/contacto" ? "text-yellow-main" : "text-black-main"
                     }`}
                   >
                     Contactanos
                     <span
-                      className={`h-[2.5px] inline-block bg-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
-                        pathname === "/contact" ? "w-[80%]" : "w-0"
+                      className={`h-[2.5px] inline-block bg-yellow-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
+                        pathname === "/contacto" ? "w-[80%]" : "w-0"
                       }`}
                     >
                       &nbsp;
@@ -134,7 +134,7 @@ const Navbar = () => {
                     <div>
                       <button
                         type="button"
-                        className="px-3 py-2 inline-flex items-center justify-center rounded-md text-light hover:bg-main/80 hover:text-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                        className="px-3 py-2 inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
                         aria-controls="mobile-menu"
                         aria-expanded={cartOpen}
                         onClick={() => setCartOpen(!cartOpen)}
@@ -150,13 +150,13 @@ const Navbar = () => {
                   {authUser?.user.role == "admin" && (
                     <NavLink
                       to="/admin"
-                      className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
-                        pathname === "/admin" ? "text-main" : "text-light"
+                      className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
+                        pathname === "/admin" ? "text-yellow-main" : "text-black-main"
                       }`}
                     >
                       Administracion
                       <span
-                        className={`h-[2.5px] inline-block bg-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
+                        className={`h-[2.5px] inline-block bg-yellow-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
                           pathname === "/admin" ? "w-[80%]" : "w-0"
                         }`}
                       >
@@ -190,7 +190,7 @@ const Navbar = () => {
                 <div className="flex items-center md:hidden w-full">
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-md text-light hover:bg-main/80 hover:text-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                    className="inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
                     aria-controls="mobile-menu"
                     aria-expanded={cartOpen}
                     onClick={() => setCartOpen(!cartOpen)}
@@ -229,7 +229,7 @@ const Navbar = () => {
             <div className="flex flex-row items-center justify-end">
               <button type="button" onClick={() => setOpen(false)}>
                 <Icon
-                  className="text-light"
+                  className="text-black-main"
                   icon="material-symbols:close"
                   width="24"
                   height="24"
@@ -243,8 +243,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `block rounded-md px-3 py-2 text-base font-medium ${
                     isActive
-                      ? "bg-main text-light"
-                      : "text-light hover:bg-main/80 hover:text-light"
+                      ? "bg-gray-main text-black-main"
+                      : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
                 onClick={() => setOpen(false)}
@@ -257,8 +257,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `block rounded-md px-3 py-2 text-base font-medium ${
                     isActive
-                      ? "bg-main text-light"
-                      : "text-light hover:bg-main/80 hover:text-light"
+                      ? "bg-gray-main text-black-main"
+                      : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
                 onClick={() => setOpen(false)}
@@ -271,8 +271,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `block rounded-md px-3 py-2 text-base font-medium ${
                     isActive
-                      ? "bg-main text-light"
-                      : "text-light hover:bg-main/80 hover:text-light"
+                      ? "bg-gray-main text-black-main"
+                      : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
                 onClick={() => setOpen(false)}
@@ -285,8 +285,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `block rounded-md px-3 py-2 text-base font-medium ${
                     isActive
-                      ? "bg-main text-light"
-                      : "text-light hover:bg-main/80 hover:text-light"
+                      ? "bg-gray-main text-black-main"
+                      : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
                 onClick={() => setOpen(false)}
@@ -300,8 +300,8 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     `block rounded-md px-3 py-2 text-base font-medium ${
                       isActive
-                        ? "bg-main text-light"
-                        : "text-light hover:bg-main/80 hover:text-light"
+                        ? "bg-gray-main text-black-main"
+                        : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                     } transition-colors duration-300`
                   }
                   onClick={() => setOpen(false)}

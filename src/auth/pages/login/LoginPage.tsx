@@ -68,7 +68,7 @@ const LoginPage = () => {
 
   return (
     <section className="flex items-center justify-center w-full min-h-screen">
-      <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-white">
+      <div className="w-full sm:w-96 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-gray-main">
         {success ? (
           <h1>
             Se le envio un correo de recuperacion a su correo, por favor revise
@@ -160,13 +160,15 @@ const LoginPage = () => {
                         >
                           {loading ? "Cargando..." : "Iniciar sesión"}
                         </Button>
-                        <div className="flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-main after:mt-0.5 after:flex-1 after:border-t after:border-main dark:before:border-light dark:after:border-light">
+
+                        <div className="flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-black after:mt-0.5 after:flex-1 after:border-t after:border-black">
                           <p className="mx-4 mb-0 text-center dark:text-white">
                             o
                           </p>
                         </div>
+                        
                         <button
-                          className="px-5 py-2.5 border flex justify-center items-center gap-2 bg-white border-white hover:bg-white/80 transition-colors duration-150 rounded-lg w-full "
+                          className="px-5 py-2.5 border flex justify-center items-center gap-2 bg-white border-blue-main hover:bg-white/80 transition-colors duration-150 rounded-lg w-full "
                           type="button"
                           onClick={loginGoogle}
                         >
