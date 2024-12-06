@@ -13,7 +13,7 @@ const Navbar = () => {
   const { pathname } = useLocation()
 
   return (
-    <nav className="sticky w-full top-0 z-50 bg-yellow-50">
+    <nav className="sticky w-full top-0 z-50 bg-gray-main">
       <div className="mx-auto max-w-7xl p-4 2xl:pl-0">
         <div className="relative flex h-10 items-center gap-10">
           <div className="flex items-center justify-between w-full">
@@ -49,12 +49,14 @@ const Navbar = () => {
               <div className="hidden md:ml-6 md:flex md:flex-1">
                 <div className="flex w-full items-center justify-end text-center flex-row gap-2 ">
                   <NavLink
-                    to="/"
+                    to="/sobre-nosotros"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-main transition-all duration-300 ${
-                      pathname === "/" ? "text-main" : "text-light"
+                      pathname === "/sobre-nosotros"
+                        ? "text-main"
+                        : "text-light"
                     }`}
                   >
-                    Inicio
+                    Sobre nosotros
                     <span
                       className={`h-[2.5px] inline-block bg-main absolute left-1/2 -translate-x-1/2 bottom-[1px] transition-[width] ease duration-[400ms] ${
                         pathname === "/" ? "w-[80%]" : "w-0"
@@ -144,7 +146,7 @@ const Navbar = () => {
           }`}
         >
           <div
-            className={`bg-yellow-50 w-[280px] h-full p-6 flex flex-col gap-6 transition-all duration-300 ${
+            className={`bg-white w-[280px] h-full p-6 flex flex-col gap-6 transition-all duration-300 ${
               open ? "translate-x-0" : "-translate-x-full"
             }`}
           >
@@ -165,7 +167,7 @@ const Navbar = () => {
 
             <div className="flex flex-col gap-4">
               <NavLink
-                to="/"
+                to="/sobre-nosotros"
                 className={({ isActive }) =>
                   `block rounded-md px-3 py-2 text-base font-medium ${
                     isActive
@@ -175,7 +177,7 @@ const Navbar = () => {
                 }
                 onClick={() => setOpen(false)}
               >
-                Inicio
+                Sobre nosotros
               </NavLink>
 
               <NavLink

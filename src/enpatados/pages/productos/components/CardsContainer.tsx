@@ -70,7 +70,7 @@ function Cards({ product }: CardsProps) {
               onClick={() => setOpenModal(false)}
             />
             <div
-              className="flex flex-col md:flex-row gap-6 md:gap-0 bg-lilac-main md:bg-white h-screen w-screen md:max-w-[700px] md:max-h-[300px] md:items-center md:rounded-lg relative"
+              className="flex flex-col md:flex-row gap-6 md:gap-0 bg-white md:bg-white h-screen w-screen md:max-w-[700px] md:max-h-[300px] md:items-center md:rounded-lg relative"
               onClick={(e) => e.stopPropagation()}
             >
               <header className="w-full pt-2 md:w-[40%]">

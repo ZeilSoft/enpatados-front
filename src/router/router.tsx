@@ -22,6 +22,7 @@ import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUs
 import RegisterPage from '@/auth/pages/register/RegisterPage';
 import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
 import GooglePage from '@/auth/pages/google/GooglePage';
+import AboutPage from '@/enpatados/pages/about/AboutPage';
 
 export const router = createBrowserRouter( [
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter( [
             path: '/contacto',
             element: <ContactPage />
           },
+          {
+            path: '/sobres-nosotros',
+            element: <AboutPage />
+          }
         ]
       },
 

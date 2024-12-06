@@ -68,7 +68,7 @@ const LoginPage = () => {
 
   return (
     <section className="flex items-center justify-center w-full min-h-screen">
-      <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+      <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-white">
         {success ? (
           <h1>
             Se le envio un correo de recuperacion a su correo, por favor revise

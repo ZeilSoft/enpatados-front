@@ -15,14 +15,15 @@ const buttonVariants = cva(
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-black text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "border border-black-main rounded-full hover:bg-black-main hover:text-white",
         popular: "",
         link: "text-primary underline-offset-4 hover:underline",
         marketing: "bg-main hover:bg-blue-main  font-bold text-lg",
         authButton:
-          "bg-blue-main hover:bg-blue-main/90 text-white font-bold text-base",
+          "bg-blue-main hover:bg-blue-main/90 rounded-full text-white font-bold text-base",
         green:
           "bg-green-main hover:bg-green-main/90 text-white font-bold text-base",
+        blue: "bg-blue-main hover:bg-blue-main/90 rounded-full text-white font-bold text-base",
         sidebarToggle: "bg-black hover:bg-[#3D3839] ",
         like: "",
       },

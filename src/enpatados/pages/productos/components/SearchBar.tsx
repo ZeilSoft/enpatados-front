@@ -36,7 +36,7 @@ const SearchBar = () => {
         }`}
       >
         <div
-          className={`bg-yellow-50 rounded-l-md pl-1 pr-0.5 w-10 grid place-content-center border-r border-black ${
+          className={`bg-white rounded-l-md pl-1 pr-0.5 w-10 grid place-content-center border-r border-black ${
             isFocused ? "border-r-[2px] border-black" : ""
           } `}
         >
@@ -45,7 +45,7 @@ const SearchBar = () => {
 
         <div className="w-full relative">
           <Input
-            className={`w-full h-full border-none rounded-l-none bg-yellow-50 text-black ${
+            className={`w-full h-full border-none rounded-l-none bg-white text-black ${
               isFocused ? "focus-visible:ring-0" : ""
             }`}
             placeholder="Buscar una libreria"
