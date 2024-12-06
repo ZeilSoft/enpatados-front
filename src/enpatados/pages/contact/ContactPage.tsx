@@ -1,120 +1,70 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { contactSchema } from "@/enpatados/utils/schemas/contact"
 import { Icon } from "@iconify/react/dist/iconify.js"
-import { useFormik } from "formik"
-import { useState } from "react"
-function getMessage(message: string, name: string) {
-  if (message === "" || name === "") throw new Error("Faltan datos")
-  const messageWhatsapp = `Hola, quiero ponerme en contacto con ustedes me llamo ${name} %0A%0A${message}%0A%0A Muchas gracias!`
-  return messageWhatsapp
-}
-const phone = import.meta.env.VITE_PHONE_NUMBER
-export const ContactPage = () => {
-  const [error, setError] = useState("")
+import { Link } from "react-router-dom"
 
-  const { getFieldProps, touched, errors, handleSubmit } = useFormik({
-    initialValues: {
-      name: "",
-      message: "",
-    },
-    validationSchema: contactSchema,
-    onSubmit: async (values) => {
-      try {
-        const message = getMessage(values.message, values.name)
-        window.open(`https://wa.me/${phone}?text=${message}`, "_blank")
-      } catch (error) {
-        setError("Algo ha salido mal, pruebe de nuevo")
-        throw error
-      }
-    },
-  })
+const ContactPage = () => {
   return (
-    <main className="flex items-center justify-center w-full min-h-screen">
-      <section className="flex flex-col w-full max-w-[800px] rounded-none md:rounded-lg shadow p-6 sm:p-8 bg-white gap-4">
-        <div>
-          <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-green-main md:text-2xl">
-            Contactanos
-          </h1>
-          <p className="text-center font-normal">¿Cómo podemos ayudarte?</p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex flex-col w-full">
-            <div className="flex flex-col gap-4 md:gap-6">
-              <form onSubmit={handleSubmit}>
-                <div className="flex flex-col gap-4 md:gap-6">
-                  <div className="flex flex-col gap-2">
-                    <Label>Nombre</Label>
+    <main className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center justify-center gap-8 p-8 bg-gray-main w-full min-h-[500px]">
+        <h1 className="text-4xl md:text-6xl font-bold text-yellow-main leading-normal max-w-[850px]">
+          Contactanos
+        </h1>
+        <p className="text-2xl text-center max-w-[850px]">
+          Si tienes alguna duda o propuesta, no dudes en contactarnos. Estamos
+          aquí para ayudarte y escuchar tus ideas. ¡Tu opinión es importante
+          para nosotros y queremos brindarte la mejor experiencia!
+        </p>
+      </section>
 
-                    <Input
-                      type="text"
-                      placeholder="Ingrese su nombre y apellido"
-                      className="ring-1 ring-green-main"
-                      {...getFieldProps("name")}
-                    />
+      <section className="flex flex-col items-center justify-center p-8 w-full bg-white gap-16 min-h-[400px]">
+        <h2 className="text-4xl md:text-5xl font-bold text-yellow-main leading-normal max-w-[900px] text-center">
+          Algunas de nuestras redes
+        </h2>
 
-                    {touched.name && errors.name && (
-                      <small className="font-bold text-[#ff4444]">
-                        {errors.name}
-                      </small>
-                    )}
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <CardContact
+            title="Instagran"
+            description="Describe the feature and explain the benefits for your audience."
+            icon="mdi:instagram"
+            link="https://www.instagram.com/enpatados"
+          />
 
-                  <div className="flex flex-col gap-2">
-                    <Label>Mensaje</Label>
+          <CardContact
+            title="Whatsapp"
+            description="Describe the feature and explain the benefits for your audience."
+            icon="ic:baseline-whatsapp"
+            link="https://api.whatsapp.com/send?phone=2613830036"
+          />
 
-                    <Textarea
-                      placeholder="Escriba su mensaje"
-                      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0 ring-green-main border border-green-main"
-                      {...getFieldProps("message")}
-                    />
-
-                    {touched.message && errors.message && (
-                      <small className="font-bold text-[#ff4444]">
-                        {errors.message}
-                      </small>
-                    )}
-                  </div>
-                  {error && <small className="text-red">{error}</small>}
-                  <div className="flex flex-col gap-5">
-                    <Button
-                      variant="green"
-                      className="w-full rounded-lg"
-                      type="submit"
-                      role="button"
-                    >
-                      Enviar whatsapp
-                    </Button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-center w-full gap-4">
-            <img src="/contact.webp" alt="" height={220} width={220} />
-            <div className="flex flex-col items-center justify-center gap-2">
-              <a
-                className="flex text-green-main items-center gap-2"
-                href="https://www.instagram.com/enpatados"
-                target="_blank"
-              >
-                <Icon icon="simple-icons:instagram" width={20} height={20} />
-                <span>@EnPatados</span>
-              </a>
-              <a
-                className="flex text-green-main items-center gap-2"
-                href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJlDSvTcvwbKsgxpTwJFjGhxSmBvxPqNQKXdcbGtHmpXkPgGljBCpmVbMqRKrxmmZclHNXB"
-                target="_blank"
-              >
-                <Icon icon="logos:google-gmail" width="24" height="24" />
-                <span>enpatadosmedias@gmail.com</span>
-              </a>
-            </div>
-          </div>
+          <CardContact
+            title="Gmail"
+            description="Describe the feature and explain the benefits for your audience."
+            icon="bxl:gmail"
+            link="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJlDSvTcvwbKsgxpTwJFjGhxSmBvxPqNQKXdcbGtHmpXkPgGljBCpmVbMqRKrxmmZclHNXB"
+          />
         </div>
       </section>
     </main>
+  )
+}
+export default ContactPage
+
+interface CardContactProps {
+  title: string
+  description: string
+  icon: string
+  link: string
+}
+function CardContact({ description, icon, title, link }: CardContactProps) {
+  return (
+    <Link
+      className="flex flex-col gap-6 max-w-96 py-4 px-8 rounded-lg border"
+      to={link}
+    >
+      <div className="flex items-center justify-center">
+        <Icon icon={icon} height={32} width={32} className="text-yellow-main" />
+      </div>
+      <h3 className="text-2xl text-yellow-main text-center">{title}</h3>
+      <p className="text-center">{description}</p>
+    </Link>
   )
 }

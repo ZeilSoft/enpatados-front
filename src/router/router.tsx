@@ -5,7 +5,6 @@ import { Root } from '../Root';
 import { MainLayout } from '@/enpatados/layout/MainLayout';
 import HomePage from '@/enpatados/pages/home/HomePage';
 import { ProductsPage } from '@/enpatados/pages/productos/ProductsPage';
-import { ContactPage } from '@/enpatados/pages/contact/ContactPage';
 
 // Auth
 import { AuthLayout } from '@/auth/layout/AuthLayout';
@@ -24,6 +23,7 @@ import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
 import GooglePage from '@/auth/pages/google/GooglePage';
 import AboutPage from '@/enpatados/pages/about/AboutPage';
 import PromotionsPage from '@/enpatados/pages/promotions/PromotionsPage';
+import ContactPage from '@/enpatados/pages/contact/ContactPage';
 
 export const router = createBrowserRouter( [
   {
