@@ -20,7 +20,7 @@ const Categories = ({ categories }: CategoriesProps) => {
         {categorySelected && (
           <button
             onClick={() => handleSelect(0)}
-            className={`py-2 px-4 border transition-colors duration-150 border-orange-main text-orange-main rounded-full hover:bg-orange-main hover:text-white uppercase`}
+            className={`py-2 px-4 border transition-colors duration-150 border-yellow-main rounded-full hover:bg-yellow-main hover:text-white uppercase text-yellow-main`}
           >
             <Icon icon="material-symbols:close" width={20} />
           </button>
@@ -29,11 +29,11 @@ const Categories = ({ categories }: CategoriesProps) => {
           categories.map((category: Category) => (
             <button
               onClick={() => handleSelect(category.id)}
-              className={`py-2 px-4 border transition-colors duration-150 border-orange-main text-orange-main rounded-full hover:bg-orange-main hover:text-white uppercase
+              className={`py-2 px-4 border transition-colors duration-150 border-yellow-main rounded-full hover:bg-yellow-main hover:text-white uppercase
             ${
-              categorySelected != null && categorySelected === category.id
-                ? "bg-orange-main text-white"
-                : ""
+              categorySelected != null && categorySelected == category.id
+                ? "bg-yellow-main text-white"
+                : "text-yellow-main"
             }
             
             `}

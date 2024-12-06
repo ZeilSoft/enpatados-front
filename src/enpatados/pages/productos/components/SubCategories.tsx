@@ -18,7 +18,7 @@ const SubCategories = ({ subCategories }: SubCategoriesProps) => {
       {subCategorySelected && (
         <button
           onClick={() => handleSelect(0)}
-          className={`py-2 px-4 border transition-colors duration-150 border-green-main text-green-main rounded-full hover:bg-green-main hover:text-white uppercase`}
+          className={`py-2 px-4 border transition-colors duration-150 border-blue-main text-blue-main rounded-full hover:bg-blue-main hover:text-white uppercase`}
         >
           <Icon icon="material-symbols:close" width={20} />
         </button>
@@ -28,11 +28,11 @@ const SubCategories = ({ subCategories }: SubCategoriesProps) => {
             <button
               onClick={() => handleSelect(subCategory.id)}
               key={crypto.randomUUID()}
-              className={`py-2 px-4 border transition-colors duration-150 border-green-main text-green-main rounded-full hover:bg-green-main hover:text-white min-w-20
+              className={`py-2 px-4 border transition-colors duration-150 border-blue-main text-blue-main rounded-full hover:bg-blue-main hover:text-white min-w-20
             ${
               subCategorySelected != null &&
               subCategorySelected === subCategory.id
-                ? "bg-green-main text-white"
+                ? "bg-blue-main text-white"
                 : ""
             }
             `}

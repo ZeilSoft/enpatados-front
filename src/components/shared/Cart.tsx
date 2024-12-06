@@ -39,7 +39,7 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
       onClick={() => setCartOpen(false)}
     >
       <div
-        className={`bg-yellow-50 w-[320px] md:w-[400px] h-full p-2 flex flex-col gap-6 transition-all duration-300 absolute ${
+        className={`bg-white w-[320px] md:w-[400px] h-full p-2 flex flex-col gap-6 transition-all duration-300 absolute ${
           cartOpen ? "-right-0" : "-right-full"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -77,8 +77,8 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
             <span className="w-full">Subtotal: </span>
             <span className="w-full text-end">$ {subtotal}</span>
           </div>
-          <Link to="/ticket" className="w-full">
-            <Button variant="green" className="flex gap-2 w-full">
+          <Link to="/ticket" className="w-full" onClick={() => setCartOpen(false)}>
+            <Button variant="blue" className="flex gap-2 w-full">
               <Icon
                 icon="material-symbols:shopping-cart"
                 width="24"
@@ -128,7 +128,7 @@ function CartCard({
             <div className="flex items-center justify-center md:gap-2 max-w-[110px]">
               <div>
                 <button
-                  className="rounded-full bg-lilac-main p-2 min-h-8 min-w-8"
+                  className="rounded-full bg-gray-200 p-2 min-h-8 min-w-8"
                   onClick={() => {
                     if (amount > 1) {
                       decreaseAmountProduct(userId, product.id)
@@ -143,7 +143,7 @@ function CartCard({
               </div>
               <div>
                 <button
-                  className="rounded-full bg-lilac-main p-2 min-h-8 min-w-8"
+                  className="rounded-full bg-gray-200 p-2 min-h-8 min-w-8"
                   onClick={() => increaseAmountProduct(userId, product.id)}
                 >
                   <Icon icon="material-symbols:add" width="16" height="16" />

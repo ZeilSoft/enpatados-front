@@ -28,7 +28,7 @@ const Navbar = () => {
     }
   }, [cartOpen, open])
   return (
-    <nav className="sticky w-full top-0 z-50 bg-gray-main">
+    <nav className={`sticky w-full top-0 z-50 transition-colors duration-200 ${pathname == "/" ? "bg-gray-main" : "bg-white"}`}>
       <div className="mx-auto max-w-7xl p-4 2xl:pl-0">
         <div className="relative flex h-10 items-center gap-10">
           <div className="flex items-center justify-between w-full">

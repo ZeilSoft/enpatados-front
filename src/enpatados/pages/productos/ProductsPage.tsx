@@ -39,7 +39,7 @@ export const ProductsPage = () => {
   async function getProductsFunction() {
     const response = await getProducts({
       page: currentPage ? currentPage : 1,
-      pageSize: undefined,
+      pageSize: 6,
       categoryId: categoryId ? categoryId : "",
       subCategoryId: subCategoryId ? subCategoryId : "",
       search: search ? search : "",
@@ -53,10 +53,21 @@ export const ProductsPage = () => {
   }, [currentPage, search, categoryId, subCategoryId, totalPages])
 
   return (
-    <main className="flex flex-col items-center p-2 w-full min-h-screen gap-12">
+    <main className="flex flex-col items-center p-2 w-full gap-8">
+      <section className="flex flex-col items-center justify-center gap-8 w-full min-h-[200px]">
+        <h2 className="text-4xl md:text-6xl xl:text-7xl font-bold text-black-main leading-normal max-w-[900px]">
+          Nuestros productos
+        </h2>
+
+        <p className="text-xl font-medium">
+          Descubre nuestro increíble catálogo de productos.
+        </p>
+      </section>
+
       <section className="w-full">
         <SearchBar />
       </section>
+
       <section className="flex flex-col gap-4 w-full md:w-[80%]">
         <Categories categories={categories} />
         {isLoadingProducts ? (
