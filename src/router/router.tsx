@@ -21,6 +21,7 @@ import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminO
 import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUsersPage';
 import RegisterPage from '@/auth/pages/register/RegisterPage';
 import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
+import TicketPage from '@/enpatados/pages/ticket/TicketPage';
 import GooglePage from '@/auth/pages/google/GooglePage';
 
 export const router = createBrowserRouter( [
@@ -45,6 +46,10 @@ export const router = createBrowserRouter( [
             path: '/contacto',
             element: <ContactPage />
           },
+          {
+            path: '/ticket',
+            element: <TicketPage/>
+          }
         ]
       },
 
