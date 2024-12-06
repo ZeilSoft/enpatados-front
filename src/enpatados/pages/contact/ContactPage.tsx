@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const ContactPage = () => {
   return (
     <main className="flex flex-col items-center justify-center w-full">
-      <section className="flex flex-col items-center justify-center gap-8 p-8 bg-gray-main w-full min-h-[500px]">
+      <section className="flex flex-col items-center justify-center gap-8 p-8 bg-white w-full min-h-[500px]">
         <h1 className="text-4xl md:text-6xl font-bold text-yellow-main leading-normal max-w-[850px]">
           Contactanos
         </h1>
@@ -15,7 +15,7 @@ const ContactPage = () => {
         </p>
       </section>
 
-      <section className="flex flex-col items-center justify-center p-8 w-full bg-white gap-16 min-h-[400px]">
+      <section className="flex flex-col items-center justify-center p-8 w-full bg-gray-main gap-16 min-h-[400px]">
         <h2 className="text-4xl md:text-5xl font-bold text-yellow-main leading-normal max-w-[900px] text-center">
           Algunas de nuestras redes
         </h2>
@@ -57,7 +57,7 @@ interface CardContactProps {
 function CardContact({ description, icon, title, link }: CardContactProps) {
   return (
     <Link
-      className="flex flex-col gap-6 max-w-96 py-4 px-8 rounded-lg border"
+      className="flex flex-col gap-6 max-w-96 py-4 px-8 rounded-lg border border-white"
       to={link}
     >
       <div className="flex items-center justify-center">

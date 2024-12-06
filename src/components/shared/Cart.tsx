@@ -3,7 +3,23 @@ import { Button } from "../ui/button"
 import { Icon } from "@iconify/react/dist/iconify.js"
 import { useAuthContext } from "@/auth/context/auth-context"
 import { CartProducts, useCartStore } from "@/store/cart.store"
-import { Link } from "react-router-dom"
+
+function getMessage(products: CartProducts[], total: number) {
+  let message = ""
+
+  products.forEach((product) => {
+    message += `${product.amount} ${product.product.name} x ${
+      product.product.price
+    }, total: ${product.amount * product.product.price}  %0A%0A`
+  })
+
+  const messageWhatsapp = `Buenos dias, queria hacer el siguiente pedido: %0A%0A
+${message}Total: ${total}
+
+  %0A%0AMuchas gracias!`
+  return messageWhatsapp
+}
+const phone = import.meta.env.VITE_PHONE_NUMBER
 
 interface CartProps {
   cartOpen: boolean
@@ -30,6 +46,11 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
   products.forEach((product: CartProducts) => {
     subtotal += product.amount * product.product.price
   })
+
+  function handleSubmit() {
+    const message = getMessage(products, subtotal)
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank")
+  }
 
   return (
     <div
@@ -77,16 +98,19 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
             <span className="w-full">Subtotal: </span>
             <span className="w-full text-end">$ {subtotal}</span>
           </div>
-          <Link to="/ticket" className="w-full" onClick={() => setCartOpen(false)}>
-            <Button variant="blue" className="flex gap-2 w-full">
-              <Icon
-                icon="material-symbols:shopping-cart"
-                width="24"
-                height="24"
-              />
-              Comprar
-            </Button>
-          </Link>
+
+          <Button
+            variant="blue"
+            className="flex gap-2 w-full"
+            onClick={handleSubmit}
+          >
+            <Icon
+              icon="material-symbols:shopping-cart"
+              width="24"
+              height="24"
+            />
+            Enviar pedido a Whatsapp
+          </Button>
         </div>
       </div>
     </div>
