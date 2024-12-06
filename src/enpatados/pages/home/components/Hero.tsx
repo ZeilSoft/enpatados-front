@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Icon } from "@iconify/react/dist/iconify.js"
+import { Link } from "react-router-dom"
 
 const Hero = () => {
   return (
@@ -13,6 +14,7 @@ const Hero = () => {
             La vida es muy corta para usar medias aburridas {":)"}
           </p>
           <div className="w-full md:flex items-center justify-center lg:justify-start md:space-x-5">
+            <Link to="/productos">
             <Button
               variant="blue"
               className="font-normal py-6 px-8 text-base flex gap-2"
@@ -20,6 +22,7 @@ const Hero = () => {
               Compra ahora
               <Icon icon="lucide:arrow-right" />
             </Button>
+            </Link>
           </div>
         </div>
 

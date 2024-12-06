@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
 const Marketing = () => {
   return (
@@ -10,9 +11,11 @@ const Marketing = () => {
         Destaca con accesorios que reflejan tu estilo único.
       </h3>
       <div className="flex flex-col sm:flex-row gap-8">
-        <Button variant="blue" className="font-normal py-6 px-8 text-base">
-          Compra ahora
-        </Button>
+        <Link to="/productos">
+          <Button variant="blue" className="font-normal py-6 px-8 text-base">
+            Compra ahora
+          </Button>
+        </Link>
         <Button variant="ghost" className="font-normal py-6 px-8 text-base">
           Contactanos
         </Button>

@@ -47,7 +47,7 @@ export const router = createBrowserRouter( [
             element: <ContactPage />
           },
           {
-            path: '/sobres-nosotros',
+            path: '/sobre-nosotros',
             element: <AboutPage />
           }
         ]
