@@ -1,6 +1,8 @@
+import { config } from "process";
+
 export default {
   plugins: {
-    tailwindcss: {},
+    tailwindcss: { config: "./tailwind.config.js" },
     autoprefixer: {},
   },
 }
