@@ -13,15 +13,15 @@ const Hero = () => {
           <p className="text-2xl">
             La vida es muy corta para usar medias aburridas {":)"}
           </p>
-          <div className="w-full md:flex items-center justify-center lg:justify-start md:space-x-5">
+          <div className="w-full flex items-center justify-center lg:justify-start md:space-x-5">
             <Link to="/productos">
-            <Button
-              variant="blue"
-              className="font-normal py-6 px-8 text-base flex gap-2"
-            >
-              Compra ahora
-              <Icon icon="lucide:arrow-right" />
-            </Button>
+              <Button
+                variant="blue"
+                className="font-normal py-6 px-8 text-base flex gap-2"
+              >
+                Compra ahora
+                <Icon icon="lucide:arrow-right" />
+              </Button>
             </Link>
           </div>
         </div>

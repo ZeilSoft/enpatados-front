@@ -149,7 +149,7 @@ function CartCard({
               </span>
             </div>
 
-            <div className="flex items-center justify-center md:gap-2 max-w-[110px]">
+            <div className="flex items-center justify-center gap-2 max-w-[110px]">
               <div>
                 <button
                   className="rounded-full bg-gray-200 p-2 min-h-8 min-w-8"
