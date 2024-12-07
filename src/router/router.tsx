@@ -1,4 +1,4 @@
-import { createBrowserRouter, Link } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 import { Root } from "../Root"
 
 // Enpatados
