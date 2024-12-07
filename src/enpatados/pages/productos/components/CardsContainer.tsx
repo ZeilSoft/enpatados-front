@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Product } from "@/enpatados/interfaces/Product"
 import { CartProducts, useCartStore } from "@/store/cart.store"
 import { Icon } from "@iconify/react/dist/iconify.js"
-
+import { motion } from "framer-motion"
 interface CardsContainerProps {
   products?: Product[]
 }
@@ -35,9 +35,9 @@ function Cards({ product }: CardsProps) {
         (productStorage) => productStorage.userId === authUser?.user.id
       ) || { products: [] }
   )
-  let isProductInCart 
-  console.log(productStore);
-  
+  let isProductInCart
+  console.log(productStore)
+
   if (authUser != null && productStore.products.length > 0) {
     isProductInCart = (
       productStore as { userId: string; products: CartProducts[] }
@@ -55,7 +55,13 @@ function Cards({ product }: CardsProps) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-96 gap-4">
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col items-center justify-center max-w-96 gap-4"
+    >
       <header
         className={`bg-[url("/spiderman.jpg")] bg-cover bg-center w-60 h-80 rounded-md`}
       />
@@ -88,6 +94,6 @@ function Cards({ product }: CardsProps) {
           </div>
         )}
       </footer>
-    </div>
+    </motion.div>
   )
 }

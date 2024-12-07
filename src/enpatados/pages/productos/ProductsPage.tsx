@@ -7,6 +7,9 @@ import Categories from "./components/Categories"
 import { getCategories } from "@/enpatados/services/categoryService"
 import { getProducts } from "@/enpatados/services/productService"
 import CardsContainer from "./components/CardsContainer"
+import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
+import { Button } from "@/components/ui/button"
 
 export const ProductsPage = () => {
   const { searchParams, handlePageChange, setTotalPages, totalPages } =
@@ -53,15 +56,27 @@ export const ProductsPage = () => {
   }, [currentPage, search, categoryId, subCategoryId, totalPages])
 
   return (
-    <main className="flex flex-col items-center p-2 w-full gap-8">
-      <section className="flex flex-col items-center justify-center gap-8 w-full min-h-[200px]">
-        <h2 className="text-4xl md:text-6xl xl:text-7xl font-bold text-black-main leading-normal max-w-[900px]">
+    <main className="flex flex-col items-center w-full gap-8">
+      <section className="flex flex-col items-center justify-center gap-8 w-full min-h-[200px] bg-gray-main">
+        <motion.h2
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-6xl xl:text-7xl font-bold text-black-main leading-normal max-w-[900px]"
+        >
           Nuestros productos
-        </h2>
+        </motion.h2>
 
-        <p className="text-xl font-medium">
+        <motion.p
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-xl font-medium"
+        >
           Descubre nuestro increíble catálogo de productos.
-        </p>
+        </motion.p>
       </section>
 
       <section className="w-full">
@@ -82,6 +97,7 @@ export const ProductsPage = () => {
           </div>
         )}
       </section>
+
       <Pagination
         currentPage={currentPage!}
         totalPages={totalPages}
@@ -89,6 +105,44 @@ export const ProductsPage = () => {
         disabled={false}
         key={currentPage}
       />
+
+      <section className="flex flex-col justify-center items-center bg-yellow-main p-8 gap-8 w-full min-h-[500px]">
+        <motion.h2
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-5xl font-semibold text-black-main leading-normal max-w-[850px]"
+        >
+          Atrevete a comprar medias únicas
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl text-center"
+        >
+          La mejor forma de destacar empieza con nosotros.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col sm:flex-row gap-8"
+        >
+          <Link to="/auth/iniciar-sesion">
+            <Button variant="blue" className="font-normal py-6 px-8 text-base">
+              Iniciar sesión
+            </Button>
+          </Link>
+          <Button variant="ghost" className="font-normal py-6 px-8 text-base">
+            Contactanos
+          </Button>
+        </motion.div>
+      </section>
+
     </main>
   )
 }
