@@ -10,6 +10,7 @@ import CardsContainer from "./components/CardsContainer"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
+import NotFound from "@/components/shared/NotFound"
 
 export const ProductsPage = () => {
   const { searchParams, handlePageChange, setTotalPages, totalPages } =
@@ -36,6 +37,7 @@ export const ProductsPage = () => {
     queryFn: getProductsFunction,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
+    retry: 0,
   })
   console.log(products)
 
@@ -63,7 +65,7 @@ export const ProductsPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-6xl xl:text-7xl font-bold text-black-main leading-normal max-w-[900px]"
+          className="text-4xl md:text-6xl xl:text-7xl text-center font-bold text-black-main leading-normal max-w-[900px]"
         >
           Nuestros productos
         </motion.h2>
@@ -73,7 +75,7 @@ export const ProductsPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-xl font-medium"
+          className="text-xl font-medium text-center"
         >
           Descubre nuestro increíble catálogo de productos.
         </motion.p>
@@ -90,7 +92,7 @@ export const ProductsPage = () => {
         ) : (
           <div>
             {errorProducts ? (
-              <p>Algo ha salido mal, pruebe de nuevo</p>
+              <NotFound>{""}</NotFound>
             ) : (
               <CardsContainer products={products} />
             )}
