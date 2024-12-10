@@ -126,7 +126,7 @@ export const ProductsPage = () => {
           transition={{ duration: 0.5 }}
           className="text-2xl text-center"
         >
-          La mejor forma de destacar empieza con nosotros.
+          La mejor forma de destacar,  empieza con nosotros.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 100 }}

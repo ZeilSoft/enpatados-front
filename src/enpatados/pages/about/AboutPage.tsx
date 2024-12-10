@@ -43,17 +43,25 @@ const AboutPage = () => {
           </motion.h1>
           <div>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla
-              aspernatur nisi saepe id quis esse consequuntur, obcaecati totam
-              vitae voluptas ea? Voluptatibus et asperiores reprehenderit aut at
-              eveniet quae voluptates?
+              Enpatados es más que un simple emprendimiento de medias; es el
+              resultado de una amistad sólida y una pasión compartida por la
+              comodidad. Desde sus inicios, nos propusimos vender medias que no
+              solo sean cómodas, sino que también reflejen la personalidad de
+              quienes las usan. Nuestro objetivo es expandir Enpatados,
+              convirtiéndonos en una emprendimiento reconocido y apreciado, que
+              no solo ofrezca una amplia variedad de diseños de medias, sino
+              también otros productos. Queremos que Enpatados lleve alegría y
+              comodidad a los pies de nuestros clientes.
             </p>
 
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla
-              aspernatur nisi saepe id quis esse consequuntur, obcaecati totam
-              vitae voluptas ea? Voluptatibus et asperiores reprehenderit aut at
-              eveniet quae voluptates?
+              Nuestro emprendimiento de medias nace con el propósito de ofrecer
+              soluciones de calidad para cada paso que das. Nuestros productos
+              brindan calidez y confort, también reflejan tu personalidad y
+              estilo único. Con una variedad modelos, buscamos inspirar a
+              nuestros usuarios a expresarse y sentirse bien en cada momento de
+              su día, ya sea en el trabajo, en casa o en sus actividades
+              deportivas.
             </p>
           </div>
         </div>

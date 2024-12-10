@@ -28,7 +28,7 @@ const PromotionsPage = () => {
             la oportunidad de renovar tu estilo con increíbles ofertas.
           </motion.p>
         </div>
-        <img src="/promo.jpeg" alt="promotion image" className=" size-60 md:size-96"/>
+        <img src="/promotion.jpeg" alt="promotion image" className=" size-60 md:size-96"/>
       </section>
 
       <section className="flex flex-col justify-center items-center bg-yellow-main p-8 gap-8 w-full min-h-[500px]">
@@ -49,7 +49,7 @@ const PromotionsPage = () => {
           transition={{ duration: 0.5 }}
           className="text-2xl text-center"
         >
-          La mejor forma de destacar empieza con nosotros.
+          La mejor forma de destacar, empieza con nosotros.
         </motion.p>
 
         <motion.div
