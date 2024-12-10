@@ -82,11 +82,11 @@ export const ProductsPage = () => {
         </motion.p>
       </section>
 
-      <section className="w-full">
+      <section className="w-full px-2">
         <SearchBar />
       </section>
 
-      <section className="flex flex-col gap-4 w-full md:w-[80%]">
+      <section className="flex flex-col gap-4 w-full md:w-[80%] px-2">
         <Categories categories={categories} />
         {isLoadingProducts ? (
           <p>cargando</p>
