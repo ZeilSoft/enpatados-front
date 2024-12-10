@@ -28,7 +28,7 @@ const PromotionsPage = () => {
             la oportunidad de renovar tu estilo con increíbles ofertas.
           </motion.p>
         </div>
-        <img src="/spiderman.jpg" alt="" />
+        <img src="/promo.jpeg" alt="promotion image" className="size-96"/>
       </section>
 
       <section className="flex flex-col justify-center items-center bg-yellow-main p-8 gap-8 w-full min-h-[500px]">
