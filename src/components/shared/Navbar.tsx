@@ -28,7 +28,11 @@ const Navbar = () => {
     }
   }, [cartOpen, open])
   return (
-    <nav className={`sticky w-full top-0 z-50 transition-colors duration-200 ${pathname == "/" ? "bg-gray-main" : "bg-white"}`}>
+    <nav
+      className={`sticky w-full top-0 z-50 transition-colors duration-200 ${
+        pathname == "/" ? "bg-gray-main" : "bg-white"
+      }`}
+    >
       <div className="mx-auto max-w-7xl p-4 2xl:pl-0">
         <div className="relative flex h-10 items-center gap-10">
           <div className="flex items-center justify-between w-full">
@@ -54,7 +58,7 @@ const Navbar = () => {
             </div>
 
             <Link
-              className="flex flex-shrink-0 items-end justify-end gap-3"
+              className={`flex flex-shrink-0 items-end justify-end gap-3 ${authUser === null ? "-ml-[21px] md:ml-0" : ""}`}
               to="/"
               aria-label="Home"
             >
@@ -86,7 +90,9 @@ const Navbar = () => {
                   <NavLink
                     to="/productos"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
-                      pathname === "/productos" ? "text-yellow-main" : "text-black-main"
+                      pathname === "/productos"
+                        ? "text-yellow-main"
+                        : "text-black-main"
                     }`}
                   >
                     Productos
@@ -102,7 +108,9 @@ const Navbar = () => {
                   <NavLink
                     to="/promociones"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
-                      pathname === "/promociones" ? "text-yellow-main" : "text-black-main"
+                      pathname === "/promociones"
+                        ? "text-yellow-main"
+                        : "text-black-main"
                     }`}
                   >
                     Promociones
@@ -118,7 +126,9 @@ const Navbar = () => {
                   <NavLink
                     to="/contacto"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
-                      pathname === "/contacto" ? "text-yellow-main" : "text-black-main"
+                      pathname === "/contacto"
+                        ? "text-yellow-main"
+                        : "text-black-main"
                     }`}
                   >
                     Contactanos
@@ -151,7 +161,9 @@ const Navbar = () => {
                     <NavLink
                       to="/admin"
                       className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
-                        pathname === "/admin" ? "text-yellow-main" : "text-black-main"
+                        pathname === "/admin"
+                          ? "text-yellow-main"
+                          : "text-black-main"
                       }`}
                     >
                       Administracion
@@ -173,13 +185,13 @@ const Navbar = () => {
                     </div>
                   ) : (
                     <>
-                      <Button variant="authButton">
-                        <Link to="/auth/iniciar-sesion">Iniciar sesion</Link>
-                      </Button>
+                      <Link to="/auth/iniciar-sesion">
+                        <Button variant="authButton">Iniciar sesion</Button>
+                      </Link>
 
-                      <Button variant="authButton">
-                        <Link to="/auth/registrarse">Registrarse</Link>
-                      </Button>
+                      <Link to="/auth/registrarse">
+                        <Button variant="authButton">Registrarse</Button>
+                      </Link>
                     </>
                   )}
                 </div>
@@ -316,13 +328,13 @@ const Navbar = () => {
                 </Button>
               ) : (
                 <>
-                  <Button variant="authButton">
-                    <Link to="/auth/iniciar-sesion">Iniciar sesion</Link>
-                  </Button>
+                  <Link to="/auth/iniciar-sesion">
+                    <Button variant="authButton">Iniciar sesion</Button>
+                  </Link>
 
-                  <Button variant="authButton">
-                    <Link to="/auth/registrarse">Registrarse</Link>
-                  </Button>
+                  <Link to="/auth/registrarse">
+                    <Button variant="authButton">Registrarse</Button>
+                  </Link>
                 </>
               )}
             </div>
