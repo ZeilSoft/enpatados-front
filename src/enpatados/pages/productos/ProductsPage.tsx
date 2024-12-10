@@ -11,6 +11,7 @@ import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import NotFound from "@/components/shared/NotFound"
+import { GoToTop } from "@/utils/toUp"
 
 export const ProductsPage = () => {
   const { searchParams, handlePageChange, setTotalPages, totalPages } =
@@ -114,7 +115,7 @@ export const ProductsPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-semibold text-black-main leading-normal max-w-[850px]"
+          className="text-4xl md:text-5xl font-semibold text-black-main leading-normal max-w-[850px] text-center"
         >
           Atrevete a comprar medias únicas
         </motion.h2>
@@ -134,17 +135,18 @@ export const ProductsPage = () => {
           transition={{ duration: 0.5 }}
           className="flex flex-col sm:flex-row gap-8"
         >
-          <Link to="/auth/iniciar-sesion">
+          <Link to="/auth/iniciar-sesion" onClick={GoToTop}>
             <Button variant="blue" className="font-normal py-6 px-8 text-base">
               Iniciar sesión
             </Button>
           </Link>
-          <Button variant="ghost" className="font-normal py-6 px-8 text-base">
-            Contactanos
-          </Button>
+          <Link to="/contacto" onClick={GoToTop}>
+            <Button variant="ghost" className="font-normal py-6 px-8 text-base">
+              Contactanos
+            </Button>
+          </Link>
         </motion.div>
       </section>
-
     </main>
   )
 }

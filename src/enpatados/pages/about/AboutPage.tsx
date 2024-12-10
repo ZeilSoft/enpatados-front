@@ -8,7 +8,7 @@ const AboutPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-6xl xl:text-7xl font-bold text-yellow-main leading-normal max-w-[900px]"
+          className="text-4xl md:text-6xl xl:text-7xl font-bold text-yellow-main leading-normal max-w-[900px] text-center"
         >
           Calzate con enpatados
         </motion.h2>
@@ -17,7 +17,7 @@ const AboutPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-xl"
+          className="text-xl text-center"
         >
           Destaca con accesorios que reflejan tu estilo único.
         </motion.h3>

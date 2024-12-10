@@ -11,7 +11,7 @@ const PromotionsPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-6xl xl:text-7xl font-bold text-yellow-main leading-normal"
+            className="text-4xl md:text-6xl xl:text-7xl font-bold text-yellow-main leading-normal text-center"
           >
             Promociones
           </motion.h1>
@@ -37,7 +37,7 @@ const PromotionsPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-semibold text-black-main leading-normal max-w-[850px]"
+          className="text-4xl md:text-5xl font-semibold text-black-main leading-normal max-w-[850px] text-center"
         >
           Atrevete a comprar medias únicas
         </motion.h2>

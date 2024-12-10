@@ -11,7 +11,7 @@ const ContactPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-6xl font-bold text-yellow-main leading-normal max-w-[850px]"
+          className="text-4xl md:text-6xl font-bold text-yellow-main leading-normal max-w-[850px] text-center"
         >
           Contactanos
         </motion.h1>
