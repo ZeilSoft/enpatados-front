@@ -39,9 +39,11 @@ const Hero = () => {
               autoPlay
               loop
               muted
-              autoFocus={false}
-              className="absolute rounded-full"
-            ></video>
+              playsInline
+              className="absolute rounded-full pointer-events-none"
+              preload="auto"
+              tabIndex={-1} 
+            />
           </div>
         </div>
       </div>
