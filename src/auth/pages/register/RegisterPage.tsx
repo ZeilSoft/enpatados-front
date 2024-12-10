@@ -80,12 +80,12 @@ const RegisterPage = () => {
               <div className="flex flex-col gap-4 md:gap-6">
                 <div className="flex flex-col gap-2">
                   <div className="flex flex-row gap-2 items-end">
-                    <Label>Nombre de usuario</Label>
+                    <Label>Nombre</Label>
                   </div>
 
                   <Input
                     type="text"
-                    placeholder="Username"
+                    placeholder="Nombre"
                     {...getFieldProps("name")}
                     disabled={loading}
                   />
