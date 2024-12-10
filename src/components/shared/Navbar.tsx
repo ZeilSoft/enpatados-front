@@ -219,11 +219,7 @@ const Navbar = () => {
                     <span className="sr-only">Open main menu</span>
 
                     {/* Open */}
-                    <Icon
-                      icon="mdi:cart"
-                      width="24"
-                      height="24"
-                    />
+                    <Icon icon="mdi:cart" width="24" height="24" />
                   </button>
                 </div>
               )}
@@ -264,6 +260,23 @@ const Navbar = () => {
             </div>
 
             <div className="flex flex-col gap-4">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive
+                      ? "bg-gray-main text-black-main"
+                      : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
+                  } transition-colors duration-300`
+                }
+                onClick={() => {
+                  GoToTop()
+                  setOpen(false)
+                }}
+              >
+                Inicio
+              </NavLink>
+
               <NavLink
                 to="/sobre-nosotros"
                 className={({ isActive }) =>
@@ -356,15 +369,27 @@ const Navbar = () => {
                   Cerrar sesion
                 </Button>
               ) : (
-                <>
-                  <Link to="/auth/iniciar-sesion" onClick={GoToTop}>
-                    <Button variant="authButton">Iniciar sesion</Button>
+                <div className="flex flex-col w-full gap-4">
+                  <Link
+                    to="/auth/iniciar-sesion"
+                    className="w-full"
+                    onClick={GoToTop}
+                  >
+                    <Button variant="authButton" className="w-full">
+                      Iniciar sesion
+                    </Button>
                   </Link>
 
-                  <Link to="/auth/registrarse" onClick={GoToTop}>
-                    <Button variant="authButton">Registrarse</Button>
+                  <Link
+                    to="/auth/registrarse"
+                    className="w-full"
+                    onClick={GoToTop}
+                  >
+                    <Button variant="authButton" className="w-full">
+                      Registrarse
+                    </Button>
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>
