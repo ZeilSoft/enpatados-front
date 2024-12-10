@@ -66,7 +66,7 @@ const Navbar = () => {
               onClick={GoToTop}
               aria-label="Home"
             >
-              <img className="size-16" src="/logo.webp" alt="Logo" />
+              <img className="size-14 md:size-16" src="/logo.webp" alt="Logo" />
             </Link>
 
             <div className={`items-center flex justify-end gap-6`}>
@@ -211,7 +211,7 @@ const Navbar = () => {
                 <div className="flex items-center md:hidden w-full">
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                    className="flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
                     aria-controls="mobile-menu"
                     aria-expanded={cartOpen}
                     onClick={() => setCartOpen(!cartOpen)}
@@ -220,7 +220,6 @@ const Navbar = () => {
 
                     {/* Open */}
                     <Icon
-                      className={`${open ? "block" : "block ml-[-63px]"}`}
                       icon="mdi:cart"
                       width="24"
                       height="24"
