@@ -1,3 +1,4 @@
+import { GoToTop } from "@/utils/toUp"
 import { Link } from "react-router-dom"
 
 const Footer = () => {
@@ -21,6 +22,7 @@ const Footer = () => {
             <Link
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
               to="/"
+              onClick={GoToTop}
             >
               Inicio
             </Link>
@@ -28,6 +30,7 @@ const Footer = () => {
             <Link
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
               to="/productos"
+              onClick={GoToTop}
             >
               Productos
             </Link>
@@ -35,6 +38,7 @@ const Footer = () => {
             <Link
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
               to="/contacto"
+              onClick={GoToTop}
             >
               Contactanos
             </Link>
@@ -47,6 +51,7 @@ const Footer = () => {
             <Link
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
               to="/productos"
+              onClick={GoToTop}
             >
               Productos
             </Link>
@@ -54,6 +59,7 @@ const Footer = () => {
             <Link
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
               to="/promociones"
+              onClick={GoToTop}
             >
               Promociones
             </Link>
@@ -61,6 +67,7 @@ const Footer = () => {
             <Link
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
               to="/contacto"
+              onClick={GoToTop}
             >
               Contactanos
             </Link>

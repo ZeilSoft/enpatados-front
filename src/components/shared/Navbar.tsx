@@ -6,6 +6,7 @@ import { Button } from "../ui/button"
 import { useLogout } from "@/auth/hooks/useLogout"
 import { useEffect, useState } from "react"
 import Cart from "./Cart"
+import { GoToTop } from "@/utils/toUp"
 
 const Navbar = () => {
   const { logOut } = useLogout()
@@ -58,8 +59,11 @@ const Navbar = () => {
             </div>
 
             <Link
-              className={`flex flex-shrink-0 items-end justify-end gap-3 ${authUser === null ? "-ml-[21px] md:ml-0" : ""}`}
+              className={`flex flex-shrink-0 items-end justify-end gap-3 ${
+                authUser === null ? "-ml-[21px] md:ml-0" : ""
+              }`}
               to="/"
+              onClick={GoToTop}
               aria-label="Home"
             >
               <img className="size-16" src="/logo.webp" alt="Logo" />
@@ -70,6 +74,7 @@ const Navbar = () => {
               <div className="hidden md:ml-6 md:flex md:flex-1">
                 <div className="flex w-full items-center justify-end text-center flex-row gap-2 ">
                   <NavLink
+                    onClick={GoToTop}
                     to="/sobre-nosotros"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
                       pathname === "/sobre-nosotros"
@@ -88,6 +93,7 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={GoToTop}
                     to="/productos"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
                       pathname === "/productos"
@@ -106,6 +112,7 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={GoToTop}
                     to="/promociones"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
                       pathname === "/promociones"
@@ -124,6 +131,7 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={GoToTop}
                     to="/contacto"
                     className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
                       pathname === "/contacto"
@@ -159,6 +167,7 @@ const Navbar = () => {
 
                   {authUser?.user.role == "admin" && (
                     <NavLink
+                      onClick={GoToTop}
                       to="/admin"
                       className={`rounded-md px-3 py-2 text-sm font-medium relative group hover:text-yellow-main transition-all duration-300 ${
                         pathname === "/admin"
@@ -185,11 +194,11 @@ const Navbar = () => {
                     </div>
                   ) : (
                     <>
-                      <Link to="/auth/iniciar-sesion">
+                      <Link to="/auth/iniciar-sesion" onClick={GoToTop}>
                         <Button variant="authButton">Iniciar sesion</Button>
                       </Link>
 
-                      <Link to="/auth/registrarse">
+                      <Link to="/auth/registrarse" onClick={GoToTop}>
                         <Button variant="authButton">Registrarse</Button>
                       </Link>
                     </>
@@ -239,7 +248,13 @@ const Navbar = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-row items-center justify-end">
-              <button type="button" onClick={() => setOpen(false)}>
+              <button
+                type="button"
+                onClick={() => {
+                  GoToTop()
+                  setOpen(false)
+                }}
+              >
                 <Icon
                   className="text-black-main"
                   icon="material-symbols:close"
@@ -259,7 +274,10 @@ const Navbar = () => {
                       : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  GoToTop()
+                  setOpen(false)
+                }}
               >
                 Sobre nosotros
               </NavLink>
@@ -273,7 +291,10 @@ const Navbar = () => {
                       : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  GoToTop()
+                  setOpen(false)
+                }}
               >
                 Productos
               </NavLink>
@@ -287,7 +308,10 @@ const Navbar = () => {
                       : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  GoToTop()
+                  setOpen(false)
+                }}
               >
                 promociones
               </NavLink>
@@ -301,7 +325,10 @@ const Navbar = () => {
                       : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                   } transition-colors duration-300`
                 }
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  GoToTop()
+                  setOpen(false)
+                }}
               >
                 Contactanos
               </NavLink>
@@ -316,7 +343,10 @@ const Navbar = () => {
                         : "text-black-main hover:bg-gray-main/80 hover:text-black-main"
                     } transition-colors duration-300`
                   }
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    GoToTop()
+                    setOpen(false)
+                  }}
                 >
                   Administracion
                 </NavLink>
@@ -328,11 +358,11 @@ const Navbar = () => {
                 </Button>
               ) : (
                 <>
-                  <Link to="/auth/iniciar-sesion">
+                  <Link to="/auth/iniciar-sesion" onClick={GoToTop}>
                     <Button variant="authButton">Iniciar sesion</Button>
                   </Link>
 
-                  <Link to="/auth/registrarse">
+                  <Link to="/auth/registrarse" onClick={GoToTop}>
                     <Button variant="authButton">Registrarse</Button>
                   </Link>
                 </>
