@@ -64,13 +64,17 @@ const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
   deleteProductFromCart: (userId: string, productId: number) => {
     set((state) => {
       const existingIndex = state.cart.findIndex(
-        (product: any) => product.userId === userId
+        (product: any) => product.userId === Number(userId)
       ) // Busca el índice de los productos del usuario
+
       if (existingIndex !== -1) {
         // Si existen productos, filtra la Product que se desea eliminar
-        state.cart[existingIndex].products = state.cart[
-          existingIndex
-        ].products.filter((product: any) => product.id !== productId)
+        const filteredProducts = (state.cart[existingIndex].products =
+          state.cart[existingIndex].products.filter(
+            (product: any) => product.product.id !== productId
+          ))
+
+        state.cart[existingIndex].products = filteredProducts
         // Actualiza el localStorage con la nueva lista de products
         localStorage.setItem(
           `cart-${userId}`,

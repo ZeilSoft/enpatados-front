@@ -3,23 +3,8 @@ import { Button } from "../ui/button"
 import { Icon } from "@iconify/react/dist/iconify.js"
 import { useAuthContext } from "@/auth/context/auth-context"
 import { CartProducts, useCartStore } from "@/store/cart.store"
-
-function getMessage(products: CartProducts[], total: number) {
-  let message = ""
-
-  products.forEach((product) => {
-    message += `${product.amount} ${product.product.name} x ${
-      product.product.price
-    }, total: ${product.amount * product.product.price}  %0A%0A`
-  })
-
-  const messageWhatsapp = `Buenos dias, queria hacer el siguiente pedido: %0A%0A
-${message}Total: ${total}
-
-  %0A%0AMuchas gracias!`
-  return messageWhatsapp
-}
-const phone = import.meta.env.VITE_PHONE_NUMBER
+import { useMutation } from "@tanstack/react-query"
+import { createOrder, OrderProducts } from "@/enpatados/services/orderService"
 
 interface CartProps {
   cartOpen: boolean
@@ -47,9 +32,28 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
     subtotal += product.amount * product.product.price
   })
 
+  const { isPending, mutate } = useMutation({
+    mutationFn: async () => {
+      let sendProducts: OrderProducts[] = []
+
+      products.forEach((product: CartProducts) => {
+        const productToSend = {
+          id: product.product.id!,
+          quantity: product.amount,
+        }
+        sendProducts.push(productToSend)
+      })
+
+      const response = await createOrder(sendProducts)
+
+      return response
+    },
+  })
+
   function handleSubmit() {
-    const message = getMessage(products, subtotal)
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank")
+    if (products.length > 0) {
+      mutate()
+    }
   }
 
   return (
@@ -92,6 +96,10 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
                 increaseAmountProduct={increaseAmountProduct}
               />
             ))}
+
+          {products.length === 0 && (
+            <p className="text-center">No hay productos en el carrito</p>
+          )}
         </ol>
         <div className="flex flex-col w-full gap-8">
           <div className="flex">
@@ -103,6 +111,7 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
             variant="blue"
             className="flex gap-2 w-full"
             onClick={handleSubmit}
+            disabled={isPending || products.length === 0}
           >
             <Icon
               icon="material-symbols:shopping-cart"
@@ -132,21 +141,38 @@ function CartCard({
   increaseAmountProduct,
   userId,
 }: CartCardProps) {
+  const deleteProductFromCart = useCartStore(
+    (state) => state.deleteProductFromCart
+  )
+  function handleDeleteProduct() {
+    deleteProductFromCart(userId.toString(), product.id!)
+  }
   return (
     <li className="flex gap-4 w-full">
       <section className="flex flex-col w-full gap-2">
         <div className="flex w-full gap-2">
           <div
-            className={`rounded-lg bg-[url("/spiderman.jpg")] bg-cover bg-center min-w-24 min-h-24`}
+            className={`rounded-lg bg-[url("/spiderman.jpg")] bg-cover bg-center min-w-24 min-h-24 relative`}
           />
           <div className="flex flex-col md:flex-row w-full items-center gap-2 md:gap-0">
             <div className="flex flex-col md:w-full">
               <span className="font-medium truncate max-w-[170px]">
                 {product.name}
               </span>
+
               <span className="font-light truncate max-w-[170px]">
                 $ {product.price} / unidad
               </span>
+
+              <div className="flex items-center justify-center md:justify-start">
+                <Button
+                  variant="blue"
+                  className="text-xs py-1 w-[80%]"
+                  onClick={handleDeleteProduct}
+                >
+                  Eliminar del carrito
+                </Button>
+              </div>
             </div>
 
             <div className="flex items-center justify-center gap-2 max-w-[110px]">
