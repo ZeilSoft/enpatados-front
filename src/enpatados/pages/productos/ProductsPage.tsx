@@ -12,6 +12,8 @@ import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import NotFound from "@/components/shared/NotFound"
 import { GoToTop } from "@/utils/toUp"
+import { ProductCardSkeleton } from "@/enpatados/components/ProductCardSkeleton"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export const ProductsPage = () => {
   const { searchParams, handlePageChange, setTotalPages, totalPages } =
@@ -21,7 +23,7 @@ export const ProductsPage = () => {
   const categoryId = searchParams.get("category")
   const subCategoryId = searchParams.get("subcategory")
 
-  const { data: categories } = useQuery({
+  const { data: categories, isPending: isPendingCategories } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
     refetchOnWindowFocus: false,
@@ -32,7 +34,7 @@ export const ProductsPage = () => {
     data: products,
     refetch: refetchProducts,
     error: errorProducts,
-    isLoading: isLoadingProducts,
+    isPending: isPendingProducts,
   } = useQuery({
     queryKey: ["products"],
     queryFn: getProductsFunction,
@@ -40,7 +42,6 @@ export const ProductsPage = () => {
     staleTime: 1000 * 60 * 60 * 24,
     retry: 0,
   })
-  console.log(products)
 
   async function getProductsFunction() {
     const response = await getProducts({
@@ -87,9 +88,21 @@ export const ProductsPage = () => {
       </section>
 
       <section className="flex flex-col gap-4 w-full md:w-[80%] px-2">
-        <Categories categories={categories} />
-        {isLoadingProducts ? (
-          <p>cargando</p>
+        {isPendingCategories ? (
+          <div className="flex flex-wrap gap-4">
+            {Array.from({ length: 3 }).map((_) => (
+              <Skeleton className="h-10 w-24 rounded-full bg-gray-200" />
+            ))}
+          </div>
+        ) : (
+          <Categories categories={categories} />
+        )}
+        {isPendingProducts ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-8">
+            {Array.from({ length: 9 }).map((_) => (
+              <ProductCardSkeleton key={crypto.randomUUID()} />
+            ))}
+          </div>
         ) : (
           <div>
             {errorProducts ? (
@@ -126,7 +139,7 @@ export const ProductsPage = () => {
           transition={{ duration: 0.5 }}
           className="text-2xl text-center"
         >
-          La mejor forma de destacar,  empieza con nosotros.
+          La mejor forma de destacar, empieza con nosotros.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 100 }}

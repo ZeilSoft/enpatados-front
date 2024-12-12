@@ -36,7 +36,6 @@ function Cards({ product }: CardsProps) {
       ) || { products: [] }
   )
   let isProductInCart
-  console.log(productStore)
 
   if (authUser != null && productStore.products.length > 0) {
     isProductInCart = (
