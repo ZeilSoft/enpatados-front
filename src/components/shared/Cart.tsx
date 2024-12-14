@@ -46,13 +46,19 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
         sendProducts.products.push(productToSend)
       })
       const response = await createOrder(sendProducts)
-
-      setCartOpen(false)
-      clearCart(authUser!.user.id)
+      
       return response
     },
+    onSuccess(data) {
+      setCartOpen(false)
+      clearCart(authUser!.user.id)
+      window.open(`${data.data}`, "_self")
+    },
+    onError(error) {
+      console.error(error)
+    },
   })
-
+  
   function handleSubmit() {
     if (products.length > 0) {
       mutate()
