@@ -5,7 +5,7 @@ export interface OrderProducts {
   quantity: number
 }
 
-export function createOrder(products: OrderProducts[]) {
+export function createOrder(products: { products: OrderProducts[] }) {
   try {
     const response = axiosInstance.post("order", {
       products: products,

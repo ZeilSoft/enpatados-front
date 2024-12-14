@@ -91,7 +91,7 @@ export const ProductsPage = () => {
         {isPendingCategories ? (
           <div className="flex flex-wrap gap-4">
             {Array.from({ length: 3 }).map((_) => (
-              <Skeleton className="h-10 w-24 rounded-full bg-gray-200" />
+              <Skeleton className="h-10 w-24 rounded-full bg-gray-200" key={crypto.randomUUID()} />
             ))}
           </div>
         ) : (

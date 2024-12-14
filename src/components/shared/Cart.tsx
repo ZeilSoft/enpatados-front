@@ -26,7 +26,7 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
     (state) => state.decreaseAmountProduct
   )
 
-  const clearCart = useCartStore((state)=> state.clearCart)
+  const clearCart = useCartStore((state) => state.clearCart)
 
   let subtotal: number = 0
 
@@ -36,27 +36,28 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
 
   const { isPending, mutate } = useMutation({
     mutationFn: async () => {
-      let sendProducts: OrderProducts[] = []
+      let sendProducts: { products: OrderProducts[] } = { products: [] }
 
       products.forEach((product: CartProducts) => {
         const productToSend = {
           id: product.product.id!,
           quantity: product.amount,
         }
-        sendProducts.push(productToSend)
+        sendProducts.products.push(productToSend)
       })
-
       const response = await createOrder(sendProducts)
 
       return response
     },
+    onSuccess: () => {
+      setCartOpen(false)
+      clearCart(authUser!.user.id)
+    }
   })
 
   function handleSubmit() {
-    if (products.length > 0 && authUser != null) {
+    if (products.length > 0) {
       mutate()
-      setCartOpen(false)
-      clearCart(authUser.user.id)
     }
   }
 

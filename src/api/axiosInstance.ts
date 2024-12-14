@@ -10,9 +10,7 @@ axiosInstance.interceptors.request.use(
     const user = localStorage.getItem("user-token")
     
     if (user) {
-      const data = JSON.parse(user)
-      console.log(data);
-      
+      const data = JSON.parse(user)      
       config.headers.Authorization = `Bearer ${data.token}`
     }
 
