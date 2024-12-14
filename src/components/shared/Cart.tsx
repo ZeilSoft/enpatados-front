@@ -47,12 +47,10 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
       })
       const response = await createOrder(sendProducts)
 
-      return response
-    },
-    onSuccess: () => {
       setCartOpen(false)
       clearCart(authUser!.user.id)
-    }
+      return response
+    },
   })
 
   function handleSubmit() {
