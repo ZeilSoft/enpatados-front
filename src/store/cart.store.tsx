@@ -20,6 +20,7 @@ interface CartState {
   findCartByUserId: (userId: string) => CartProducts[]
   decreaseAmountProduct: (userId: string, productId: number) => void
   increaseAmountProduct: (userId: string, productId: number) => void
+  clearCart: (userId: string) => void
 }
 
 const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
@@ -121,10 +122,27 @@ const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
       }
     })
   },
+  clearCart(userId) {
+    set((state)=>{
+      const existingIndex = state.cart.findIndex(
+        (product: any) => product.userId === Number(userId)
+      ) 
+      
+      if (existingIndex !== -1) {
+        localStorage.removeItem(
+          `cart-${userId}`
+        )
+        state.cart[existingIndex] = {
+          userId: userId,
+          products: []
+        }
+      }
+    })
+  },
 })
 
 export const useCartStore = create<CartState>()(
   persist(immer(storeApi), {
-    name: "Product-storage",
+    name: "Cart-storage",
   })
 )

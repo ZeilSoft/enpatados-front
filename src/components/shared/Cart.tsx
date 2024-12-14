@@ -26,6 +26,8 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
     (state) => state.decreaseAmountProduct
   )
 
+  const clearCart = useCartStore((state)=> state.clearCart)
+
   let subtotal: number = 0
 
   products.forEach((product: CartProducts) => {
@@ -51,8 +53,10 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
   })
 
   function handleSubmit() {
-    if (products.length > 0) {
+    if (products.length > 0 && authUser != null) {
       mutate()
+      setCartOpen(false)
+      clearCart(authUser.user.id)
     }
   }
 
