@@ -25,6 +25,7 @@ import AboutPage from "@/enpatados/pages/about/AboutPage"
 import PromotionsPage from "@/enpatados/pages/promotions/PromotionsPage"
 import ContactPage from "@/enpatados/pages/contact/ContactPage"
 import NotFoundPage from "@/enpatados/pages/notFound/NotFoundPage"
+import ProfilePage from "@/enpatados/pages/profile/ProfilePage"
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
           {
             path: "/promociones",
             element: <PromotionsPage />,
+          },
+          {
+            path: "/perfil",
+            element: <ProfilePage />,
           },
           {
             path: "*",

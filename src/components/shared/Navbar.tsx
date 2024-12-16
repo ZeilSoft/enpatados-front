@@ -7,6 +7,15 @@ import { useLogout } from "@/auth/hooks/useLogout"
 import { useEffect, useState } from "react"
 import Cart from "./Cart"
 import { GoToTop } from "@/utils/toUp"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const Navbar = () => {
   const { logOut } = useLogout()
@@ -41,7 +50,7 @@ const Navbar = () => {
             <div className="items-center md:hidden">
               <button
                 type="button"
-                className="relative inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                className="relative inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 aria-controls="mobile-menu"
                 aria-expanded={open}
                 onClick={() => setOpen(!open)}
@@ -66,7 +75,7 @@ const Navbar = () => {
               onClick={GoToTop}
               aria-label="Home"
             >
-              <img className="size-14 md:size-16" src="/logo.webp" alt="Logo" />
+              <img className="size-14 ml-6 md:size-16" src="/logo.webp" alt="Logo" />
             </Link>
 
             <div className={`items-center flex justify-end gap-6`}>
@@ -148,22 +157,6 @@ const Navbar = () => {
                       &nbsp;
                     </span>
                   </NavLink>
-                  {authUser != null && (
-                    <div>
-                      <button
-                        type="button"
-                        className="px-3 py-2 inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
-                        aria-controls="mobile-menu"
-                        aria-expanded={cartOpen}
-                        onClick={() => setCartOpen(!cartOpen)}
-                      >
-                        <span className="sr-only">Open main menu</span>
-
-                        {/* Open */}
-                        <Icon icon="mdi:cart" width="24" height="24" />
-                      </button>
-                    </div>
-                  )}
 
                   {authUser?.user.role == "admin" && (
                     <NavLink
@@ -186,11 +179,28 @@ const Navbar = () => {
                     </NavLink>
                   )}
 
+                  {/* Cart button desktop */}
+                  {authUser != null && (
+                    <div>
+                      <button
+                        type="button"
+                        className="px-3 py-2 inline-flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        aria-controls="mobile-menu"
+                        aria-expanded={cartOpen}
+                        onClick={() => setCartOpen(!cartOpen)}
+                      >
+                        <span className="sr-only">Open main menu</span>
+
+                        {/* Open */}
+                        <Icon icon="mdi:cart" width="24" height="24" />
+                      </button>
+                    </div>
+                  )}
+
                   {authUser ? (
                     <div className="flex items-center justify-center gap-3">
-                      <Button variant="authButton" onClick={logOut}>
-                        Cerrar sesion
-                      </Button>
+                      {/* Profile desktop */}
+                      <Profile />
                     </div>
                   ) : (
                     <>
@@ -206,12 +216,12 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Cart button */}
+              {/* Cart button mobile */}
               {authUser != null && (
                 <div className="flex items-center md:hidden w-full">
                   <button
                     type="button"
-                    className="flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light"
+                    className="absolute right-16 flex items-center justify-center rounded-md text-black-main hover:bg-gray-main/80 hover:text-black-main focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     aria-controls="mobile-menu"
                     aria-expanded={cartOpen}
                     onClick={() => setCartOpen(!cartOpen)}
@@ -221,6 +231,9 @@ const Navbar = () => {
                     {/* Open */}
                     <Icon icon="mdi:cart" width="24" height="24" />
                   </button>
+
+                  {/* Profile mobile */}
+                  <Profile />
                 </div>
               )}
             </div>
@@ -400,3 +413,68 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+function Profile() {
+  const { logOut } = useLogout()
+  const { authUser } = useAuthContext()
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const { pathname } = useLocation()
+
+  const handleDropdownClick = () => {
+    setIsDropdownOpen(false)
+  }
+  return (
+    <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+      <DropdownMenuTrigger>
+        <Icon
+          className="h-12 w-12 cursor-pointer"
+          icon="carbon:user-avatar-filled"
+        />
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent className="w-[288px] bg-white border-black">
+        <DropdownMenuLabel>
+          <div className="text-base">
+            <p>{authUser?.user.email}</p>
+          </div>
+        </DropdownMenuLabel>
+
+        <DropdownMenuSeparator className="bg-black" />
+
+        <DropdownMenuGroup className="flex gap-2 flex-col">
+          <Link
+            className="px-[3px] w-full"
+            to="/perfil"
+            onClick={handleDropdownClick}
+          >
+            <DropdownMenuItem
+              className={`text-base w-full cursor-pointer ${
+                pathname === "/perfil"
+                  ? "bg-blue-main text-white"
+                  : "focus:bg-blue-main focus:text-white"
+              }`}
+            >
+              <Icon icon="iconamoon:profile" width="24" height="24" />
+              <p>Mi perfil</p>
+            </DropdownMenuItem>
+          </Link>
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator className="bg-black" />
+
+        <DropdownMenuItem
+          className="focus:bg-[#ff284cbf] focus:dark:bg-[#ff284cbf] focus:text-white text-base cursor-pointer"
+          onClick={logOut}
+        >
+          <button
+            className="px-[3px] flex items-center flex-row gap-2 w-full"
+            onClick={handleDropdownClick}
+          >
+            <Icon icon="material-symbols:logout" width="24" height="24" />
+            <p>Cerrar sesión</p>
+          </button>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
