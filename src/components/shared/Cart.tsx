@@ -161,7 +161,7 @@ function CartCard({
       <section className="flex flex-col w-full gap-2">
         <div className="flex w-full gap-2">
           <div
-            className={`rounded-lg bg-[url("/spiderman.jpg")] bg-cover bg-center min-w-24 min-h-24 relative`}
+            className={`rounded-lg bg-[url("${product.images[0].url}")] bg-cover bg-center min-w-24 min-h-24 relative`}
           />
           <div className="flex flex-col md:flex-row w-full items-center gap-2 md:gap-0">
             <div className="flex flex-col md:w-full">

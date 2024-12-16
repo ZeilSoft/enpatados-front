@@ -62,7 +62,7 @@ function Cards({ product }: CardsProps) {
       className="flex flex-col items-center justify-center max-w-96 gap-4"
     >
       <header
-        className={`bg-[url("/spiderman.jpg")] bg-cover bg-center w-60 h-80 rounded-md`}
+        className={`bg-[url("${product.images[0].url}")] bg-cover bg-center w-60 h-80 rounded-md`}
       />
       <div className="flex flex-col items-center justify-center gap-4">
         <span className="font-semibold">{product.name}</span>
