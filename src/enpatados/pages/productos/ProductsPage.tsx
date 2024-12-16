@@ -118,7 +118,7 @@ export const ProductsPage = () => {
         currentPage={currentPage!}
         totalPages={totalPages}
         onPageChange={handlePageChange}
-        disabled={false}
+        disabled={isPendingProducts}
         key={currentPage}
       />
 

@@ -46,7 +46,7 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
         sendProducts.products.push(productToSend)
       })
       const response = await createOrder(sendProducts)
-      
+
       return response
     },
     onSuccess(data) {
@@ -58,7 +58,7 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
       console.error(error)
     },
   })
-  
+
   function handleSubmit() {
     if (products.length > 0) {
       mutate()
@@ -160,8 +160,10 @@ function CartCard({
     <li className="flex gap-4 w-full">
       <section className="flex flex-col w-full gap-2">
         <div className="flex w-full gap-2">
-          <div
-            className={`rounded-lg bg-[url("${product.images[0].url}")] bg-cover bg-center min-w-24 min-h-24 relative`}
+          <img
+            src={product.images[0].url}
+            alt={product.name}
+            className="rounded-lg w-24 h-24 object-center"
           />
           <div className="flex flex-col md:flex-row w-full items-center gap-2 md:gap-0">
             <div className="flex flex-col md:w-full">
