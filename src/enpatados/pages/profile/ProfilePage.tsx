@@ -34,7 +34,7 @@ const ProfilePage = () => {
   }, [data])
 
   return (
-    <main className="flex flex-col items-center w-full gap-8 min-h-screen">
+    <main className="flex flex-col items-center w-full gap-8 min-h-screen px-0 lg:px-4">
       <section className="flex flex-col items-center justify-center gap-8 p-8 bg-white w-full min-h-[200px]">
         <motion.h1
           initial={{ opacity: 0, y: 100 }}
