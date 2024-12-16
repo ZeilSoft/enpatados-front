@@ -15,3 +15,12 @@ export function createOrder(products: { products: OrderProducts[] }) {
     throw error
   }
 }
+
+export function getOrderById(id: string){
+  try {
+    const response = axiosInstance.get(`order/user/${id}`)
+    return response
+  } catch (error) {
+    throw error
+  }
+}
