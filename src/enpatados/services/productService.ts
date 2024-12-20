@@ -8,7 +8,7 @@ export async function getProducts({
   search,
 }: {
   page?: number
-  pageSize?: number
+  pageSize?: number | ""
   categoryId?: string
   subCategoryId?: string
   search?: string
