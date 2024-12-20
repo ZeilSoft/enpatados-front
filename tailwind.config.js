@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+import tailwindcssAnimate from "tailwindcss-animate"
+
+export default {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -78,13 +80,15 @@ module.exports = {
       colors: {
         "blue-main": "#1D247E",
         "green-main": "#507C65",
-        "orange-main": "#CD4A38",
-        "lilac-main": "#A8C2F5",
+        "yellow-main": "#F0D547",
+        "black-main": "#111111",
+        "gray-main": "#EEEEEE",
+        "orange-main": "#CD4A38"
       },
       screens: {
         '4xl': "2226px",
       }
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 }

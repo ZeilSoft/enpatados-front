@@ -1,13 +1,15 @@
+import Advantage from "./components/Advantage"
 import Categories from "./components/Categories"
 import Hero from "./components/Hero"
-import Products from "./components/Products"
+import Marketing from "./components/Marketing"
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col gap-12 w-full">
+    <div className="flex flex-col w-full">
       <Hero />
       <Categories />
-      <Products />
+      <Advantage />
+      <Marketing />
     </div>
   )
 }

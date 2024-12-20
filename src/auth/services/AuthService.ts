@@ -51,7 +51,7 @@ export function register(user: Register) {
 
 export function recoveryPasswordFunction(email: string) {
   try {
-    const response = axiosInstance.post("user/PassRecovery", {
+    const response = axiosInstance.post("user/pass/recovery", {
       email: email
     })
     return response
@@ -62,8 +62,8 @@ export function recoveryPasswordFunction(email: string) {
 
 export function putPassword(password: string, token: string) {
   try {
-    const response = axiosInstance.put(`user/reset/${token}`, {
-      newPassword: password
+    const response = axiosInstance.put(`user/reset?token=${token}`, {
+      password: password
     })
     return response
   } catch (error) {

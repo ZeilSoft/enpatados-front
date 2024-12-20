@@ -37,6 +37,10 @@ const LoginPage = () => {
     },
   })
 
+  function loginGoogle() {
+    window.open(`${import.meta.env.VITE_API_URL}user/auth/google`, "_self")
+  }
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -64,17 +68,17 @@ const LoginPage = () => {
 
   return (
     <section className="flex items-center justify-center w-full min-h-screen">
-      {success ? (
-        <h1>
-          Se le envio un correo de recuperacion a su correo, por favor revise su
-          bandeja de entrada o spam
-        </h1>
-      ) : (
-        <div>
-          {!recoveryPassword ? (
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="flex flex-col gap-5 px-4 py-7 mx-auto">
-                <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+      <div className="w-full sm:w-96 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-gray-main">
+        {success ? (
+          <h1>
+            Se le envio un correo de recuperacion a su correo, por favor revise
+            su bandeja de entrada o spam
+          </h1>
+        ) : (
+          <div>
+            {!recoveryPassword ? (
+              <form onSubmit={handleSubmit} noValidate>
+                <div className="flex flex-col gap-5 mx-auto">
                   <div className="flex flex-col gap-4 md:gap-6">
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                       Ingrese su email
@@ -156,6 +160,21 @@ const LoginPage = () => {
                         >
                           {loading ? "Cargando..." : "Iniciar sesión"}
                         </Button>
+
+                        <div className="flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-black after:mt-0.5 after:flex-1 after:border-t after:border-black">
+                          <p className="mx-4 mb-0 text-center dark:text-white">
+                            o
+                          </p>
+                        </div>
+                        
+                        <button
+                          className="px-5 py-2.5 border flex justify-center items-center gap-2 bg-white border-blue-main hover:bg-white/80 transition-colors duration-150 rounded-lg w-full "
+                          type="button"
+                          onClick={loginGoogle}
+                        >
+                          <Icon className="h-6 w-6" icon="logos:google-icon" />
+                          <span className="text-sm">Continuar con Google</span>
+                        </button>
                       </div>
 
                       <p className="text-sm font-light text-center">
@@ -180,11 +199,9 @@ const LoginPage = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
-          ) : (
-            <form onSubmit={formik.handleSubmit}>
-              <div className="w-full sm:w-96 bg-main/20 rounded-lg shadow p-6 sm:p-8 flex flex-col gap-3 bg-yellow-50">
+              </form>
+            ) : (
+              <form onSubmit={formik.handleSubmit}>
                 <div className="flex flex-col gap-4 md:gap-6">
                   <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                     Recuperar contraseña
@@ -229,11 +246,11 @@ const LoginPage = () => {
                     Volver
                   </button>
                 </div>
-              </div>
-            </form>
-          )}
-        </div>
-      )}
+              </form>
+            )}
+          </div>
+        )}
+      </div>
     </section>
   )
 }

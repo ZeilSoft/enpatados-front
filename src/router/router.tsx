@@ -1,87 +1,115 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { Root } from '../Root';
+import { createBrowserRouter } from "react-router-dom"
+import { Root } from "../Root"
 
 // Enpatados
-import { MainLayout } from '@/enpatados/layout/MainLayout';
-import HomePage from '@/enpatados/pages/home/HomePage';
-import { ProductsPage } from '@/enpatados/pages/ProductsPage';
-import { ContactPage } from '@/enpatados/pages/contact/ContactPage';
+import { MainLayout } from "@/enpatados/layout/MainLayout"
+import HomePage from "@/enpatados/pages/home/HomePage"
+import { ProductsPage } from "@/enpatados/pages/productos/ProductsPage"
 
 // Auth
-import { AuthLayout } from '@/auth/layout/AuthLayout';
-import { AuthProtectedRoute } from '@/components/AuthProtectedRoute';
-import LoginPage from '@/auth/pages/login/LoginPage';
+import { AuthLayout } from "@/auth/layout/AuthLayout"
+import { AuthProtectedRoute } from "@/components/AuthProtectedRoute"
+import LoginPage from "@/auth/pages/login/LoginPage"
 
 // DashboardAdmin
-import { DashboardAdminLayout } from '@/dashboardAdmin/layout/DashboardAdminLayout';
+import { DashboardAdminLayout } from "@/dashboardAdmin/layout/DashboardAdminLayout"
 // import { DashboardAdminMainPage } from '@/dashboardAdmin/pages/DashboardAdminMainPage';
-import { DashboardAdminProductsPage } from '@/dashboardAdmin/pages/DashboardAdminProducts/DashboardAdminProductsPage';
-import { DashboardAdminCategoriesPage } from '@/dashboardAdmin/pages/DashboardAdminCategories/DashboardAdminCategoriesPage';
-import { DashboardAdminOrdersPage } from '@/dashboardAdmin/pages/DashboardAdminOrders/DashboardAdminOrdersPage';
-import { DashboardAdminUsersPage } from '@/dashboardAdmin/pages/DashboardAdminUsers/DashboardAdminUsersPage';
-import RegisterPage from '@/auth/pages/register/RegisterPage';
-import PasswordRecovery from '@/auth/pages/password-recovery/PasswordRecovery';
-
-export const router = createBrowserRouter( [
+import { DashboardAdminCategoriesPage } from "@/dashboardAdmin/pages/DashboardAdminCategoriesPage"
+import RegisterPage from "@/auth/pages/register/RegisterPage"
+import PasswordRecovery from "@/auth/pages/password-recovery/PasswordRecovery"
+import GooglePage from "@/auth/pages/google/GooglePage"
+import AboutPage from "@/enpatados/pages/about/AboutPage"
+import PromotionsPage from "@/enpatados/pages/promotions/PromotionsPage"
+import ContactPage from "@/enpatados/pages/contact/ContactPage"
+import NotFoundPage from "@/enpatados/pages/notFound/NotFoundPage"
+import ProfilePage from "@/enpatados/pages/profile/ProfilePage"
+import { DashboardAdminProductsPage } from "@/dashboardAdmin/pages/DashboardAdminProducts/DashboardAdminProductsPage"
+import { DashboardAdminOrdersPage } from "@/dashboardAdmin/pages/DashboardAdminOrders/DashboardAdminOrdersPage"
+import { DashboardAdminUsersPage } from "@/dashboardAdmin/pages/DashboardAdminUsers/DashboardAdminUsersPage"
+export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Root />,
     children: [
       // Enpatados
       {
-        path: '/',
+        path: "/",
         element: <MainLayout />,
         children: [
           {
-            path: '/',
-            element: <HomePage />
+            path: "/",
+            element: <HomePage />,
           },
           {
-            path: '/productos',
-            element: <ProductsPage />
+            path: "/productos",
+            element: <ProductsPage />,
           },
           {
-            path: '/contacto',
-            element: <ContactPage />
+            path: "/contacto",
+            element: <ContactPage />,
           },
-        ]
+          {
+            path: "/sobre-nosotros",
+            element: <AboutPage />,
+          },
+          {
+            path: "/promociones",
+            element: <PromotionsPage />,
+          },
+          {
+            path: "/perfil",
+            element: <ProfilePage />,
+          },
+          {
+            path: "*",
+            element: <NotFoundPage/>,
+          },
+        ],
       },
 
       /// Auth Routes
       {
-        path: 'auth',
+        path: "auth",
         element: <AuthLayout />,
         children: [
           {
-            path: 'iniciar-sesion',
+            path: "iniciar-sesion",
             element: (
               <AuthProtectedRoute>
-                <LoginPage /> 
+                <LoginPage />
               </AuthProtectedRoute>
-            )
+            ),
           },
           {
-            path: 'registrarse',
+            path: "google",
+            element: (
+              <AuthProtectedRoute>
+                <GooglePage />
+              </AuthProtectedRoute>
+            ),
+          },
+          {
+            path: "registrarse",
             element: (
               <AuthProtectedRoute>
                 <RegisterPage />
               </AuthProtectedRoute>
-            )
+            ),
           },
           {
-            path: 'password-recovery',
+            path: "password-recovery",
             element: (
               <AuthProtectedRoute>
-                <PasswordRecovery /> 
+                <PasswordRecovery />
               </AuthProtectedRoute>
-            )
-          }
-        ]
+            ),
+          },
+        ],
       },
 
       /// Dashboard Routes
       {
-        path: 'admin',
+        path: "admin",
         element: <DashboardAdminLayout />,
         children: [
           // {
@@ -89,23 +117,23 @@ export const router = createBrowserRouter( [
           //   element: <DashboardAdminMainPage />
           // },
           {
-            path: 'productos',
-            element: <DashboardAdminProductsPage />
+            path: "productos",
+            element: <DashboardAdminProductsPage />,
           },
           {
-            path: 'categorias',
-            element: <DashboardAdminCategoriesPage />
+            path: "categorias",
+            element: <DashboardAdminCategoriesPage />,
           },
           {
-            path: 'ordenes-de-compra',
-            element: <DashboardAdminOrdersPage />
+            path: "ordenes-de-compra",
+            element: <DashboardAdminOrdersPage />,
           },
           {
-            path: 'usuarios',
-            element: <DashboardAdminUsersPage />
+            path: "usuarios",
+            element: <DashboardAdminUsersPage />,
           },
-        ]
+        ],
       },
     ],
   },
-]);
+])
