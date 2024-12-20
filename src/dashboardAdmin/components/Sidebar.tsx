@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAuthContext } from "@/auth/context/auth-context"
+import { useLogout } from "@/auth/hooks/useLogout"
 
 interface MenuItem {
   title: string
@@ -48,6 +49,7 @@ const menuItems: MenuItem[] = [
 
 export const Sidebar = () => {
   const { authUser } = useAuthContext()
+  const { logOut } = useLogout()
   return (
     <div className="hidden lg:border-r lg:border-[#334155] bg-[#252D3B] h-screen relative lg:flex flex-col justify-between z-[8888] text-slate-300 w-80 left-0">
       {/* Intro & Profile */}
@@ -95,7 +97,11 @@ export const Sidebar = () => {
         </Link>
 
         {/* Logout */}
-        <Button variant="logOut" className="flex flex-row gap-2 items-center">
+        <Button
+          variant="logOut"
+          className="flex flex-row gap-2 items-center"
+          onClick={logOut}
+        >
           <LogOut />
           Cerrar sesion
         </Button>
