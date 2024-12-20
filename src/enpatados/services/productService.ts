@@ -31,3 +31,36 @@ export async function getProducts({
     throw error
   }
 }
+
+export async function createProduct({
+  name,
+  description,
+  price,
+  stock,
+  categoryId,
+  subcategoryId,
+  images,
+}: {
+  name: string
+  description: string
+  price: number
+  stock: number
+  categoryId: string
+  subcategoryId: string
+  images: { url: string }[]
+}) {
+  try {
+    const response = await axiosInstance.post("product", {
+      name,
+      description,
+      price,
+      stock,
+      categoryId,
+      subcategoryId,
+      images,
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
+}

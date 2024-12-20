@@ -223,8 +223,6 @@ export const DashboardAdminProductsPage = () => {
     setTotalPages(response.data.pagination.totalPages)
     return response.data.data
   }
-  console.log(categories)
-  console.log(category)
 
   useEffect(() => {
     refetchProducts()
