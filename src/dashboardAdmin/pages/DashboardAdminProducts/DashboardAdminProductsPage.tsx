@@ -19,6 +19,7 @@ import { getCategories } from "@/enpatados/services/categoryService"
 import { Category } from "@/enpatados/interfaces/Category"
 import { SubCategory } from "@/enpatados/interfaces/SubCategory"
 import { PaginationProducts } from "@/dashboardAdmin/components/paginationProducts"
+import { useDebounce } from "use-debounce"
 
 export const DashboardAdminProductsPage = () => {
   /*   const products = [
@@ -169,11 +170,23 @@ export const DashboardAdminProductsPage = () => {
     handlePageChange,
     handleCategory,
     handleSubCategory,
+    handleSearch,
   } = usePaginationProducts()
   const currentPage = Number(searchParams.get("currentPage")) || 1
   const search = searchParams.get("search")
   const categoryId = searchParams.get("category")
   const subCategoryId = searchParams.get("subcategory")
+
+  const [text, setText] = useState<string>(search?.toString() || "")
+  const [value] = useDebounce(text, 350)
+
+  useEffect(() => {
+    const currentPageParams = Number(searchParams.get("currentPage"))
+    if (search === text) {
+      return
+    }
+    handleSearch(value, currentPageParams)
+  }, [value])
 
   const [category, setCategory] = useState<number | undefined>(
     categoryId ? Number(categoryId) : undefined
@@ -219,6 +232,7 @@ export const DashboardAdminProductsPage = () => {
 
   function handleChangeSelectCategory(value: string) {
     if (value === "todas") {
+      handleSubCategory(0, undefined)
       handleCategory(0)
       return setCategory(undefined)
     }
@@ -246,6 +260,10 @@ export const DashboardAdminProductsPage = () => {
             type="text"
             placeholder="Buscar producto"
             className="border border-[#334155] bg-[#252D3B] focus-visible:ring-2 focus:ring-white focus:outline-none"
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value)
+            }}
           />
 
           {isPendingCategories ? (
