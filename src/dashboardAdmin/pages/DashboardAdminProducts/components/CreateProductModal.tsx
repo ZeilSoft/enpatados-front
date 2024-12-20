@@ -18,8 +18,12 @@ import { getCategories } from "@/enpatados/services/categoryService"
 import { SubCategory } from "@/enpatados/interfaces/SubCategory"
 import { Label } from "@radix-ui/react-dropdown-menu"
 import { AxiosError } from "axios"
-
-export const CreateProductModal: React.FC = () => {
+interface CreateProductModalProps {
+  refetch: Function
+}
+export const CreateProductModal: React.FC<CreateProductModalProps> = ({
+  refetch
+}) => {
   const [images, setImages] = useState([{ url: "" }])
   const [category, setCategory] = useState<undefined | string>(undefined)
   const [success, setSuccess] = useState(false)
@@ -56,9 +60,9 @@ export const CreateProductModal: React.FC = () => {
     onSuccess: () => {
       setSuccess(true)
       resetForm()
+      refetch()
     },
   })
-console.log(error);
 
   const handleAddImages = () => {
     setImages([...images, { url: "" }])

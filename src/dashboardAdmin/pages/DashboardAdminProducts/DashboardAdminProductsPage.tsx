@@ -315,7 +315,10 @@ export const DashboardAdminProductsPage = () => {
             </>
           )}
 
-          <Button variant="productActions" onClick={handleCreateProduct}>
+          <Button
+            variant="productActions"
+            onClick={() => handleCreateProduct(refetchProducts)}
+          >
             CREAR PRODUCTO
           </Button>
         </div>
@@ -384,14 +387,18 @@ export const DashboardAdminProductsPage = () => {
                       <Button
                         className="flex-1"
                         variant="productActions"
-                        onClick={() => handleEditProduct(product)}
+                        onClick={() =>
+                          handleEditProduct(product, refetchProducts)
+                        }
                       >
                         EDITAR
                       </Button>
                       <Button
                         className="flex-1"
                         variant="delete"
-                        onClick={() => handleDeleteProduct(product.name)}
+                        onClick={() =>
+                          handleDeleteProduct(product.id, product.name ,refetchProducts)
+                        }
                       >
                         ELIMINAR
                       </Button>

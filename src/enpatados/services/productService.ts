@@ -64,3 +64,47 @@ export async function createProduct({
     throw error
   }
 }
+
+export async function updateProduct({
+  id,
+  name,
+  description,
+  price,
+  stock,
+  categoryId,
+  subcategoryId,
+  images,
+}: {
+  id: number
+  name: string
+  description: string
+  price: number
+  stock: number
+  categoryId: number
+  subcategoryId: number
+  images: { url: string }[]
+}) {
+  try {
+    const response = await axiosInstance.put(`product/${id}`, {
+      name,
+      description,
+      price,
+      stock,
+      categoryId,
+      subcategoryId,
+      images,
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function deleteProduct(id: number) {
+  try {
+    const response = await axiosInstance.delete(`product/${id}`)
+    return response
+  } catch (error) {
+    throw error
+  }
+}

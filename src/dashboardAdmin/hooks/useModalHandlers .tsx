@@ -10,6 +10,7 @@ import { DeleteCategoryModal } from "../pages/DashboardAdminCategories/component
 import { CreateSubcategoryModal } from "../pages/DashboardAdminCategories/components/CreateSubcategoryModal";
 import { EditSubcategoryModal } from "../pages/DashboardAdminCategories/components/EditSubcategoryModal";
 import { DeleteSubcategoryModal } from '../pages/DashboardAdminCategories/components/DeleteSubcategoryModal';
+import { Product } from "@/enpatados/interfaces/Product";
 
 // Category
 
@@ -19,18 +20,18 @@ export const useModalHandlers = () => {
   const { openModal } = useModalStore();
 
   // Product
-  const handleCreateProduct = () => {
-    const content = <CreateProductModal />;
+  const handleCreateProduct = (refetch: Function) => {
+    const content = <CreateProductModal refetch={refetch} />;
     openModal("Crear Producto", content);
   };
 
-  const handleEditProduct = (product: any) => {
-    const content = <EditProductModal product={product} />;
+  const handleEditProduct = (product: Product, refetch: Function) => {
+    const content = <EditProductModal product={product} refetch={refetch} />;
     openModal("Editar Producto", content);
   };
 
-  const handleDeleteProduct = (productName: any) => {
-    const content = <DeleteProductModal productName={productName} />;
+  const handleDeleteProduct = (id: number, name: string, refetch: Function) => {
+    const content = <DeleteProductModal id={id} name={name} refetch={refetch} />;
     openModal("Eliminar Producto", content);
   };
 
