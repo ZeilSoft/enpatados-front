@@ -4,7 +4,7 @@ export interface Category {
   id: number
   name: string
   description: string
-  icon: Text
+  icon: string
   productId?: number
   subcategories?: SubCategory[]
 }

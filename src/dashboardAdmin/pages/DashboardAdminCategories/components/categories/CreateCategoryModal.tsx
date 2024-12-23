@@ -1,35 +1,120 @@
-import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import React, { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
-import { useModalStore } from '@/store/ui.store';
+import { useFormik } from "formik"
+import { createCategorySchema } from "@/dashboardAdmin/utils/schemas/createCategory"
+import { useMutation } from "@tanstack/react-query"
+import { createCategory } from "@/enpatados/services/categoryService"
+import { Label } from "@/components/ui/label"
+import { AxiosError } from "axios"
+interface CreateCategoryModalProps {
+  refetch: Function
+}
+export const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
+  refetch,
+}) => {
+  const [success, setSuccess] = useState(false)
 
-export const CreateCategoryModal: React.FC = () => {
-  const { closeModal } = useModalStore();
+  const { handleSubmit, errors, touched, getFieldProps, values, resetForm } =
+    useFormik({
+      initialValues: {
+        name: "",
+        description: "",
+        icon: "",
+      },
+      validationSchema: createCategorySchema,
+      onSubmit: () => {
+        mutate()
+      },
+    })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    closeModal();
-  };
+  const { isPending, mutate, error } = useMutation({
+    mutationKey: ["createCategory"],
+    mutationFn: async () => {
+      await createCategory(values)
+    },
+    onSuccess: () => {
+      setSuccess(true)
+      resetForm()
+      refetch()
+    },
+  })
 
   return (
     <form className="flex flex-col gap-4 text-white" onSubmit={handleSubmit}>
-      <div className='flex flex-col gap-2'>
-        <Input className='bg-[#334155] ring-white border border-[#455166]' placeholder="Nombre de la categoria" />
-        <Select>
-          <SelectTrigger className="bg-[#334155] ring-white border border-[#455166] text-white rounded-md py-2 px-3 focus:ring-offset-0 focus-visible:ring-2 focus:ring-white">
-            <SelectValue placeholder="Seleccione subcategoría" />
-          </SelectTrigger>
-          <SelectContent className="bg-[#334155] text-white z-[12222]">
-            <SelectGroup onMouseDown={(e) => e.stopPropagation()}>
-              <SelectItem value="soquetes">Soquetes</SelectItem>
-              <SelectItem value="3/4">3/4</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-      <Button className='border border-[#455166]' type="submit" variant="productActions">Crear</Button>
+      {success ? (
+        <div className="flex flex-col gap-4">
+          <h1 className="text-white">Categoria creado con éxito</h1>
+          <Button
+            className="border border-[#455166]"
+            type="button"
+            variant="productActions"
+            onClick={() => {
+              setSuccess(false)
+            }}
+          >
+            Crear otra categoria
+          </Button>
+        </div>
+      ) : (
+        <>
+          <div className="flex flex-col gap-2">
+            <Label className="text-sm">Nombre de la categoria</Label>
+            <Input
+              className="bg-[#334155] ring-white border border-[#455166]"
+              placeholder="Nombre de la categoria"
+              {...getFieldProps("name")}
+              disabled={isPending}
+            />
+
+            {touched.name && errors.name && (
+              <small className="font-bold text-[#ff4444]">{errors.name}</small>
+            )}
+
+            <Label className="text-sm">Descripción de la categoria</Label>
+            <Input
+              className="bg-[#334155] ring-white border border-[#455166]"
+              placeholder="Descripción de la categoria"
+              {...getFieldProps("description")}
+              disabled={isPending}
+            />
+
+            {touched.description && errors.description && (
+              <small className="font-bold text-[#ff4444]">
+                {errors.description}
+              </small>
+            )}
+
+            <Label className="text-sm">Icono de la categoria</Label>
+            <Input
+              className="bg-[#334155] ring-white border border-[#455166]"
+              placeholder="Nombre del icono"
+              {...getFieldProps("icon")}
+              disabled={isPending}
+            />
+
+            {touched.icon && errors.icon && (
+              <small className="font-bold text-[#ff4444]">{errors.icon}</small>
+            )}
+          </div>
+          <Button
+            className="border border-[#455166]"
+            type="submit"
+            variant="productActions"
+          >
+            Crear categoria
+          </Button>
+          {error && (
+            <small className="font-bold text-[#ff4444]">
+              Error al crear el producto:{" "}
+              {error instanceof AxiosError
+                ? error.response?.data?.error
+                : error.message}
+            </small>
+          )}
+        </>
+      )}
     </form>
-  );
-};
+  )
+}

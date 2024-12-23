@@ -1,25 +1,41 @@
-import React from 'react';
-import { Button } from "@/components/ui/button";
-import { useModalStore } from '@/store/ui.store';
+import React from "react"
+import { Button } from "@/components/ui/button"
+import { useModalStore } from "@/store/ui.store"
+import { useMutation } from "@tanstack/react-query"
+import { deleteSubCategory } from "@/enpatados/services/subCategoryService"
 
 interface DeleteSubcategoryModalProps {
-  subcategoryName: string;
+  id: number
+  refetch: Function
 }
 
-export const DeleteSubcategoryModal: React.FC<DeleteSubcategoryModalProps> = ({ subcategoryName }) => {
-  const { closeModal } = useModalStore();
+export const DeleteSubcategoryModal: React.FC<DeleteSubcategoryModalProps> = ({
+  id,
+  refetch,
+}) => {
+  const { closeModal } = useModalStore()
 
-  const handleDelete = () => {
-    closeModal();
-  };
-
+  const { mutate } = useMutation({
+    mutationKey: ["deleteSubCategory"],
+    mutationFn: async () => {
+      await deleteSubCategory(id)
+    },
+    onSuccess: () => {
+      refetch()
+      closeModal()
+    },
+  })
   return (
     <div className="flex flex-col gap-4">
-      <p>¿Estás seguro de que deseas eliminar la subcategoria "<span className='font-bold'>{subcategoryName}</span>"?</p>
+      <p>¿Estás seguro de que deseas eliminar esta subcategoria"?</p>
       <div className="flex justify-end gap-2">
-        <Button variant="goBack" onClick={closeModal}>Cancelar</Button>
-        <Button variant="delete" onClick={handleDelete}>Eliminar</Button>
+        <Button variant="goBack" onClick={closeModal}>
+          Cancelar
+        </Button>
+        <Button variant="delete" onClick={() => mutate()}>
+          Eliminar
+        </Button>
       </div>
     </div>
-  );
-};
+  )
+}

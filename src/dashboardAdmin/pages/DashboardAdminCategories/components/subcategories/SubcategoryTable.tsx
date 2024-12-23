@@ -1,25 +1,37 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Pencil, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { Pencil, Trash2 } from "lucide-react"
 
-import { useModalHandlers } from "@/dashboardAdmin/hooks/useModalHandlers ";
-import { useState } from "react";
+import { useModalHandlers } from "@/dashboardAdmin/hooks/useModalHandlers "
+import { useState } from "react"
+import { SubCategory } from "@/enpatados/interfaces/SubCategory"
+interface SubcategoryTableProps {
+  subcategories: SubCategory[]
+  refetch: Function
+}
+export const SubcategoryTable = ({
+  subcategories,
+  refetch,
+}: SubcategoryTableProps) => {
+  const [subcategorySearchTerm, setSubcategorySearchTerm] = useState("")
 
-export const SubcategoryTable = () => {
-
-  const [subcategories, /* setSubcategories */] = useState([
-    { id: 1, name: "Soquetes", category: "Medias" },
-    { id: 2, name: "3/4", category: "Medias" },
-  ]);
-
-  const [subcategorySearchTerm, setSubcategorySearchTerm] = useState("");
-
-  const filteredSubcategories = subcategories.filter(subcategory =>
+  const filteredSubcategories = subcategories.filter((subcategory) =>
     subcategory.name.toLowerCase().includes(subcategorySearchTerm.toLowerCase())
-  );
+  )
 
-  const { handleCreateSubcategory, handleEditSubcategory, handleDeleteSubcategory } = useModalHandlers();
+  const {
+    handleCreateSubcategory,
+    handleEditSubcategory,
+    handleDeleteSubcategory,
+  } = useModalHandlers()
 
   return (
     <div>
@@ -34,7 +46,10 @@ export const SubcategoryTable = () => {
               onChange={(e) => setSubcategorySearchTerm(e.target.value)}
               className="border border-[#334155] bg-[#252D3B] focus-visible:ring-2 focus:ring-white focus:outline-none text-white"
             />
-            <Button variant="productActions" onClick={handleCreateSubcategory}>
+            <Button
+              variant="productActions"
+              onClick={() => handleCreateSubcategory(refetch)}
+            >
               Crear Subcategoria
             </Button>
           </div>
@@ -44,29 +59,54 @@ export const SubcategoryTable = () => {
             <Table className="rounded-md overflow-hidden border border-[#334155]">
               <TableHeader>
                 <TableRow>
-                  <TableHead className="border border-[#334155]">Nombre</TableHead>
-                  <TableHead className="border border-[#334155]">Categoria</TableHead>
-                  <TableHead className="border border-[#334155] lg:text-center">Acciones</TableHead>
+                  <TableHead className="border border-[#334155]">
+                    Nombre
+                  </TableHead>
+                  <TableHead className="border border-[#334155]">
+                    Categoria
+                  </TableHead>
+                  <TableHead className="border border-[#334155] lg:text-center">
+                    Acciones
+                  </TableHead>
                 </TableRow>
               </TableHeader>
 
               <TableBody>
                 {filteredSubcategories.length > 0 ? (
-                  filteredSubcategories.map(subcategory => (
+                  filteredSubcategories.map((subcategory) => (
                     <TableRow key={subcategory.id} className="hover:">
-                      <TableCell className="border border-[#334155]">{subcategory.name}</TableCell>
-                      <TableCell className="border border-[#334155]">{subcategory.category}</TableCell>
+                      <TableCell className="border border-[#334155]">
+                        {subcategory.name}
+                      </TableCell>
+                      <TableCell className="border border-[#334155]">
+                        {"subcategory.category.name"}
+                      </TableCell>
                       <TableCell className="border border-[#334155]">
                         <div className="flex flex-row gap-4 justify-center">
-                          <Trash2 className="cursor-pointer" onClick={() => handleDeleteSubcategory(subcategory.name)} />
-                          <Pencil className="cursor-pointer" onClick={() => handleEditSubcategory(subcategory)} />
+                          <Trash2
+                            className="cursor-pointer"
+                            onClick={() =>
+                              handleDeleteSubcategory(subcategory.id, refetch)
+                            }
+                          />
+                          <Pencil
+                            className="cursor-pointer"
+                            onClick={() =>
+                              handleEditSubcategory(subcategory, refetch)
+                            }
+                          />
                         </div>
                       </TableCell>
                     </TableRow>
                   ))
                 ) : (
                   <TableRow>
-                    <TableCell colSpan={3} className="text-center border border-[#334155]">No se encontraron categorías.</TableCell>
+                    <TableCell
+                      colSpan={3}
+                      className="text-center border border-[#334155]"
+                    >
+                      No se encontraron categorías.
+                    </TableCell>
                   </TableRow>
                 )}
               </TableBody>
