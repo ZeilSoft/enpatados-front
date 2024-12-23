@@ -8,6 +8,7 @@ import { useFormik } from "formik"
 import { Category } from "@/enpatados/interfaces/Category"
 import { Label } from "@/components/ui/label"
 import { AxiosError } from "axios"
+import { Textarea } from "@/components/ui/textarea"
 
 interface EditCategoryModalProps {
   category: Category
@@ -68,7 +69,7 @@ export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
             )}
 
             <Label className="text-sm">Descripción de la categoria</Label>
-            <Input
+            <Textarea
               className="bg-[#334155] ring-white border border-[#455166]"
               placeholder="Descripción de la categoria"
               {...getFieldProps("description")}

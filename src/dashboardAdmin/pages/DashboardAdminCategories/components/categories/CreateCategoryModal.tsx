@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query"
 import { createCategory } from "@/enpatados/services/categoryService"
 import { Label } from "@/components/ui/label"
 import { AxiosError } from "axios"
+import { Textarea } from "@/components/ui/textarea"
 interface CreateCategoryModalProps {
   refetch: Function
 }
@@ -73,7 +74,7 @@ export const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
             )}
 
             <Label className="text-sm">Descripción de la categoria</Label>
-            <Input
+            <Textarea
               className="bg-[#334155] ring-white border border-[#455166]"
               placeholder="Descripción de la categoria"
               {...getFieldProps("description")}

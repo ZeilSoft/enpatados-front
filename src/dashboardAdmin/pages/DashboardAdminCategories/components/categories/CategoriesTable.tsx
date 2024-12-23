@@ -65,9 +65,9 @@ export const CategoriesTable = ({
                 <TableHead className="border border-[#334155]">
                   Nombre
                 </TableHead>
-                <TableHead className="border border-[#334155]">
+                {/* <TableHead className="border border-[#334155]">
                   Subcategoria
-                </TableHead>
+                </TableHead> */}
                 <TableHead className="border border-[#334155]">
                   Descripción
                 </TableHead>
@@ -90,13 +90,13 @@ export const CategoriesTable = ({
                     <TableCell className="border border-[#334155]">
                       {category.name}
                     </TableCell>
-                    <TableCell className="border border-[#334155]">
+                   {/*  <TableCell className="border border-[#334155]">
                       {category.subcategories != undefined &&
                         category.subcategories
                           .map((subcategory) => subcategory.name)
                           .join(", ")}
-                    </TableCell>
-                    <TableCell className="border border-[#334155]">
+                    </TableCell> */}
+                    <TableCell className="border border-[#334155] max-w-[460px] truncate">
                       {category.description}
                     </TableCell>
                     <TableCell className="border border-[#334155]">
