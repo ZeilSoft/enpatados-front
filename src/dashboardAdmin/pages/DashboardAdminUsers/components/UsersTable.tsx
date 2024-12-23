@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export const UsersTable = () => {
 
-  const [users, setUsers] = useState([
+  const [users, /* setUsers */] = useState([
     { id: 1, name: "Santiago", surname: "Herrera", email: "santiago@gmail.com", rol: "User" },
     { id: 2, name: "Gabriel", surname: "Nievas", email: "gabriel@gmail.com", rol: "Admin" },
     { id: 3, name: "Leandro", surname: "Eraso", email: "leandro@gmail.com", rol: "Admin" },

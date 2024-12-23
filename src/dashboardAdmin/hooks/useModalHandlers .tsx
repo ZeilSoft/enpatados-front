@@ -5,12 +5,6 @@ import { useModalStore } from "@/store/ui.store";
 import { CreateProductModal } from "../pages/DashboardAdminProducts/components/CreateProductModal";
 import { EditProductModal } from "../pages/DashboardAdminProducts/components/EditProductModal";
 import { DeleteProductModal } from "../pages/DashboardAdminProducts/components/DeleteProductModal";
-import { CreateCategoryModal } from "../pages/DashboardAdminCategories/components/CreateCategoryModal";
-import { EditCategoryModal } from "../pages/DashboardAdminCategories/components/EditCategoryModal";
-import { DeleteCategoryModal } from "../pages/DashboardAdminCategories/components/DeleteCategoryModal";
-import { CreateSubcategoryModal } from "../pages/DashboardAdminCategories/components/CreateSubcategoryModal";
-import { EditSubcategoryModal } from "../pages/DashboardAdminCategories/components/EditSubcategoryModal";
-import { DeleteSubcategoryModal } from '../pages/DashboardAdminCategories/components/DeleteSubcategoryModal';
 import { Product } from "@/enpatados/interfaces/Product";
 
 // Category

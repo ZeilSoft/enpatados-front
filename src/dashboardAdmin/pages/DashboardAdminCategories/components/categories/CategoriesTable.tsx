@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useModalHandlers } from "@/dashboardAdmin/hooks/useModalHandlers ";
 
 export const CategoriesTable = () => {
-  const [categories, setCategories] = useState([
+  const [categories, /* setCategories */] = useState([
     {
       id: 1,
       name: "Medias",

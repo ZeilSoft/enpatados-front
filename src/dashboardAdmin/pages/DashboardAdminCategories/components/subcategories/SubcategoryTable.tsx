@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export const SubcategoryTable = () => {
 
-  const [subcategories, setSubcategories] = useState([
+  const [subcategories, /* setSubcategories */] = useState([
     { id: 1, name: "Soquetes", category: "Medias" },
     { id: 2, name: "3/4", category: "Medias" },
   ]);

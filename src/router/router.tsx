@@ -14,7 +14,7 @@ import LoginPage from "@/auth/pages/login/LoginPage"
 // DashboardAdmin
 import { DashboardAdminLayout } from "@/dashboardAdmin/layout/DashboardAdminLayout"
 // import { DashboardAdminMainPage } from '@/dashboardAdmin/pages/DashboardAdminMainPage';
-import { DashboardAdminCategoriesPage } from "@/dashboardAdmin/pages/DashboardAdminCategoriesPage"
+import { DashboardAdminCategoriesPage } from "@/dashboardAdmin/pages/DashboardAdminCategories/DashboardAdminCategoriesPage"
 import RegisterPage from "@/auth/pages/register/RegisterPage"
 import PasswordRecovery from "@/auth/pages/password-recovery/PasswordRecovery"
 import GooglePage from "@/auth/pages/google/GooglePage"
