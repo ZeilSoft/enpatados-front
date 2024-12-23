@@ -1,19 +1,25 @@
+// Store
 import { useModalStore } from "@/store/ui.store";
 
 // Product
 import { CreateProductModal } from "../pages/DashboardAdminProducts/components/CreateProductModal";
 import { EditProductModal } from "../pages/DashboardAdminProducts/components/EditProductModal";
 import { DeleteProductModal } from "../pages/DashboardAdminProducts/components/DeleteProductModal";
-import { CreateCategoryModal } from "../pages/DashboardAdminCategories/components/CreateCategoryModal";
-import { EditCategoryModal } from "../pages/DashboardAdminCategories/components/EditCategoryModal";
-import { DeleteCategoryModal } from "../pages/DashboardAdminCategories/components/DeleteCategoryModal";
-import { CreateSubcategoryModal } from "../pages/DashboardAdminCategories/components/CreateSubcategoryModal";
-import { EditSubcategoryModal } from "../pages/DashboardAdminCategories/components/EditSubcategoryModal";
-import { DeleteSubcategoryModal } from '../pages/DashboardAdminCategories/components/DeleteSubcategoryModal';
 
 // Category
+import { CreateCategoryModal } from "../pages/DashboardAdminCategories/components/categories/CreateCategoryModal";
+import { EditCategoryModal } from "../pages/DashboardAdminCategories/components/categories/EditCategoryModal";
+import { DeleteCategoryModal } from "../pages/DashboardAdminCategories/components/categories/DeleteCategoryModal";
 
+// Subategory
+import { CreateSubcategoryModal } from "../pages/DashboardAdminCategories/components/subcategories/CreateSubcategoryModal";
+import { EditSubcategoryModal } from "../pages/DashboardAdminCategories/components/subcategories/EditSubcategoryModal";
+import { DeleteSubcategoryModal } from "../pages/DashboardAdminCategories/components/subcategories/DeleteSubcategoryModal";
 
+// User
+import { CreateUserModal } from "../pages/DashboardAdminUsers/components/CreateUserModal";
+import { EditUserModal } from "../pages/DashboardAdminUsers/components/EditUserModal";
+import { DeleteUserModal } from '../pages/DashboardAdminUsers/components/DeleteUserModal';
 
 export const useModalHandlers = () => {
   const { openModal } = useModalStore();
@@ -67,6 +73,22 @@ export const useModalHandlers = () => {
     openModal("Eliminar Subcategoria", content);
   };
 
+  // User
+  const handleCreateUser = () => {
+    const content = <CreateUserModal />;
+    openModal("Crear Usuario", content);
+  };
+
+  const handleEditUser = (user: any) => {
+    const content = <EditUserModal user={user} />;
+    openModal("Editar Usuario", content);
+  };
+
+  const handleDeleteUser = (userName: any) => {
+    const content = <DeleteUserModal userName={userName} />;
+    openModal("Eliminar Usuario", content);
+  };
+
   return {
     // Products
     handleCreateProduct,
@@ -82,5 +104,10 @@ export const useModalHandlers = () => {
     handleCreateSubcategory,
     handleEditSubcategory,
     handleDeleteSubcategory,
+
+    // Subcategory
+    handleCreateUser,
+    handleEditUser,
+    handleDeleteUser,
   };
 };
