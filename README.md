@@ -39,7 +39,6 @@ npm install
 
 **Explicación mas abajo**
 
-```
 
 #### 4. Iniciar el servidor
 
@@ -47,8 +46,6 @@ npm install
 npm run dev
 
 ```
-
----
 
 ## Configuración de variables de entorno
 
