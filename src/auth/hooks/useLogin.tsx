@@ -17,8 +17,8 @@ export const useLogin = () => {
 
     try {
       const response = await axiosInstance.post("user/login", {email, password});
-
-      const data = response.data.token;
+      console.log(response)
+      const data = response.data;
       let storage
       if(data){
         const user = decodeJwt(data)

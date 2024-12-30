@@ -32,7 +32,7 @@ export const useRegister = () => {
         email,
         password,
       })
-      const data = res.data.token
+      const data = res.data
       let storage
       if (data) {
         const user = decodeJwt(data)
