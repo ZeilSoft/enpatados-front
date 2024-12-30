@@ -3,9 +3,7 @@ import axiosInstance from "@/api/axiosInstance"
 export async function getUsers() {
   try {
     const response = await axiosInstance.get(`user`)
-    console.log(response)
-
-    return response.data.users
+    return response
   } catch (error) {
     throw error
   }

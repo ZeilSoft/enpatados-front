@@ -1,8 +1,8 @@
 import { Product } from "./Product"
 
 export interface Order {
-  id: number
-  orderNumber: number
+  order_id: number
+  order_number: number
   date: string
   total: number
   status: 'pendiente' | 'pagado' | 'cancelado'

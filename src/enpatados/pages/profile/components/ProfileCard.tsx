@@ -20,7 +20,7 @@ const ProfileCard = ({ order }: ProfileCardProps) => {
       <div className="flex flex-col gap-1 text-start w-full">
         <div className="flex">
           <span className="font-semibold w-full">
-            Orden numero: {order.orderNumber}
+            Orden numero: {order.order_number}
           </span>
           <span
           className={`font-bold text-start sm:text-end ${

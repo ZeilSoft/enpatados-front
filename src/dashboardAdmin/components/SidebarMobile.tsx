@@ -25,11 +25,16 @@ const menuItems: MenuItem[] = [
 import { useSidebarStore } from "@/store/ui.store"
 import { Button } from "@/components/ui/button"
 import { useAuthContext } from "@/auth/context/auth-context"
+import { useLogout } from "@/auth/hooks/useLogout"
 
 export const SidebarMobile = () => {
   const { isMobileSidebarOpen, toggleSidebar } = useSidebarStore()
   const { authUser } = useAuthContext()
-
+  const { logOut } = useLogout()
+  function handleLogOut (){
+    logOut()
+    window.location.href = "/auth/iniciar-sesion"
+  }
   return (
     <div
       className={`lg:hidden z-[8888] absolute bg-[#111827] h-screen flex flex-col justify-between text-white transition-all duration-300 ease-in-out overflow-hidden ${
@@ -121,7 +126,7 @@ export const SidebarMobile = () => {
         </Link>
 
         {/* Logout */}
-        <Button variant="logOut" className="flex flex-row gap-2 items-center">
+        <Button variant="logOut" className="flex flex-row gap-2 items-center" onClick={handleLogOut}>
           <LogOut />
           Cerrar sesion
         </Button>

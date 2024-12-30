@@ -1,7 +1,7 @@
 import { Category } from "./Category"
 
 export interface SubCategory {
-    id: number
+    subcategory_id: number
     name: string
     categoryId: number
     category: Category

@@ -102,7 +102,7 @@ export const CreateSubcategoryModal: React.FC<CreateSubcategoryModalProps> = ({
                   {categories?.map((category: Category) => (
                     <SelectItem
                       key={crypto.randomUUID()}
-                      value={category.id.toString()}
+                      value={category.category_id.toString()}
                     >
                       {category.name}
                     </SelectItem>

@@ -18,11 +18,14 @@ import { EditSubcategoryModal } from "../pages/DashboardAdminCategories/componen
 import { DeleteSubcategoryModal } from "../pages/DashboardAdminCategories/components/subcategories/DeleteSubcategoryModal"
 
 // User
-import { CreateUserModal } from "../pages/DashboardAdminUsers/components/CreateUserModal"
 import { EditUserModal } from "../pages/DashboardAdminUsers/components/EditUserModal"
-import { DeleteUserModal } from "../pages/DashboardAdminUsers/components/DeleteUserModal"
 import { SubCategory } from "@/enpatados/interfaces/SubCategory"
 import { Category } from "@/enpatados/interfaces/Category"
+
+// Order
+import { DeleteOrderModal } from "../pages/DashboardAdminOrders/components/DeleteOrderModal"
+import { UpdateOrderModal } from "../pages/DashboardAdminOrders/components/UpdateOrderModal"
+import { Order } from "@/enpatados/interfaces/Order"
 
 export const useModalHandlers = () => {
   const { openModal } = useModalStore()
@@ -91,19 +94,20 @@ export const useModalHandlers = () => {
   }
 
   // User
-  const handleCreateUser = () => {
-    const content = <CreateUserModal />
-    openModal("Crear Usuario", content)
-  }
-
-  const handleEditUser = (user: any) => {
-    const content = <EditUserModal user={user} />
+  const handleEditUser = (id: number, role: string, refetch: Function) => {
+    const content = <EditUserModal id={id} role={role} refetch={refetch} />
     openModal("Editar Usuario", content)
   }
 
-  const handleDeleteUser = (userName: any) => {
-    const content = <DeleteUserModal userName={userName} />
-    openModal("Eliminar Usuario", content)
+  // Orders
+  const handleDeleteOrder = (id: number, refetch: Function) => {
+    const content = <DeleteOrderModal id={id} refetch={refetch} />
+    openModal("Eliminar Orden", content)
+  }
+
+  const handleUpdateOrder = (order: Order, refetch: Function) => {
+    const content = <UpdateOrderModal order={order} refetch={refetch} />
+    openModal("Actualizar Orden", content)
   }
 
   return {
@@ -123,8 +127,10 @@ export const useModalHandlers = () => {
     handleDeleteSubcategory,
 
     // Subcategory
-    handleCreateUser,
     handleEditUser,
-    handleDeleteUser,
+
+    //order
+    handleUpdateOrder,
+    handleDeleteOrder,
   }
 }

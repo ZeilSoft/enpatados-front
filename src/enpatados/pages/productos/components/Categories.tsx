@@ -28,16 +28,16 @@ const Categories = ({ categories }: CategoriesProps) => {
         {categories ? (
           categories.map((category: Category) => (
             <button
-              onClick={() => handleSelect(category.id)}
+              onClick={() => handleSelect(category.category_id)}
               className={`py-2 px-4 border transition-colors duration-150 border-yellow-main rounded-full hover:bg-yellow-main hover:text-white uppercase
             ${
-              categorySelected != null && categorySelected == category.id
+              categorySelected != null && categorySelected == category.category_id
                 ? "bg-yellow-main text-white"
                 : "text-yellow-main"
             }
             
             `}
-              disabled={categorySelected === category.id}
+              disabled={categorySelected === category.category_id}
               key={crypto.randomUUID()}
             >
               {category.name}

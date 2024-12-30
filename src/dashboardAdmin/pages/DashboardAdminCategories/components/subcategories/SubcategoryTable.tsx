@@ -13,6 +13,7 @@ import { Pencil, Trash2 } from "lucide-react"
 import { useModalHandlers } from "@/dashboardAdmin/hooks/useModalHandlers "
 import { useState } from "react"
 import { SubCategory } from "@/enpatados/interfaces/SubCategory"
+import { useDebounce } from "use-debounce"
 interface SubcategoryTableProps {
   subcategories: SubCategory[]
   refetch: Function
@@ -21,10 +22,14 @@ export const SubcategoryTable = ({
   subcategories,
   refetch,
 }: SubcategoryTableProps) => {
-  const [subcategorySearchTerm, setSubcategorySearchTerm] = useState("")
+  const urlParams = new URLSearchParams(window.location.search)
 
+  const [subcategorySearchTerm, setSubcategorySearchTerm] = useState(
+    urlParams.get("subcategories") || ""
+  )
+  const [value] = useDebounce(subcategorySearchTerm, 350)
   const filteredSubcategories = subcategories.filter((subcategory) =>
-    subcategory.name.toLowerCase().includes(subcategorySearchTerm.toLowerCase())
+    subcategory.name.toLowerCase().includes(value.toLowerCase())
   )
 
   const {
@@ -43,7 +48,10 @@ export const SubcategoryTable = ({
             <Input
               placeholder="Buscar subcategoría"
               value={subcategorySearchTerm}
-              onChange={(e) => setSubcategorySearchTerm(e.target.value)}
+              onChange={(e) => {
+                urlParams.set("subcategories", e.target.value)
+                setSubcategorySearchTerm(e.target.value)
+              }}
               className="border border-[#334155] bg-[#252D3B] focus-visible:ring-2 focus:ring-white focus:outline-none text-white"
             />
             <Button
@@ -74,7 +82,7 @@ export const SubcategoryTable = ({
               <TableBody>
                 {filteredSubcategories.length > 0 ? (
                   filteredSubcategories.map((subcategory) => (
-                    <TableRow key={subcategory.id} className="hover:">
+                    <TableRow key={crypto.randomUUID()} className="hover:">
                       <TableCell className="border border-[#334155]">
                         {subcategory.name}
                       </TableCell>
@@ -86,7 +94,7 @@ export const SubcategoryTable = ({
                           <Trash2
                             className="cursor-pointer"
                             onClick={() =>
-                              handleDeleteSubcategory(subcategory.id, refetch)
+                              handleDeleteSubcategory(subcategory.subcategory_id, refetch)
                             }
                           />
                           <Pencil

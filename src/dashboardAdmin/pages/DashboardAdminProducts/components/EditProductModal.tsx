@@ -63,7 +63,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
     mutationKey: ["createProduct"],
     mutationFn: async () => {
       await updateProduct({
-        id: product.id,
+        id: product.product_id,
         name: values.name,
         description: values.description,
         price: values.price,
@@ -153,7 +153,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                   {categories?.map((category: Category) => (
                     <SelectItem
                       key={crypto.randomUUID()}
-                      value={category.id.toString()}
+                      value={category.category_id.toString()}
                     >
                       {category.name}
                     </SelectItem>
@@ -182,7 +182,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                       (subcategory: SubCategory) => (
                         <SelectItem
                           key={crypto.randomUUID()}
-                          value={subcategory.id.toString()}
+                          value={subcategory.subcategory_id.toString()}
                         >
                           {subcategory.name}
                         </SelectItem>

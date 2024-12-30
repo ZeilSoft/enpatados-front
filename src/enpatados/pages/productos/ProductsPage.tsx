@@ -51,8 +51,8 @@ export const ProductsPage = () => {
       subCategoryId: subCategoryId ? subCategoryId : "",
       search: search ? search : "",
     })
-    setTotalPages(response.data.pagination.totalPages)
-    return response.data.data
+    setTotalPages(response.data.totalPages)
+    return response.data.products
   }
 
   useEffect(() => {

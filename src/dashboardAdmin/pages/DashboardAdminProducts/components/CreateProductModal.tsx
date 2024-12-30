@@ -148,7 +148,7 @@ export const CreateProductModal: React.FC<CreateProductModalProps> = ({
                   {categories?.map((category: Category) => (
                     <SelectItem
                       key={crypto.randomUUID()}
-                      value={category.id.toString()}
+                      value={category.category_id.toString()}
                     >
                       {category.name}
                     </SelectItem>
@@ -174,7 +174,7 @@ export const CreateProductModal: React.FC<CreateProductModalProps> = ({
                       (subcategory: SubCategory) => (
                         <SelectItem
                           key={crypto.randomUUID()}
-                          value={subcategory.id.toString()}
+                          value={subcategory.subcategory_id.toString()}
                         >
                           {subcategory.name}
                         </SelectItem>

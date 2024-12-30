@@ -42,7 +42,7 @@ export const EditSubcategoryModal: React.FC<EditSubCategoryModalProps> = ({
       initialValues: {
         name: subcategory.name,
         categoryId: subcategory.categoryId,
-        subcategoryId: subcategory.id,
+        subcategoryId: subcategory.subcategory_id,
       },
       validationSchema: createSubCategorySchema,
       onSubmit: () => {
@@ -108,7 +108,7 @@ export const EditSubcategoryModal: React.FC<EditSubCategoryModalProps> = ({
                   {categories?.map((category: Category) => (
                     <SelectItem
                       key={crypto.randomUUID()}
-                      value={category.id.toString()}
+                      value={category.category_id.toString()}
                     >
                       {category.name}
                     </SelectItem>

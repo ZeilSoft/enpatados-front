@@ -27,7 +27,7 @@ export const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
         name: category.name,
         description: category.description,
         icon: category.icon,
-        categoryId: category.id,
+        categoryId: category.category_id,
       },
       validationSchema: createCategorySchema,
       onSubmit: () => {

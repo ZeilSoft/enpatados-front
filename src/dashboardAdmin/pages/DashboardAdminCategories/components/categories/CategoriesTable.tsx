@@ -16,6 +16,7 @@ import { useState } from "react"
 
 import { useModalHandlers } from "@/dashboardAdmin/hooks/useModalHandlers "
 import { Category } from "@/enpatados/interfaces/Category"
+import { useDebounce } from "use-debounce"
 
 interface CategoriesTableProps {
   categories: Category[]
@@ -27,12 +28,12 @@ export const CategoriesTable = ({
   refetch,
   refetchSubCategories
 }: CategoriesTableProps) => {
-  const [categorySearchTerm, setCategorySearchTerm] = useState("")
-
+  const urlParams = new URLSearchParams(window.location.search)
+  const [categorySearchTerm, setCategorySearchTerm] = useState(urlParams.get("categories") || "")
+  const [value] = useDebounce(categorySearchTerm, 350)
   const filteredCategories = categories.filter((category) =>
-    category.name.toLowerCase().includes(categorySearchTerm.toLowerCase())
+    category.name.toLowerCase().includes(value.toLowerCase())
   )
-
   const { handleCreateCategory, handleDeleteCategory, handleEditCategory } =
     useModalHandlers()
 
@@ -44,7 +45,10 @@ export const CategoriesTable = ({
           <Input
             placeholder="Buscar categoría"
             value={categorySearchTerm}
-            onChange={(e) => setCategorySearchTerm(e.target.value)}
+            onChange={(e) =>{
+              urlParams.set("category", e.target.value)
+              setCategorySearchTerm(e.target.value)
+            }}
             className="border border-[#334155] bg-[#252D3B] focus-visible:ring-2 focus:ring-white focus:outline-none text-white"
           />
           <Button
@@ -80,7 +84,7 @@ export const CategoriesTable = ({
             <TableBody>
               {filteredCategories.length > 0 ? (
                 filteredCategories.map((category) => (
-                  <TableRow key={category.id} className="hover:">
+                  <TableRow key={crypto.randomUUID()} className="hover:">
                     <TableCell className="border border-[#334155] text-center">
                       <div className="flex justify-center items-center">
                         <Icon icon={category.icon} />
@@ -104,7 +108,7 @@ export const CategoriesTable = ({
                         <Trash2
                           className="cursor-pointer"
                           onClick={() =>
-                            handleDeleteCategory(category.id, refetch, refetchSubCategories)
+                            handleDeleteCategory(category.category_id, refetch, refetchSubCategories)
                           }
                         />
                         <Pencil
