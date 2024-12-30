@@ -1,6 +1,7 @@
 import { Product } from "./Product"
 
 export interface Order {
+  id: number
   orderNumber: number
   date: string
   total: number
