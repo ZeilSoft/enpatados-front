@@ -40,7 +40,7 @@ export default function Cart({ cartOpen, setCartOpen }: CartProps) {
 
       products.forEach((product: CartProducts) => {
         const productToSend = {
-          id: product.product.id!,
+          id: product.product.product_id!,
           quantity: product.amount,
         }
         sendProducts.products.push(productToSend)
@@ -154,7 +154,7 @@ function CartCard({
     (state) => state.deleteProductFromCart
   )
   function handleDeleteProduct() {
-    deleteProductFromCart(userId.toString(), product.id!)
+    deleteProductFromCart(userId.toString(), product.product_id!)
   }
   return (
     <li className="flex gap-4 w-full">
@@ -192,7 +192,7 @@ function CartCard({
                   className="rounded-full bg-gray-200 p-2 min-h-8 min-w-8"
                   onClick={() => {
                     if (amount > 1) {
-                      decreaseAmountProduct(userId, product.id)
+                      decreaseAmountProduct(userId, product.product_id)
                     }
                   }}
                 >
@@ -205,7 +205,7 @@ function CartCard({
               <div>
                 <button
                   className="rounded-full bg-gray-200 p-2 min-h-8 min-w-8"
-                  onClick={() => increaseAmountProduct(userId, product.id)}
+                  onClick={() => increaseAmountProduct(userId, product.product_id)}
                 >
                   <Icon icon="material-symbols:add" width="16" height="16" />
                 </button>

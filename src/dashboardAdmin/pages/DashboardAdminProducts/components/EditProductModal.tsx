@@ -27,11 +27,11 @@ interface EditProductModalProps {
 
 export const EditProductModal: React.FC<EditProductModalProps> = ({
   product,
-  refetch
+  refetch,
 }) => {
   const [images, setImages] = useState(product.images)
   const [category, setCategory] = useState<undefined | string>(
-    product.categoryId.toString()
+    product.category_id.toString()
   )
   const [success, setSuccess] = useState(false)
 
@@ -49,8 +49,8 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
         description: product.description ? product.description : "",
         price: product.price ? product.price : 0,
         stock: product.stock ? product.stock : 0,
-        categoryId: product.categoryId ? product.categoryId : "",
-        subcategoryId: product.subcategoryId ? product.subcategoryId : "",
+        categoryId: product.category_id ? product.category_id : "",
+        subcategoryId: product.subcategory_id ? product.subcategory_id : "",
         images: images,
       },
       validationSchema: createProductSchema,
@@ -138,7 +138,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
             )}
 
             <Select
-              defaultValue={product.categoryId.toString()}
+              defaultValue={product.category_id.toString()}
               onValueChange={(value) => {
                 setCategory(value)
                 values.categoryId = value
@@ -170,7 +170,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
 
             {category != undefined && (
               <Select
-                defaultValue={product.subcategoryId?.toString()}
+                defaultValue={product.subcategory_id?.toString()}
                 onValueChange={(value) => (values.subcategoryId = value)}
               >
                 <SelectTrigger className="bg-[#334155] ring-white border border-[#455166] text-white rounded-md py-2 px-3 focus:ring-offset-0 focus-visible:ring-2 focus:ring-white">

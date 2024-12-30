@@ -41,7 +41,7 @@ export const EditSubcategoryModal: React.FC<EditSubCategoryModalProps> = ({
     useFormik({
       initialValues: {
         name: subcategory.name,
-        categoryId: subcategory.categoryId,
+        categoryId: subcategory.category_id,
         subcategoryId: subcategory.subcategory_id,
       },
       validationSchema: createSubCategorySchema,
@@ -66,17 +66,7 @@ export const EditSubcategoryModal: React.FC<EditSubCategoryModalProps> = ({
     <form className="flex flex-col gap-4 text-white" onSubmit={handleSubmit}>
       {success ? (
         <div className="flex flex-col gap-4">
-          <h1 className="text-white">Sub Categoria creado con éxito</h1>
-          <Button
-            className="border border-[#455166]"
-            type="button"
-            variant="productActions"
-            onClick={() => {
-              setSuccess(false)
-            }}
-          >
-            Crear otra categoria
-          </Button>
+          <h1 className="text-white">Sub Categoria editada con éxito</h1>
         </div>
       ) : (
         <>
@@ -95,7 +85,7 @@ export const EditSubcategoryModal: React.FC<EditSubCategoryModalProps> = ({
 
             <Label className="text-sm">Categoria</Label>
             <Select
-              defaultValue={subcategory.categoryId.toString()}
+              defaultValue={subcategory.category_id.toString()}
               onValueChange={(value) => {
                 values.categoryId = Number(value)
               }}
@@ -128,7 +118,7 @@ export const EditSubcategoryModal: React.FC<EditSubCategoryModalProps> = ({
             type="submit"
             variant="productActions"
           >
-            Crear categoria
+            Editar sub categoria
           </Button>
           {error && (
             <small className="font-bold text-[#ff4444]">

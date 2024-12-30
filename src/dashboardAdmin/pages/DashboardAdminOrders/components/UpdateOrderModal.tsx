@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
 
 interface UpdateOrderModalProps {
   order: Order
@@ -25,21 +26,22 @@ export const UpdateOrderModal: React.FC<UpdateOrderModalProps> = ({
   refetch,
 }) => {
   const [success, setSuccess] = useState(false)
+  const { handleSubmit, errors, touched, values, resetForm, getFieldProps } =
+    useFormik({
+      initialValues: {
+        status: order.status,
+        discount: order.discount,
+      },
+      validationSchema: updateOrderSchema,
+      onSubmit: () => {
+        mutate()
+      },
+    })
 
-  const { handleSubmit, errors, touched, values, resetForm } = useFormik({
-    initialValues: {
-      status: order.status,
-    },
-    validationSchema: updateOrderSchema,
-    onSubmit: () => {
-      mutate()
-    },
-  })
-
-  const { mutate, error } = useMutation({
+  const { mutate, error, isPending } = useMutation({
     mutationKey: ["updateOrder"],
     mutationFn: async () => {
-      await updateOrder(values.status, order.order_id)
+      await updateOrder(values.status, order.order_number, values.discount)
     },
     onSuccess: () => {
       setSuccess(true)
@@ -57,15 +59,28 @@ export const UpdateOrderModal: React.FC<UpdateOrderModalProps> = ({
       ) : (
         <>
           <div className="flex flex-col gap-2">
+            <Label className="text-sm">Descuento para la orden</Label>
+            <Input
+              className="bg-[#334155] ring-white border border-[#455166]"
+              placeholder="Descripción del producto"
+              {...getFieldProps("discount")}
+              disabled={isPending}
+            />
+
+            {touched.discount && errors.discount && (
+              <small className="font-bold text-[#ff4444]">
+                {errors.discount}
+              </small>
+            )}
             <Label className="text-sm">Nombre del producto</Label>
             <Select
               defaultValue={order.status}
               onValueChange={(value) =>
-                value == "pendiente"
-                  ? (values.status = "pendiente")
-                  : value == "pagado"
-                  ? (values.status = "pagado")
-                  : (values.status = "cancelado")
+                value == "pending"
+                  ? (values.status = "pending")
+                  : value == "paid"
+                  ? (values.status = "paid")
+                  : (values.status = "canceled")
               }
             >
               <SelectTrigger className="bg-[#334155] ring-white border border-[#455166] text-white rounded-md py-2 px-3 focus:ring-offset-0 focus-visible:ring-2 focus:ring-white">
@@ -73,9 +88,9 @@ export const UpdateOrderModal: React.FC<UpdateOrderModalProps> = ({
               </SelectTrigger>
               <SelectContent className="bg-[#334155] text-white z-[12222]">
                 <SelectGroup onMouseDown={(e) => e.stopPropagation()}>
-                  <SelectItem value={"pendiente"}>Pendiente</SelectItem>
-                  <SelectItem value={"pagado"}>Pagado</SelectItem>
-                  <SelectItem value={"cancelado"}>Cancelado</SelectItem>
+                  <SelectItem value={"pending"}>Pendiente</SelectItem>
+                  <SelectItem value={"paid"}>Pagado</SelectItem>
+                  <SelectItem value={"canceled"}>Cancelado</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>

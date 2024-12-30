@@ -19,11 +19,15 @@ export function deleteOrder(id: number) {
 }
 
 export function updateOrder(
-  status: "pendiente" | "pagado" | "cancelado",
-  id: number
-) {
+  status: "pending" | "paid" | "canceled",
+  id: number,
+  discount: number
+) {  
   try {
-    const response = axiosInstance.put(`order/${id}`, { status: status })
+    const response = axiosInstance.put(`order/${id}`, {
+       status: status ,
+       discount: discount
+    })
     return response
   } catch (error) {
     throw error

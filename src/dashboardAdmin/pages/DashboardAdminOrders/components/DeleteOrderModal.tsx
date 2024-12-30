@@ -24,7 +24,7 @@ export const DeleteOrderModal: React.FC<DeleteOrderModalProps> = ({ id, refetch 
   return (
     <div className="flex flex-col gap-4">
       <p>
-        ¿Estás seguro de que deseas eliminar esta orden? "
+        ¿Estás seguro de que deseas eliminar esta orden?
       </p>
       <div className="flex justify-end gap-2">
         <Button variant="goBack" onClick={closeModal}>

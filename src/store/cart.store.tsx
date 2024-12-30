@@ -72,7 +72,7 @@ const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
         // Si existen productos, filtra la Product que se desea eliminar
         const filteredProducts = (state.cart[existingIndex].products =
           state.cart[existingIndex].products.filter(
-            (product: any) => product.product.id !== productId
+            (product: any) => product.product.product_id !== productId
           ))
 
         state.cart[existingIndex].products = filteredProducts
@@ -95,7 +95,7 @@ const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
   decreaseAmountProduct(userId, productId) {
     set((state) => {
       const existingIndex = state.cart[0].products.findIndex(
-        (product: CartProducts) => product.product.id === productId
+        (product: CartProducts) => product.product.product_id === productId
       ) // Busca el índice de los productos del usuario
 
       if (existingIndex !== -1) {
@@ -111,7 +111,7 @@ const storeApi: StateCreator<CartState, [["zustand/immer", never]]> = (
   increaseAmountProduct(userId, productId) {
     set((state) => {
       const existingIndex = state.cart[0].products.findIndex(
-        (product: CartProducts) => product.product.id === productId
+        (product: CartProducts) => product.product.product_id === productId
       ) // Busca el índice de los productos del usuario
       if (existingIndex !== -1) {
         state.cart[0].products[existingIndex].amount += 1

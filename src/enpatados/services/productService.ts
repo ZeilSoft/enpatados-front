@@ -55,8 +55,8 @@ export async function createProduct({
       description,
       price,
       stock,
-      categoryId,
-      subcategoryId,
+      category_id: categoryId,
+      subcategory_id: subcategoryId,
       images,
     })
     return response
@@ -90,8 +90,8 @@ export async function updateProduct({
       description,
       price,
       stock,
-      categoryId,
-      subcategoryId,
+      category_id: categoryId,
+      subcategory_id: subcategoryId,
       images,
     })
     return response

@@ -13,7 +13,7 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
       {products ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-8">
           {products.map((product: Product) => (
-            <Cards key={product.id} product={product} />
+            <Cards key={crypto.randomUUID()} product={product} />
           ))}
         </div>
       ) : (
@@ -41,7 +41,7 @@ function Cards({ product }: CardsProps) {
     isProductInCart = (
       productStore as { userId: string; products: CartProducts[] }
     ).products.some(
-      (productStorage: CartProducts) => productStorage.product.id === product.id
+      (productStorage: CartProducts) => productStorage.product.product_id === product.product_id
     )
   }
 

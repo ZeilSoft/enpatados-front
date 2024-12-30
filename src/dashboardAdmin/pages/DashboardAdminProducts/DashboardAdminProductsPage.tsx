@@ -198,7 +198,7 @@ export const DashboardAdminProductsPage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                 {products.map((product: Product) => (
                   <div
-                    key={product.id}
+                    key={crypto.randomUUID()}
                     className="bg-[#252D3B] shadow-lg rounded-lg flex flex-col"
                   >
                     <img
@@ -259,7 +259,11 @@ export const DashboardAdminProductsPage = () => {
                         className="flex-1"
                         variant="delete"
                         onClick={() =>
-                          handleDeleteProduct(product.id, product.name ,refetchProducts)
+                          handleDeleteProduct(
+                            product.product_id,
+                            product.name,
+                            refetchProducts
+                          )
                         }
                       >
                         ELIMINAR

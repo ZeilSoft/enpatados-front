@@ -19,7 +19,7 @@ export async function createSubCategory({
   try {
     const response = await axiosInstance.post("subCategory", {
       name,
-      categoryId,
+      category_id: categoryId,
     })
     return response.data
   } catch (error) {
@@ -39,7 +39,7 @@ export async function updateSubCategory({
   try {
     const response = await axiosInstance.put(`subCategory/${subcategoryId}`, {
       name,
-      categoryId,
+      category_id: categoryId,
     })
     return response
   } catch (error) {

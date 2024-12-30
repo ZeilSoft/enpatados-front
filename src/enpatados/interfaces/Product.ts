@@ -7,8 +7,8 @@ export interface Product {
   price: number
   stock: number
   images: Image[]
-  categoryId: number
+  category_id: number
   category: {name: string}
   subcategory: {name: string}
-  subcategoryId?: number | undefined
+  subcategory_id?: number | undefined
 }

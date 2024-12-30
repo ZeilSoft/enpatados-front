@@ -70,7 +70,7 @@ const OrdersTable = ({ orders, refetch }: OrdersTableProps) => {
                         <div className="flex flex-row gap-4 justify-center">
                           <Trash2
                             className="cursor-pointer"
-                            onClick={() => handleDeleteOrder(order.order_id, refetch)}
+                            onClick={() => handleDeleteOrder(order.order_number, refetch)}
                           />
                           <Pencil
                             className="cursor-pointer"

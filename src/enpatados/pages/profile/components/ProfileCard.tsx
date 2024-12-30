@@ -24,9 +24,9 @@ const ProfileCard = ({ order }: ProfileCardProps) => {
           </span>
           <span
           className={`font-bold text-start sm:text-end ${
-            order.status === "pagado"
+            order.status === "paid"
               ? "text-[#276827]"
-              : order.status === "pendiente"
+              : order.status === "pending"
               ? "text-[#bf9000]"
               : "text-[#6e0202]"
           }`}
