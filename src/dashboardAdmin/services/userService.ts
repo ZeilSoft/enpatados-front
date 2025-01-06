@@ -1,8 +1,8 @@
 import axiosInstance from "@/api/axiosInstance"
 
-export async function getUsers() {
+export async function getUsers(page?: number) {
   try {
-    const response = await axiosInstance.get(`user`)
+    const response = await axiosInstance.get(`user?page=${page}`)
     return response
   } catch (error) {
     throw error
