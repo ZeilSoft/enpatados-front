@@ -169,7 +169,7 @@ const LoginPage = () => {
                           href={
                             import.meta.env.VITE_API_URL + "user/auth/google"
                           }
-                          target="_self"
+                          target="_blank"
                           
                         >
                           <Icon className="h-6 w-6" icon="logos:google-icon" />

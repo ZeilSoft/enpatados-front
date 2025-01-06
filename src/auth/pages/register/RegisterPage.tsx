@@ -250,7 +250,7 @@ const RegisterPage = () => {
                   className="px-5 py-2.5 border flex justify-center items-center gap-2 bg-white border-blue-main hover:bg-white/80 transition-colors duration-150 rounded-lg w-full "
                   type="button"
                   href={import.meta.env.VITE_API_URL + "user/auth/google"}
-                  target="_self"
+                  target="_blank"
                 >
                   <Icon className="h-6 w-6" icon="logos:google-icon" />
                   <span className="text-sm">Continuar con Google</span>
