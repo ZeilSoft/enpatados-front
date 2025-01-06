@@ -15,7 +15,7 @@ import { useState } from "react"
 import { SubCategory } from "@/enpatados/interfaces/SubCategory"
 import { useDebounce } from "use-debounce"
 interface SubcategoryTableProps {
-  subcategories: SubCategory[]
+  subcategories: SubCategory[] | undefined
   refetch: Function
 }
 export const SubcategoryTable = ({
@@ -27,10 +27,13 @@ export const SubcategoryTable = ({
   const [subcategorySearchTerm, setSubcategorySearchTerm] = useState(
     urlParams.get("subcategories") || ""
   )
+  let filteredSubcategories
   const [value] = useDebounce(subcategorySearchTerm, 350)
-  const filteredSubcategories = subcategories.filter((subcategory) =>
-    subcategory.name.toLowerCase().includes(value.toLowerCase())
-  )
+  if (subcategories) {
+    filteredSubcategories = subcategories.filter((subcategory) =>
+      subcategory.name.toLowerCase().includes(value.toLowerCase())
+    )
+  }
 
   const {
     handleCreateSubcategory,
@@ -80,7 +83,8 @@ export const SubcategoryTable = ({
               </TableHeader>
 
               <TableBody>
-                {filteredSubcategories.length > 0 ? (
+                {filteredSubcategories != undefined &&
+                filteredSubcategories.length > 0 ? (
                   filteredSubcategories.map((subcategory) => (
                     <TableRow key={crypto.randomUUID()} className="hover:">
                       <TableCell className="border border-[#334155]">
@@ -94,7 +98,10 @@ export const SubcategoryTable = ({
                           <Trash2
                             className="cursor-pointer"
                             onClick={() =>
-                              handleDeleteSubcategory(subcategory.subcategory_id, refetch)
+                              handleDeleteSubcategory(
+                                subcategory.subcategory_id,
+                                refetch
+                              )
                             }
                           />
                           <Pencil

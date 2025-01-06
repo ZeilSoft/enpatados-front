@@ -17,7 +17,6 @@ export const useLogin = () => {
 
     try {
       const response = await axiosInstance.post("user/login", {email, password});
-      console.log(response)
       const data = response.data;
       let storage
       if(data){

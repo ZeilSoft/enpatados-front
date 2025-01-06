@@ -13,7 +13,6 @@ export const DashboardAdminCategoriesPage = () => {
   const {
     data: categories,
     refetch: refetchCategories,
-    error: errorCategories,
     isPending: isPendingCategories,
   } = useQuery({
     queryKey: ["categories"],
@@ -21,12 +20,12 @@ export const DashboardAdminCategoriesPage = () => {
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
     retry: 0,
+    retryDelay: 1000,
   })
 
   const {
     data: subcategories,
     refetch: refetchSubCategories,
-    error: errorSubCategories,
     isPending: isPendingSubCategories,
   } = useQuery({
     queryKey: ["subcategories"],
@@ -34,9 +33,8 @@ export const DashboardAdminCategoriesPage = () => {
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
     retry: 0,
+    retryDelay: 1000,
   })
-  console.log(subcategories);
-  
 
   return (
     <div className="flex flex-col gap-6 text-white pb-4 lg:pb-6">
@@ -50,15 +48,11 @@ export const DashboardAdminCategoriesPage = () => {
         "Cargando..."
       ) : (
         <>
-          {errorCategories ? (
-            "Error al buscar categorias"
-          ) : (
-            <CategoriesTable
-              categories={categories}
-              refetch={refetchCategories}
-              refetchSubCategories={refetchSubCategories}
-            />
-          )}
+          <CategoriesTable
+            categories={categories}
+            refetch={refetchCategories}
+            refetchSubCategories={refetchSubCategories}
+          />
         </>
       )}
 
@@ -66,14 +60,10 @@ export const DashboardAdminCategoriesPage = () => {
         "Cargando..."
       ) : (
         <>
-          {errorSubCategories ? (
-            "Error al buscar subcategorias"
-          ) : (
-            <SubcategoryTable
-              subcategories={subcategories}
-              refetch={refetchSubCategories}
-            />
-          )}
+          <SubcategoryTable
+            subcategories={subcategories}
+            refetch={refetchSubCategories}
+          />
         </>
       )}
 

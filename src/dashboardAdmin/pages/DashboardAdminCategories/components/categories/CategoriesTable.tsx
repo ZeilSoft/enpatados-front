@@ -19,21 +19,26 @@ import { Category } from "@/enpatados/interfaces/Category"
 import { useDebounce } from "use-debounce"
 
 interface CategoriesTableProps {
-  categories: Category[]
+  categories: Category[] | undefined
   refetch: Function
   refetchSubCategories: Function
 }
 export const CategoriesTable = ({
   categories,
   refetch,
-  refetchSubCategories
+  refetchSubCategories,
 }: CategoriesTableProps) => {
   const urlParams = new URLSearchParams(window.location.search)
-  const [categorySearchTerm, setCategorySearchTerm] = useState(urlParams.get("categories") || "")
-  const [value] = useDebounce(categorySearchTerm, 350)
-  const filteredCategories = categories.filter((category) =>
-    category.name.toLowerCase().includes(value.toLowerCase())
+  const [categorySearchTerm, setCategorySearchTerm] = useState(
+    urlParams.get("categories") || ""
   )
+  const [value] = useDebounce(categorySearchTerm, 350)
+  let filteredCategories
+  if (categories) {
+    filteredCategories = categories.filter((category) =>
+      category.name.toLowerCase().includes(value.toLowerCase())
+    )
+  }
   const { handleCreateCategory, handleDeleteCategory, handleEditCategory } =
     useModalHandlers()
 
@@ -45,7 +50,7 @@ export const CategoriesTable = ({
           <Input
             placeholder="Buscar categoría"
             value={categorySearchTerm}
-            onChange={(e) =>{
+            onChange={(e) => {
               urlParams.set("category", e.target.value)
               setCategorySearchTerm(e.target.value)
             }}
@@ -82,7 +87,8 @@ export const CategoriesTable = ({
             </TableHeader>
 
             <TableBody>
-              {filteredCategories.length > 0 ? (
+              
+              {filteredCategories != undefined && filteredCategories.length > 0 ? (
                 filteredCategories.map((category) => (
                   <TableRow key={crypto.randomUUID()} className="hover:">
                     <TableCell className="border border-[#334155] text-center">
@@ -94,7 +100,7 @@ export const CategoriesTable = ({
                     <TableCell className="border border-[#334155]">
                       {category.name}
                     </TableCell>
-                   {/*  <TableCell className="border border-[#334155]">
+                    {/*  <TableCell className="border border-[#334155]">
                       {category.subcategories != undefined &&
                         category.subcategories
                           .map((subcategory) => subcategory.name)
@@ -108,7 +114,11 @@ export const CategoriesTable = ({
                         <Trash2
                           className="cursor-pointer"
                           onClick={() =>
-                            handleDeleteCategory(category.category_id, refetch, refetchSubCategories)
+                            handleDeleteCategory(
+                              category.category_id,
+                              refetch,
+                              refetchSubCategories
+                            )
                           }
                         />
                         <Pencil
