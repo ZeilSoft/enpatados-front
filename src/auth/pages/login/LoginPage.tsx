@@ -37,6 +37,10 @@ const LoginPage = () => {
     },
   })
 
+  function loginGoogle() {
+    window.open(`${import.meta.env.VITE_API_URL}user/auth/google`, "_self")
+  }
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -162,19 +166,15 @@ const LoginPage = () => {
                             o
                           </p>
                         </div>
-
-                        <a
+                        
+                        <button
                           className="px-5 py-2.5 border flex justify-center items-center gap-2 bg-white border-blue-main hover:bg-white/80 transition-colors duration-150 rounded-lg w-full "
                           type="button"
-                          href={
-                            import.meta.env.VITE_API_URL + "user/auth/google"
-                          }
-                          target="_blank"
-                          
+                          onClick={loginGoogle}
                         >
                           <Icon className="h-6 w-6" icon="logos:google-icon" />
                           <span className="text-sm">Continuar con Google</span>
-                        </a>
+                        </button>
                       </div>
 
                       <p className="text-sm font-light text-center">
