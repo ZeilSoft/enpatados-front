@@ -40,7 +40,7 @@ export const DashboardAdminUsersPage = () => {
       <div className="sticky top-0 p-4 lg:px-6 lg:py-6 flex flex-col border-b border-[#334155] gap-6 z-[7777] bg-[#252D3B] shadow">
         <h1 className="text-4xl font-bold text-center break-words">USUARIOS</h1>
       </div>
-      {users && <UsersTable users={users} refetch={refetch} />}
+      {users ? <UsersTable users={users} refetch={refetch} /> : "No se encontraron usuarios"}
 
       <section className="flex items-center justify-center w-full">
         <PaginationUsers

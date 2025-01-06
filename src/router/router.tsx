@@ -26,6 +26,7 @@ import ProfilePage from "@/enpatados/pages/profile/ProfilePage"
 import { DashboardAdminProductsPage } from "@/dashboardAdmin/pages/DashboardAdminProducts/DashboardAdminProductsPage"
 import { DashboardAdminOrdersPage } from "@/dashboardAdmin/pages/DashboardAdminOrders/DashboardAdminOrdersPage"
 import { DashboardAdminUsersPage } from "@/dashboardAdmin/pages/DashboardAdminUsers/DashboardAdminUsersPage"
+import AuthAdminProtectedRoute from "@/components/AuthAdminProtectedRoute"
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -62,7 +63,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "*",
-            element: <NotFoundPage/>,
+            element: <NotFoundPage />,
           },
         ],
       },
@@ -110,7 +111,11 @@ export const router = createBrowserRouter([
       /// Dashboard Routes
       {
         path: "admin",
-        element: <DashboardAdminLayout />,
+        element: (
+          <AuthAdminProtectedRoute>
+            <DashboardAdminLayout />
+          </AuthAdminProtectedRoute>
+        ),
         children: [
           // {
           //   path: '',

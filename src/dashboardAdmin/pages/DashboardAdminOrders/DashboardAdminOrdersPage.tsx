@@ -36,7 +36,7 @@ export const DashboardAdminOrdersPage = () => {
         <h1 className="text-4xl font-bold text-center break-words">ORDENES</h1>
       </div>
 
-      {orders && <OrdersTable orders={orders.data.orders} refetch={refetch} />}
+      {orders ? <OrdersTable orders={orders.data.orders} refetch={refetch} /> : "No se encontraron ordenes"}
 
       <section className="flex items-center justify-center w-full">
         <PaginationOrders
