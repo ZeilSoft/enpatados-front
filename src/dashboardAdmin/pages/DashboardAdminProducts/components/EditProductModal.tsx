@@ -54,7 +54,12 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
         price: product.price ? product.price : 0,
         stock: product.stock ? product.stock : 0,
         categoryId: product.category_id ? product.category_id : "",
-        subcategoryId: product.subcategory_id ? product.subcategory_id : "",
+        subcategoryId: categories
+          ?.findIndex(
+            (category: Category) =>
+              category.category_id === Number(product.category_id)
+          )
+          .toString(),
         images: images,
       },
       validationSchema: createProductSchema,
@@ -66,10 +71,12 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
   const { isPending, mutate, error } = useMutation({
     mutationKey: ["createProduct"],
     mutationFn: async () => {
-      console.log(categories);
-      
-      console.log(categories[Number(category)].subcategories[values.subcategoryId].subcategory_id);
-      
+      console.log(images)
+      console.log(
+        categories[Number(category)].subcategories[values.subcategoryId]
+          .subcategory_id
+      )
+
       await updateProduct({
         id: product.product_id,
         name: values.name,
@@ -77,8 +84,10 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
         price: values.price,
         stock: values.stock,
         categoryId: Number(categories[Number(category)].category_id),
-        subcategoryId: categories[Number(category)].subcategories[values.subcategoryId].subcategory_id,
-        images: values.images,
+        subcategoryId:
+          categories[Number(category)].subcategories[values.subcategoryId]
+            .subcategory_id,
+        images: images,
       })
     },
     onSuccess: () => {
@@ -94,6 +103,8 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
 
   const handleRemoveImages = (index: number) => {
     const newSubCategories = images.filter((_: any, i: number) => i !== index)
+    console.log(newSubCategories)
+
     setImages(newSubCategories)
   }
 
@@ -214,7 +225,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
 
             {touched.subcategoryId && errors.subcategoryId && (
               <small className="font-bold text-[#ff4444]">
-                {errors.subcategoryId}
+                {errors.subcategoryId.toString()}
               </small>
             )}
 
