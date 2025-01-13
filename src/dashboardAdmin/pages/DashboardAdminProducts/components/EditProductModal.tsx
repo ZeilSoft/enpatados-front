@@ -77,8 +77,6 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
   const { isPending, mutate, error } = useMutation({
     mutationKey: ["createProduct"],
     mutationFn: async () => {
-      console.log(images)
-      console.log(values.images)
       const data = {
         id: product.product_id,
         name: values.name,
@@ -91,7 +89,6 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
             .subcategory_id,
         images: values.images,
       }
-      console.log(data)
 
       await updateProduct(data)
     },
@@ -113,7 +110,6 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
     setImages(newSubCategories)
   }
   useEffect(() => {
-    console.log(values)
     values.subcategoryId = ""
   }, [category])
 

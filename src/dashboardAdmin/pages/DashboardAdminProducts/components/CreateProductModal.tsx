@@ -64,8 +64,6 @@ export const CreateProductModal: React.FC<CreateProductModalProps> = ({
         subcategoryId: values.subcategoryId,
         images: values.images,
       }
-      console.log(data);
-      
       await createProduct(data)
     },
     onSuccess: () => {
