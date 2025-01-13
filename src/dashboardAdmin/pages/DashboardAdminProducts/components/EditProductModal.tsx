@@ -30,17 +30,21 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
   refetch,
 }) => {
   const [images, setImages] = useState(product.images)
-  const [category, setCategory] = useState<undefined | string>(
-    product.category_id.toString()
-  )
-  const [success, setSuccess] = useState(false)
-
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   })
+  const [category, setCategory] = useState<undefined | string>(
+    categories
+      ?.findIndex(
+        (category: Category) =>
+          category.category_id === Number(product.category_id)
+      )
+      .toString()
+  )
+  const [success, setSuccess] = useState(false)
 
   const { handleSubmit, errors, touched, getFieldProps, values, resetForm } =
     useFormik({
@@ -62,14 +66,18 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
   const { isPending, mutate, error } = useMutation({
     mutationKey: ["createProduct"],
     mutationFn: async () => {
+      console.log(categories);
+      
+      console.log(categories[Number(category)].subcategories[values.subcategoryId].subcategory_id);
+      
       await updateProduct({
         id: product.product_id,
         name: values.name,
         description: values.description,
         price: values.price,
         stock: values.stock,
-        categoryId: Number(values.categoryId),
-        subcategoryId: Number(values.subcategoryId),
+        categoryId: Number(categories[Number(category)].category_id),
+        subcategoryId: categories[Number(category)].subcategories[values.subcategoryId].subcategory_id,
         images: values.images,
       })
     },
@@ -138,7 +146,12 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
             )}
 
             <Select
-              defaultValue={product.category_id.toString()}
+              defaultValue={categories
+                ?.findIndex(
+                  (category: Category) =>
+                    category.category_id === Number(product.category_id)
+                )
+                .toString()}
               onValueChange={(value) => {
                 setCategory(value)
                 values.categoryId = value
@@ -150,7 +163,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
               </SelectTrigger>
               <SelectContent className="bg-[#334155] text-white z-[12222]">
                 <SelectGroup onMouseDown={(e) => e.stopPropagation()}>
-                  {categories?.map((category: Category, index : number) => (
+                  {categories?.map((category: Category, index: number) => (
                     <SelectItem
                       key={crypto.randomUUID()}
                       value={index.toString()}
@@ -170,7 +183,13 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
 
             {category != undefined && (
               <Select
-                defaultValue={product.subcategory_id?.toString()}
+                defaultValue={categories[Number(category)].subcategories
+                  .findIndex(
+                    (subcategory: SubCategory) =>
+                      subcategory.subcategory_id ===
+                      Number(product.subcategory_id)
+                  )
+                  .toString()}
                 onValueChange={(value) => (values.subcategoryId = value)}
               >
                 <SelectTrigger className="bg-[#334155] ring-white border border-[#455166] text-white rounded-md py-2 px-3 focus:ring-offset-0 focus-visible:ring-2 focus:ring-white">
@@ -179,10 +198,10 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                 <SelectContent className="bg-[#334155] text-white z-[12222]">
                   <SelectGroup onMouseDown={(e) => e.stopPropagation()}>
                     {categories[Number(category)]?.subcategories.map(
-                      (subcategory: SubCategory) => (
+                      (subcategory: SubCategory, index: number) => (
                         <SelectItem
                           key={crypto.randomUUID()}
-                          value={subcategory.subcategory_id.toString()}
+                          value={index.toString()}
                         >
                           {subcategory.name}
                         </SelectItem>
