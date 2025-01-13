@@ -91,7 +91,7 @@ export const SubcategoryTable = ({
                         {subcategory.name}
                       </TableCell>
                       <TableCell className="border border-[#334155]">
-                        {"subcategory.category.name"}
+                        {subcategory.category.name}
                       </TableCell>
                       <TableCell className="border border-[#334155]">
                         <div className="flex flex-row gap-4 justify-center">
