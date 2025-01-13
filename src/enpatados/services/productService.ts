@@ -90,8 +90,8 @@ export async function updateProduct({
       description,
       price,
       stock,
-      category_id: categoryId,
-      subcategory_id: subcategoryId,
+      categoryId,
+      subcategoryId,
       images,
     })
     return response

@@ -39,7 +39,7 @@ export async function updateSubCategory({
   try {
     const response = await axiosInstance.put(`subCategory/${subcategoryId}`, {
       name,
-      category_id: categoryId,
+      categoryId,
     })
     return response
   } catch (error) {
