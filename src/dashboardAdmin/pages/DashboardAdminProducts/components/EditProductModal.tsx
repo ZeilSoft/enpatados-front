@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -44,6 +44,12 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
       )
       .toString()
   )
+  const [subcategory, setSubcategory] = useState<string | undefined>(
+    categories[Number(category)].subcategories.findIndex(
+      (sub: SubCategory) => sub.subcategory_id === product.subcategory_id
+    ).toString()
+  )
+
   const [success, setSuccess] = useState(false)
 
   const { handleSubmit, errors, touched, getFieldProps, values, resetForm } =
@@ -54,12 +60,11 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
         price: product.price ? product.price : 0,
         stock: product.stock ? product.stock : 0,
         categoryId: product.category_id ? product.category_id : "",
-        subcategoryId: categories
-          ?.findIndex(
-            (category: Category) =>
-              category.category_id === Number(product.category_id)
-          )
-          .toString(),
+        subcategoryId: categories[
+          Number(category)
+        ].subcategories.findIndex(
+          (sub: SubCategory) => sub.subcategory_id === product.subcategory_id
+        ).toString(),
         images: images,
       },
       validationSchema: createProductSchema,
@@ -67,6 +72,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
         mutate()
       },
     })
+    
 
   const { isPending, mutate, error } = useMutation({
     mutationKey: ["createProduct"],
@@ -85,8 +91,8 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
             .subcategory_id,
         images: values.images,
       }
-      console.log(data);
-      
+      console.log(data)
+
       await updateProduct(data)
     },
     onSuccess: () => {
@@ -106,7 +112,11 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
     values.images = newSubCategories
     setImages(newSubCategories)
   }
-  
+  useEffect(() => {
+    console.log(values)
+    values.subcategoryId = ""
+  }, [category])
+
   return (
     <form className="flex flex-col gap-4 text-white" onSubmit={handleSubmit}>
       {success ? (
@@ -163,8 +173,9 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                 )
                 .toString()}
               onValueChange={(value) => {
-                values.subcategoryId = ""
-                values.categoryId = value
+                values.subcategoryId = "" // Limpia el valor de Formik
+                setSubcategory("") // Limpia el estado de subcategoría
+                values.categoryId = value // Actualiza la categoría seleccionada
                 setCategory(value)
               }}
             >
@@ -193,8 +204,11 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
 
             {category != undefined && (
               <Select
-                defaultValue={values.subcategoryId}
-                onValueChange={(value) => (values.subcategoryId = value)}
+                value={subcategory}
+                onValueChange={(value) => {
+                  setSubcategory(value) // Actualiza el estado de subcategoría
+                  values.subcategoryId = value // Actualiza el valor en Formik
+                }}
               >
                 <SelectTrigger className="bg-[#334155] ring-white border border-[#455166] text-white rounded-md py-2 px-3 focus:ring-offset-0 focus-visible:ring-2 focus:ring-white">
                   <SelectValue placeholder="Seleccione subcategoría" />
@@ -244,8 +258,8 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                   defaultValue={image.url}
                   type="url"
                   {...getFieldProps(`images[${index}].url`)}
-                 /*  disabled={isPending} */
-                 disabled={true}
+                  /*  disabled={isPending} */
+                  disabled={true}
                 />
                 {touched.images?.[index]?.url &&
                   typeof errors.images?.[index] === "object" &&
@@ -279,7 +293,9 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                 Quitar la ultima imagen
               </Button>
             </div>
-            <span>La actualizacion de imagenes no esta funcionando por el momento</span>
+            <span>
+              La actualizacion de imagenes no esta funcionando por el momento
+            </span>
           </div>
           {error && (
             <small className="font-bold text-[#ff4444]">
