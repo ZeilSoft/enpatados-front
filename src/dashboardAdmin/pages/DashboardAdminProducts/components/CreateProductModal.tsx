@@ -55,7 +55,18 @@ export const CreateProductModal: React.FC<CreateProductModalProps> = ({
   const { isPending, mutate, error } = useMutation({
     mutationKey: ["createProduct"],
     mutationFn: async () => {
-      await createProduct(values)
+      const data = {
+        name: values.name,
+        description: values.description,
+        price: values.price,
+        stock: values.stock,
+        categoryId: categories[values.categoryId].category_id.toString(),
+        subcategoryId: values.subcategoryId,
+        images: values.images,
+      }
+      console.log(data);
+      
+      await createProduct(data)
     },
     onSuccess: () => {
       setSuccess(true)

@@ -55,8 +55,8 @@ export async function createProduct({
       description,
       price,
       stock,
-      category_id: categoryId,
-      subcategory_id: subcategoryId,
+      categoryId,
+      subcategoryId,
       images,
     })
     return response
