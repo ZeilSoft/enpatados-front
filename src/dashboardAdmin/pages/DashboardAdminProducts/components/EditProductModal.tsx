@@ -72,12 +72,8 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
     mutationKey: ["createProduct"],
     mutationFn: async () => {
       console.log(images)
-      console.log(
-        categories[Number(category)].subcategories[values.subcategoryId]
-          .subcategory_id
-      )
-
-      await updateProduct({
+      console.log(values.images)
+      const data = {
         id: product.product_id,
         name: values.name,
         description: values.description,
@@ -87,8 +83,11 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
         subcategoryId:
           categories[Number(category)].subcategories[values.subcategoryId]
             .subcategory_id,
-        images: images,
-      })
+        images: values.images,
+      }
+      console.log(data);
+      
+      await updateProduct(data)
     },
     onSuccess: () => {
       setSuccess(true)
@@ -99,15 +98,15 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
 
   const handleAddImages = () => {
     setImages([...images, { url: "" }])
+    values.images = [...images, { url: "" }]
   }
 
   const handleRemoveImages = (index: number) => {
     const newSubCategories = images.filter((_: any, i: number) => i !== index)
-    console.log(newSubCategories)
-
+    values.images = newSubCategories
     setImages(newSubCategories)
   }
-
+  
   return (
     <form className="flex flex-col gap-4 text-white" onSubmit={handleSubmit}>
       {success ? (
@@ -164,9 +163,9 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                 )
                 .toString()}
               onValueChange={(value) => {
-                setCategory(value)
-                values.categoryId = value
                 values.subcategoryId = ""
+                values.categoryId = value
+                setCategory(value)
               }}
             >
               <SelectTrigger className="bg-[#334155] ring-white border border-[#455166] text-white rounded-md py-2 px-3 focus:ring-offset-0 focus-visible:ring-2 focus:ring-white">
@@ -194,13 +193,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
 
             {category != undefined && (
               <Select
-                defaultValue={categories[Number(category)].subcategories
-                  .findIndex(
-                    (subcategory: SubCategory) =>
-                      subcategory.subcategory_id ===
-                      Number(product.subcategory_id)
-                  )
-                  .toString()}
+                defaultValue={values.subcategoryId}
                 onValueChange={(value) => (values.subcategoryId = value)}
               >
                 <SelectTrigger className="bg-[#334155] ring-white border border-[#455166] text-white rounded-md py-2 px-3 focus:ring-offset-0 focus-visible:ring-2 focus:ring-white">
@@ -251,7 +244,8 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                   defaultValue={image.url}
                   type="url"
                   {...getFieldProps(`images[${index}].url`)}
-                  disabled={isPending}
+                 /*  disabled={isPending} */
+                 disabled={true}
                 />
                 {touched.images?.[index]?.url &&
                   typeof errors.images?.[index] === "object" &&
@@ -268,6 +262,7 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                 type="button"
                 variant="productActions"
                 onClick={handleAddImages}
+                disabled={true}
               >
                 Agregar una imagen
               </Button>
@@ -279,10 +274,12 @@ export const EditProductModal: React.FC<EditProductModalProps> = ({
                   if (images.length > 1)
                     return handleRemoveImages(images.length - 1)
                 }}
+                disabled={true}
               >
                 Quitar la ultima imagen
               </Button>
             </div>
+            <span>La actualizacion de imagenes no esta funcionando por el momento</span>
           </div>
           {error && (
             <small className="font-bold text-[#ff4444]">

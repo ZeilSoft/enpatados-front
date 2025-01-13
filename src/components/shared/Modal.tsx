@@ -42,12 +42,12 @@ export const Modal: React.FC<ModalProps> = ({ title, children, className }) => {
 
   return (      
     <div
-      className={`fixed inset-0 z-[11111] flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none transition-opacity duration-300 ease-in-out px-6 ${
+      className={`fixed inset-0 z-[11111] flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none transition-opacity duration-300 ease-in-out px-6 h-full ${
         isModalOpen ? 'opacity-100 pointer-events-auto backdrop-blur-sm' : 'opacity-0 pointer-events-none'
       }`}
     >
       {/* Fondo opaco */}
-      <div className={`fixed inset-0 bg-black opacity-50 transition-opacity duration-300 ease-in-out ${isModalOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'}`} />
+      <div className={`fixed inset-0 bg-black opacity-50 transition-opacity duration-300 ease-in-out h-full ${isModalOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'}`} />
 
       <div
         ref={modalRef}
