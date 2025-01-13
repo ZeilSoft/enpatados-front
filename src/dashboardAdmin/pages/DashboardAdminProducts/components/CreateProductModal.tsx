@@ -145,10 +145,10 @@ export const CreateProductModal: React.FC<CreateProductModalProps> = ({
               </SelectTrigger>
               <SelectContent className="bg-[#334155] text-white z-[12222]">
                 <SelectGroup onMouseDown={(e) => e.stopPropagation()}>
-                  {categories?.map((category: Category) => (
+                  {categories?.map((category: Category, index : number) => (
                     <SelectItem
                       key={crypto.randomUUID()}
-                      value={category.category_id.toString()}
+                      value={index.toString()}
                     >
                       {category.name}
                     </SelectItem>
@@ -170,7 +170,7 @@ export const CreateProductModal: React.FC<CreateProductModalProps> = ({
                 </SelectTrigger>
                 <SelectContent className="bg-[#334155] text-white z-[12222]">
                   <SelectGroup onMouseDown={(e) => e.stopPropagation()}>
-                    {categories[Number(category) - 1]?.subcategories.map(
+                    {categories[Number(category)]?.subcategories.map(
                       (subcategory: SubCategory) => (
                         <SelectItem
                           key={crypto.randomUUID()}
