@@ -3,17 +3,28 @@ import { Category } from "@/enpatados/interfaces/Category"
 import SubCategories from "./SubCategories"
 import { motion } from "framer-motion"
 import { Icon } from "@iconify/react/dist/iconify.js"
+import { useEffect, useState } from "react"
+import { SubCategory } from "@/enpatados/interfaces/SubCategory"
 interface CategoriesProps {
   categories?: Category[]
 }
 const Categories = ({ categories }: CategoriesProps) => {
   const { handleCategory, searchParams } = usePagination()
   const categorySelected = Number(searchParams.get("category")) || null
+  const [subCategories, setSubCategories] = useState<SubCategory[] | undefined>()
 
   function handleSelect(id: number) {
     handleCategory(id)
   }
-
+  useEffect(()=>{
+    if(categories && categorySelected){
+    const categoryArray = categories.filter(
+      (category) => category.category_id == categorySelected
+    )    
+    setSubCategories(categoryArray[0].subcategories)
+  }
+    
+  },[categorySelected])
   return (
     <div className="flex flex-col w-full gap-4">
       <div className="flex flex-wrap gap-4">
@@ -65,7 +76,7 @@ const Categories = ({ categories }: CategoriesProps) => {
         <SubCategories
           subCategories={
             categorySelected != undefined && categories
-              ? categories[categorySelected - 1].subcategories
+              ? subCategories
               : undefined
           }
         />
