@@ -338,7 +338,7 @@ const Navbar = () => {
                   setOpen(false)
                 }}
               >
-                promociones
+                Promociones
               </NavLink>
 
               <NavLink

@@ -93,7 +93,7 @@ const Footer = () => {
 
             <a
               className="hover:underline hover:text-main transition-colors duration-150 text-yellow-main"
-              href="https://www.instagram.com/enpatados"
+              href="https://www.instagram.com/enpatados_?igsh=MWw3dndlY3RtY2tmdw=="
             >
               Instagram
             </a>
